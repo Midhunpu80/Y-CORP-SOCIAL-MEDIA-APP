@@ -14,6 +14,7 @@ class pro_userprofilescreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: wh,
       appBar: AppBar(
         actions: [
           IconButton(

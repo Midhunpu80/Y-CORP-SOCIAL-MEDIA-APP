@@ -11,15 +11,22 @@ class messegeview_screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( 
-        actions: const [
+      backgroundColor: bl,
+      appBar: AppBar(
+        actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.call),
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.call,
+              color: wh,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.video_call_rounded),
+            padding: EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.video_call_rounded,
+              color: wh,
+            ),
           )
         ],
         toolbarHeight: 10.h,
@@ -32,7 +39,7 @@ class messegeview_screen extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.arrow_back,
-                    color: bl,
+                    color: wh,
                     size: 15.h,
                   )),
               SizedBox(
@@ -44,9 +51,9 @@ class messegeview_screen extends StatelessWidget {
             ],
           ),
         ),
-        backgroundColor: yl,
+        backgroundColor: bl,
         title: alltext(
-            txt: "Midhunpu", col: bl, siz: 11.sp, wei: FontWeight.w400, max: 1),
+            txt: "Midhunpu", col: wh, siz: 11.sp, wei: FontWeight.w400, max: 1),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -59,35 +66,39 @@ class messegeview_screen extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: index.isEven
-                          ? Container(
-                              height: 2.h,
-                              margin: EdgeInsets.only(left: 30.h),
-                              decoration: BoxDecoration(
-                                  color: yl,
-                                  borderRadius: BorderRadius.circular(2.h)),
-                              child: Center(
-                                child: alltext(
-                                    txt: "some name*" * 120,
-                                    col: bl,
-                                    siz: 8.sp,
-                                    wei: FontWeight.bold,
-                                    max: 1),
-                              ))
-                          : Container(
-                              margin: EdgeInsets.only(right: 30.h),
-                              height: 2.h,
-                              width: 50.w,
-                              decoration: BoxDecoration(
-                                  color: pp,
-                                  borderRadius: BorderRadius.circular(2.h)),
-                              child: Center(
-                                child: alltext(
-                                    txt: "some name ",
-                                    col: bl,
-                                    siz: 8.sp,
-                                    wei: FontWeight.bold,
-                                    max: 1),
-                              )),
+                          ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  width: 100.w,
+                                  margin: EdgeInsets.only(left: 30.h),
+                                  decoration: BoxDecoration(
+                                      color: yl,
+                                      borderRadius: BorderRadius.circular(1.h)),
+                                  child: alltext(
+                                      txt:
+                                          "some nambbjkjbjenbjbjbjbjjhbjhbjhjhjhjhhbjhb0" *
+                                              10,
+                                      col: wh,
+                                      siz: 7.sp,
+                                      wei: FontWeight.bold,
+                                      max: null)),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  margin: EdgeInsets.only(right: 30.h),
+                                  width: 100.w,
+                                  decoration: BoxDecoration(
+                                      color: pp,
+                                      borderRadius: BorderRadius.circular(2.h)),
+                                  child: SizedBox(
+                                      child: alltext(
+                                          txt: "somenamendnkjkdkbdbjd " * 10,
+                                          col: wh,
+                                          siz: 8.sp,
+                                          wei: FontWeight.bold,
+                                          max: null))),
+                            ),
                     );
                   },
                   separatorBuilder: (context, index) {
@@ -101,7 +112,8 @@ class messegeview_screen extends StatelessWidget {
                 height: 6.h,
                 width: 100.w,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.h), color: blu),
+                    borderRadius: BorderRadius.circular(8.h),
+                    color: wh.withOpacity(0.3)),
                 child: Row(
                   children: [
                     Padding(

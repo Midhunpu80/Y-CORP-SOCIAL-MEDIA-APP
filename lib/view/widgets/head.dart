@@ -9,6 +9,7 @@ import 'package:social_syn/view/widgets/likeandcommentbar.dart';
 
 Widget drawwer() {
   return SliverAppBar(
+    leading: Icon(Icons.abc,color: Colors.transparent,),
       toolbarHeight: 8.h,
       flexibleSpace: SafeArea(
         child: Container(
@@ -23,7 +24,7 @@ Widget drawwer() {
                     txt: "Social sync",
                     col: wh,
                     siz: 17.sp,
-                    wei: FontWeight.bold,
+                    wei: FontWeight.w400,
                     max: 1),
                 // CircleAvatar(
                 //   backgroundColor: bl,

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
-import 'package:social_syn/view/screen/authentication/Log/reg/registerpage.dart';
+import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/registertextfields.dart';
@@ -24,16 +24,18 @@ class Loginscreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 6.h,
+              height: 8.h,
             ),
             Container(
               height: 20.h,
               width: 40.w,
               decoration: BoxDecoration(
                   image: const DecorationImage(
-                      image: AssetImage("images/login.png"), fit: BoxFit.cover),
+                      image: AssetImage(
+                          "images/3645-7621-remix-of-login-machine.png"),
+                      fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(50.h),
-                  color: blu),
+                  color: wh),
             ),
             SizedBox(
               height: 3.h,
@@ -46,55 +48,6 @@ class Loginscreen extends StatelessWidget {
                 max: 1),
             SizedBox(
               height: 6.h,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  height: 8.h,
-                  width: 50.w,
-                  child: Obx(
-                    () => ListTile(
-                      leading: Radio(
-                          value: 1,
-                          groupValue: procontroll.gropdata.value,
-                          onChanged: (val) {
-                            data = 1;
-                            print(data.toString());
-                            procontroll.changeraio_value(val: val);
-                          }),
-                      title: alltext(
-                          txt: "Home owner",
-                          col: wh,
-                          siz: 8.sp,
-                          wei: FontWeight.bold,
-                          max: 1),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                  width: 50.w,
-                  child: Obx(
-                    () => ListTile(
-                      leading: Radio(
-                          value: 2,
-                          groupValue: procontroll.gropdata.value,
-                          onChanged: (val) {
-                            data = 2;
-                            print(data.toString());
-
-                            procontroll.changeraio_value(val: val);
-                          }),
-                      title: alltext(
-                          txt: "Proffessional",
-                          col: wh,
-                          siz: 8.sp,
-                          wei: FontWeight.bold,
-                          max: 1),
-                    ),
-                  ),
-                ),
-              ],
             ),
             SizedBox(
               height: 1.h,
@@ -136,15 +89,13 @@ class Loginscreen extends StatelessWidget {
               alignment: Alignment.center,
               child: InkWell(
                 onTap: () {
-                  if (procontroll.gropdata.value == 0) {
-                    print("selete the something ");
-                  }
-                  if (email_log.text.isEmpty && password_log.text.isEmpty) {
-                    print("is empty");
-                  } else if (email_log.text.isNotEmpty &&
+                  if (email_log.text.isNotEmpty ||
                       password_log.text.isNotEmpty) {
-                    log_controll.login_services(
-                        email: email_log.text, password: password_log.text);
+                    auth_controll.loginuserservice(
+                        email: email_log.text.toString(),
+                        password: password_log.text.toString());
+                  } else {
+                    print("is empty");
                   }
                 },
                 child: Container(
@@ -187,9 +138,7 @@ class Loginscreen extends StatelessWidget {
                   Get.to(() => Loginscreen());
                 },
                 child: InkWell(
-                  onTap: () {
-                    Get.to(() => Registerpagescreen());
-                  },
+                  onTap: () {},
                   child: Container(
                     height: 6.h,
                     width: 80.w,

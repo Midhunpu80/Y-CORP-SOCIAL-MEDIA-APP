@@ -12,13 +12,16 @@ class messegeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bl,
       appBar: AppBar(
+      
         actions: [
          notificationbutton(),settingsbutton()
         ],
         title: alltext(
-            txt: "Contacts", col: bl, siz: 13.sp, wei: FontWeight.w400, max: 1),
-        backgroundColor: wh,
+            txt: "friends", col: wh, siz: 13.sp, wei: FontWeight.w400, max: 1),
+        backgroundColor: bl,
+        leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back,color: wh,)),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -32,7 +35,7 @@ class messegeScreen extends StatelessWidget {
                   child: SizedBox(
                       child: alltext(
                           txt: "Messeges",
-                          col: bl,
+                          col: wh,
                           siz: 12.sp,
                           wei: FontWeight.bold,
                           max: 1)),

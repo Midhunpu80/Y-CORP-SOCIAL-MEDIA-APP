@@ -1,9 +1,13 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:social_syn/view/constant/constants.dart';
 
 class Apiconfighomeowner {
-  final register_url = "${homeownerapi}register";
+  final register_url = "${homeownerapi}sendOtp  ";
 
+  // ignore: non_constant_identifier_names
   final login_url = "${homeownerapi}login";
+  // ignore: non_constant_identifier_names
   final otpLogin_url = "${homeownerapi}otpLogin";
   final sendotp_url = "${homeownerapi}sendOtp";
   final verifyotp_url = "${homeownerapi}verifyOtp";

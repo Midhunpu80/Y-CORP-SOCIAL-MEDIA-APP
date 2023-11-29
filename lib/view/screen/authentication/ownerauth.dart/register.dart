@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +14,7 @@ class owner_registerscreen extends StatelessWidget {
   final email_reg = TextEditingController();
   final password_reg = TextEditingController();
   final phone_reg = TextEditingController();
-  final location_reg = TextEditingController();
+  final last_reg = TextEditingController();
   final name_reg = TextEditingController();
 
   @override
@@ -30,7 +32,7 @@ class owner_registerscreen extends StatelessWidget {
               padding: EdgeInsets.only(left: 2.h),
               child: SizedBox(
                 child: alltext(
-                    txt: " OWNER SIGNUP",
+                    txt: " USER SIGNUP",
                     col: blu,
                     siz: 18.sp,
                     wei: FontWeight.bold,
@@ -53,7 +55,7 @@ class owner_registerscreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: 3.h),
-              child: Container(
+              child: SizedBox(
                 height: 50.h,
                 width: 88.w,
                 child: Column(
@@ -61,16 +63,16 @@ class owner_registerscreen extends StatelessWidget {
                     alltextfields(
                         controller: name_reg,
                         ico: Icons.person,
-                        labl: " User Name",
-                        hint: "enter your name"),
+                        labl: "First Name",
+                        hint: "enter your First name"),
                     SizedBox(
                       height: 2.h,
                     ),
                     alltextfields(
-                        controller: email_reg,
-                        ico: Icons.email,
-                        hint: "enter your email",
-                        labl: "Email ID"),
+                        controller: last_reg,
+                        ico: Icons.verified_user_outlined,
+                        hint: "Last Name",
+                        labl: "Last Name"),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -83,19 +85,19 @@ class owner_registerscreen extends StatelessWidget {
                       height: 2.h,
                     ),
                     alltextfields(
-                        controller: password_reg,
+                        controller: email_reg,
                         icos: Icons.remove_red_eye,
-                        ico: Icons.lock,
-                        hint: "enter your password",
-                        labl: "Password"),
+                        ico: Icons.email,
+                        hint: "enter your Email",
+                        labl: "Email"),
                     SizedBox(
                       height: 2.h,
                     ),
                     alltextfields(
-                        controller: location_reg,
+                        controller: password_reg,
                         ico: Icons.location_on,
-                        hint: "enter your current loaction",
-                        labl: "Location"),
+                        hint: "enter your password",
+                        labl: "Password"),
                   ],
                 ),
               ),
@@ -107,12 +109,21 @@ class owner_registerscreen extends StatelessWidget {
               alignment: Alignment.center,
               child: InkWell(
                 onTap: () {
-                  regowner_controll.registerowner_services(
-                      name: name_reg.text,
-                      phone: phone_reg.text,
-                      email: email_reg.text,
-                      password: password_reg.text,
-                      location: location_reg.text);
+                  if (email_reg.text.isNotEmpty ||
+                      password_reg.text.isNotEmpty | name_reg.text.isNotEmpty ||
+                      last_reg.text.isNotEmpty ||
+                      phone_reg.text.isNotEmpty) {
+                    auth_controll.singunupemailandpassword(
+                        email: email_reg.text,
+                        password: password_reg.text,
+                        name: name_reg.text,
+                        lastname: last_reg.text,
+                        phone: phone_reg.text);
+                        Get.to(()=>Loginscreen());
+                        
+                  } else {
+                    print("is empt");
+                  }
                 },
                 child: Container(
                   height: 6.h,

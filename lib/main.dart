@@ -1,26 +1,32 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/controller/bottomcontroller.dart';
 import 'package:social_syn/controller/protabcontroller.dart';
+import 'package:social_syn/view/constant/constants.dart';
+import 'package:social_syn/view/screen/authentication/Log/log/reg.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
-import 'package:social_syn/view/service/authentication/login.dart';
-import 'package:social_syn/view/service/authentication/regowner.dart';
+import 'package:social_syn/view/service/auth/firebaseauthentication.dart';
+
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
+final auth_controll = Get.put(firebaseauthenticationservice());
 final bottomct = Get.put(bottomcontroller());
 final procontroll = Get.put(protabcontroller());
-final log_controll = Get.put(login_service());
 
-final regowner_controll = Get.put(regowner_service());
 // final getposts_controll = Get.put(allposts_service());
 // final question_controll = Get.put(allquestion_service());
 // final require_controll = Get.put(allreuirement_service());
@@ -40,7 +46,12 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: blu),
             useMaterial3: true,
           ),
-          home: Scaffold(body: bottomnavscreen()));
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              return Scaffold(body:snapshot.hasData?bottomnavscreen():log_or_reg_screen());
+            }
+          ));
     });
   }
 }

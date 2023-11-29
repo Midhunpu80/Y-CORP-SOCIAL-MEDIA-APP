@@ -15,20 +15,16 @@ Widget userpostdatasList(BuildContext context) {
       return Card(
         color: bl,
         child: Container(
-          height: 68.h,
-          decoration: BoxDecoration(color: bl, boxShadow: [
-            BoxShadow(
-                offset: Offset.zero,
-                blurRadius: 5.5,
-                spreadRadius: 5,
-                color: gy.withOpacity(0.3))
-          ]),
+          height: 76.h,
+          decoration: BoxDecoration(
+            color: bl,
+          ),
           child: Column(
             children: [
               posthead(index: index, type: "".toString(), name: "0"),
               Container(
                 color: gr,
-                height: 35.h,
+                height: 45.h,
                 width: 100.w,
 
                 // decoration: BoxDecoration(

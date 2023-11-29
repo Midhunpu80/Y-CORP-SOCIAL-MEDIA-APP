@@ -20,7 +20,7 @@ Widget allusersList() {
               },
               trailing: Icon(
                 Icons.camera_alt_outlined,
-                color: bl,
+                color: wh,
               ),
               leading: CircleAvatar(
                 backgroundColor: blu,
@@ -28,7 +28,7 @@ Widget allusersList() {
               ),
               title: alltext(
                   txt: "midhun pu",
-                  col: bl,
+                  col: wh,
                   siz: 10.sp,
                   wei: FontWeight.w400,
                   max: 1),

@@ -48,14 +48,14 @@ Widget settingsbutton() {
     padding: const EdgeInsets.all(8.0),
     child: CircleAvatar(
       radius: 2.h,
-      backgroundColor: gy.withOpacity(0.3),
+      backgroundColor: wh.withOpacity(0.3),
       child: IconButton(
           onPressed: () {
             Get.to(() =>pro_userprofilescreen());
           },
           icon: Icon(
             Icons.settings,
-            color: bl,
+            color: wh,
             size: 2.h,
           )),
     ),

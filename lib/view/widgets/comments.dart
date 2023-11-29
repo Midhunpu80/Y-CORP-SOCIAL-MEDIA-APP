@@ -10,8 +10,9 @@ commentsmessenger( BuildContext? context,) {
       builder: (context) {
         return SafeArea(
           child: Container(
-            height: 95.h,
+            height: 86.h,
             width: 100.w,
+            color: bl,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -83,7 +84,7 @@ showcommentsList({required var ind}) {
   return Container(
     height: 65.h,
     width: 100.w,
-    color: wh,
+    color: bl.withOpacity(0.3),
     child: ListView.separated(
         itemBuilder: (context, index) {
           return ListTile(
@@ -92,13 +93,13 @@ showcommentsList({required var ind}) {
             ),
             title: alltext(
                 txt: "question_c",
-                col: bl,
+                col: wh,
                 siz: 9.sp,
                 wei: FontWeight.w600,
                 max: 1),
             subtitle: alltext(
                 txt: "question_coString(),",
-                col: bl,
+                col: wh,
                 siz: 7.sp,
                 wei: FontWeight.w500,
                 max: 9),

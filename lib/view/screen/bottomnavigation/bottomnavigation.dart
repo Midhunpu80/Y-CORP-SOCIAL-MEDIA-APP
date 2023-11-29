@@ -9,6 +9,7 @@ import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/cateogeory/cateogoeryscreen.dart';
 import 'package:social_syn/view/screen/communityscreen/communityscreen.dart';
 import 'package:social_syn/view/screen/home/homescreen.dart';
+import 'package:social_syn/view/screen/profilescreen.dart/profilescreen.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
 class bottomnavscreen extends StatelessWidget {
@@ -17,36 +18,35 @@ class bottomnavscreen extends StatelessWidget {
     homescreen(),
     communityscreen(),
     cateogeoryscreen(),
-    homescreen()
+    profilescreen()
   ];
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           backgroundColor: wh,
-          bottomNavigationBar: ClipRRect(
-            child: GNav(
-                gap: 8,
-                curve: Curves.bounceInOut,
-                tabMargin: EdgeInsets.all(4),
-                tabBackgroundColor: wh.withOpacity(0.3),
-                onTabChange: (value) {
-                  bottomct.changeindex(value);
+          drawerScrimColor: blu,
+          bottomNavigationBar: GNav(
+              gap: 8,
+              curve: Curves.bounceInOut,
+              tabMargin: EdgeInsets.all(5),
+              tabBackgroundColor: wh.withOpacity(0.3),
+              onTabChange: (value) {
+                bottomct.changeindex(value);
 
-                  ///   question_controll.getquesions();
-                  // getposts_controll.getposts_services();
-                },
-                tabBorderRadius: 12,
-                color: wh,
-                selectedIndex: bottomct.index.value,
-                backgroundColor: bl,
-                iconSize: 2.h,
-                tabs: const [
-                  GButton(icon: Icons.home),
-                  GButton(icon: Icons.people_outline_rounded),
-                  GButton(icon: Icons.category_rounded),
-                  GButton(icon: Icons.person_2_outlined),
-                ]),
-          ),
+                ///   question_controll.getquesions();
+                // getposts_controll.getposts_services();
+              },
+              tabBorderRadius: 12,
+              color: wh,
+              selectedIndex: bottomct.index.value,
+              backgroundColor: bl,
+              iconSize: 3.h,
+              tabs: const [
+                GButton(icon: Icons.home),
+                GButton(icon: Icons.people_outline_rounded),
+                GButton(icon: Icons.category_rounded),
+                GButton(icon: Icons.person_2_outlined),
+              ]),
           body: pages[bottomct.index.value],
         ));
   }
