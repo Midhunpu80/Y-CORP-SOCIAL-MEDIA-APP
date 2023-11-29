@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
-profilecard() {
+profilecard({required var name ,required var folllowing,required var followrs}) {
   return SliverAppBar(
     leading: Icon(
       Icons.abc_outlined,
@@ -31,7 +31,7 @@ profilecard() {
                     height: 1.h,
                   ),
                   alltext(
-                      txt: "Midhun pu",
+                      txt:name,
                       col: wh,
                       siz: 10.sp,
                       wei: FontWeight.bold,
@@ -52,8 +52,8 @@ profilecard() {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       countoffollowing(txt: "2"),
-                      countoffollowing(txt: "202"),
-                      countoffollowing(txt: "520")
+                      countoffollowing(txt: followrs.toString()),
+                      countoffollowing(txt: folllowing.toString())
                     ],
                   ),
                   Row(

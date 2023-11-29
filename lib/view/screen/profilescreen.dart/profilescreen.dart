@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:social_syn/view/constant/constants.dart';
-import 'package:social_syn/view/service/auth/firebaseauthentication.dart';
+
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/griduserposts.dart';
@@ -17,13 +15,16 @@ class profilescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: bl,
-        body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        body: StreamBuilder(
             stream: FirebaseFirestore.instance
                 .collection('Users')
-                .doc(FirebaseAuth.instance.currentUser!.uid)
+                .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
                 .snapshots(),
-            builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-         ///  Map<String,dynamic>?  snap = snapshot.data?.data();
+            builder: (context, snapshot) {
+              final snap = snapshot.data?.docs[0];
+
+
+              ///  Map<String,dynamic>?  snap = snapshot.data?.data();
 
               return snapshot.hasData
                   ? CustomScrollView(
@@ -43,7 +44,7 @@ class profilescreen extends StatelessWidget {
                                   padding: EdgeInsets.only(top: 3.h),
                                   child: SizedBox(
                                       child: alltext(
-                                          txt: "snap['name'].toString()",
+                                          txt: snap!["name"],
                                           col: wh,
                                           siz: 12.sp,
                                           wei: FontWeight.bold,
@@ -72,7 +73,7 @@ class profilescreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        profilecard(),
+                        profilecard(name: snap['name'], followrs: null, folllowing: null),
                         usergrid_post(),
                       ],
                     )
