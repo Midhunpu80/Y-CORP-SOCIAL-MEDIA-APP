@@ -8,10 +8,13 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/controller/bottomcontroller.dart';
 import 'package:social_syn/controller/protabcontroller.dart';
+import 'package:social_syn/controller/usercontroller%20.dart';
 import 'package:social_syn/view/constant/constants.dart';
+import 'package:social_syn/view/resources/storage.dart';
 import 'package:social_syn/view/screen/authentication/Log/log/reg.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
 import 'package:social_syn/view/service/auth/firebaseauthentication.dart';
+import 'package:social_syn/view/service/user.dart/profile.dart';
 
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +29,11 @@ Future<void> main() async {
 final auth_controll = Get.put(firebaseauthenticationservice());
 final bottomct = Get.put(bottomcontroller());
 final procontroll = Get.put(protabcontroller());
+final profile_cont = profile_service();
+
+final usercont = Get.put(usercontroller());
+final storagecont = firbasestorage();
+
 
 // final getposts_controll = Get.put(allposts_service());
 // final question_controll = Get.put(allquestion_service());
@@ -39,6 +47,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
+          initialBinding: BindingsBuilder(() {
+            Get.put(usercontroller());
+          }),
           debugShowCheckedModeBanner: false,
           title: 'Flutter DemHo',
           theme: ThemeData(
@@ -47,14 +58,13 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           home: StreamBuilder(
-            stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, snapshot) {
-              return Scaffold(body:snapshot.hasData?bottomnavscreen():log_or_reg_screen());
-            }
-          ));
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                return Scaffold(
+                    body: snapshot.hasData
+                        ? bottomnavscreen()
+                        : log_or_reg_screen());
+              }));
     });
   }
 }
-
-var clipdropapi =
-    "460dd433ed59767ebc37e60530d2a23c7be1efca7dc5210eff9566a57bd49e69f0fecfd3a29f16207852dffd84a46cd6";

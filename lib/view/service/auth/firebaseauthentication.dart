@@ -2,14 +2,32 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:social_syn/Model/users.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
 final CollectionReference UserdataList =
     FirebaseFirestore.instance.collection('Users');
 
+// ignore: camel_case_types
 class firebaseauthenticationservice extends GetxController {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Future<Users> getusers() async {
+    User currentuser = _auth.currentUser!;
+    DocumentSnapshot snap =
+        await _firestore.collection('Users').doc(currentuser.uid).get();
+    return Users.fromSnap(snap);
+  }
+
+  Users? _users;
+
+  Future<void> refresher() async {
+    Users user = await getusers();
+    _users = user;
+    update();
+  }
 
   // ignore: prefer_final_fields
 
@@ -22,17 +40,31 @@ class firebaseauthenticationservice extends GetxController {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+      Users users = Users(
+          id: credential.user!.uid.toString(),
+          name: name,
+          lastname: lastname,
+          email: email,
+          bio: "",
+          phone: phone.toString(),
+          followers: [],
+          following: [], gender: '',
+          
+          profile: ''
+          );
 
-      var data = {
-        "name": name.toString(),
-        "password": password.toString(),
-        "last name": lastname.toString(),
-        "phone": phone.toString(),
-        "email": email.toString(),
-        "uid": credential.user!.uid.toString()
-      };
+      // var data = {
+      //   "name": name.toString(),
+      //   "password": password.toString(),
+      //   "last name": lastname.toString(),
+      //   "phone": phone.toString(),
+      //   "email": email.toString(),
+      //   "uid": credential.user!.uid.toString(),
+      //   "following": [],
+      //   "followers": [],
+      // };
 
-      UserdataList.add(data);
+      UserdataList.add(users.toJson());
 
       return credential.user;
     } catch (e) {
@@ -63,5 +95,13 @@ class firebaseauthenticationservice extends GetxController {
           backgroundColor: blu);
       throw ("exception failed ");
     }
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    refresh();
+    
   }
 }

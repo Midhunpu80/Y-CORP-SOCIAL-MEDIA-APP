@@ -23,7 +23,6 @@ class profilescreen extends StatelessWidget {
             builder: (context, snapshot) {
               final snap = snapshot.data?.docs[0];
 
-
               ///  Map<String,dynamic>?  snap = snapshot.data?.data();
 
               return snapshot.hasData
@@ -73,7 +72,18 @@ class profilescreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        profilecard(name: snap['name'], followrs: null, folllowing: null),
+                        profilecard(
+                            profileimg: snap['profile'],
+                            name: snap['name'],
+                            followrs: snap['followers'].toString().isEmpty
+                                ? "0"
+                                : "12",
+                            folllowing: null,
+                            phone: snap['phone'],
+                            gender: snap['gender'],
+                            id: snap.id,
+                            bio: snap['bio'],
+                            lastname: snap['last name']),
                         usergrid_post(),
                       ],
                     )
