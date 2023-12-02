@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.13"
+  animated_notch_bottom_bar:
+    dependency: "direct main"
+    description:
+      name: animated_notch_bottom_bar
+      sha256: "0fb99df2834bb1c235b59d6888f31fd958565e0a79c5e55d9d430a923d9ea915"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   animations:
     dependency: "direct main"
     description:
@@ -749,6 +757,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  sprintf:
+    dependency: transitive
+    description:
+      name: sprintf
+      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   stack_trace:
     dependency: transitive
     description:
@@ -773,6 +789,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
+  sweet_nav_bar:
+    dependency: "direct main"
+    description:
+      name: sweet_nav_bar
+      sha256: "03eed7f4fd6aee22736328493ba66565c3c4aee380720e0e0f96b0ab37feb1ea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   term_glyph:
     dependency: transitive
     description:
@@ -805,6 +829,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.2"
+  uuid:
+    dependency: "direct main"
+    description:
+      name: uuid
+      sha256: df5a4d8f22ee4ccd77f8839ac7cb274ebc11ef9adcce8b92be14b797fe889921
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   vector_math:
     dependency: transitive
     description:

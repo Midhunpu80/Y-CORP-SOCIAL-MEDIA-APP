@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class firebasecollections{
-
-
+class firebasecollections {
   static final CollectionReference UserdataList =
-    FirebaseFirestore.instance.collection('Users');
-
+      FirebaseFirestore.instance.collection('Users');
+  static final CollectionReference createposts =
+      FirebaseFirestore.instance.collection('Posts');
 }

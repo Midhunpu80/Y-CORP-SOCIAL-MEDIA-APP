@@ -18,7 +18,12 @@ class homescreen extends StatelessWidget {
             drawwer(),
             searchbar(),
             storiesbar(),
-            userpostdatasList(context),
+           userpostdatasList(context,
+           
+           
+        ///    caption: caption, name: name, time: time, image: image, profile: profile
+            
+            )
           ],
         ));
   }

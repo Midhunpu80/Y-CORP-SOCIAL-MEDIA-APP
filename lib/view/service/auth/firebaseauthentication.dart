@@ -48,21 +48,9 @@ class firebaseauthenticationservice extends GetxController {
           bio: "",
           phone: phone.toString(),
           followers: [],
-          following: [], gender: '',
-          
-          profile: ''
-          );
-
-      // var data = {
-      //   "name": name.toString(),
-      //   "password": password.toString(),
-      //   "last name": lastname.toString(),
-      //   "phone": phone.toString(),
-      //   "email": email.toString(),
-      //   "uid": credential.user!.uid.toString(),
-      //   "following": [],
-      //   "followers": [],
-      // };
+          following: [],
+          gender: '',
+          profile: '');
 
       UserdataList.add(users.toJson());
 
@@ -102,6 +90,5 @@ class firebaseauthenticationservice extends GetxController {
     // TODO: implement onInit
     super.onInit();
     refresh();
-    
   }
 }

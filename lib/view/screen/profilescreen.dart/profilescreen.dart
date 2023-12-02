@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:social_syn/view/utility/alltext.dart';
@@ -13,81 +14,93 @@ class profilescreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: bl,
-        body: StreamBuilder(
-            stream: FirebaseFirestore.instance
-                .collection('Users')
-                .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-                .snapshots(),
-            builder: (context, snapshot) {
-              final snap = snapshot.data?.docs[0];
+    return StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('Posts')
+            .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+            .snapshots(),
+        builder: (context, snapshots) {
+          return Scaffold(
+              backgroundColor: bl,
+              body: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('Users')
+                      .where('uid',
+                          isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    final snap = snapshot.data?.docs[0];
 
-              ///  Map<String,dynamic>?  snap = snapshot.data?.data();
+                    ///  Map<String,dynamic>?  snap = snapshot.data?.data();
+                    ///  Timestamp timestamp = snap!["date"];
+                 
 
-              return snapshot.hasData
-                  ? CustomScrollView(
-                      slivers: [
-                        SliverAppBar(
-                          toolbarHeight: 9.h,
-                          backgroundColor: bl,
-                          leading: const Icon(
-                            Icons.analytics,
-                            color: Colors.transparent,
-                          ),
-                          flexibleSpace: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.h),
-                                  child: SizedBox(
-                                      child: alltext(
-                                          txt: snap!["name"],
-                                          col: wh,
-                                          siz: 12.sp,
-                                          wei: FontWeight.bold,
-                                          max: 1)),
+                    return snapshot.hasData
+                        ? CustomScrollView(
+                            slivers: [
+                              SliverAppBar(
+                                toolbarHeight: 9.h,
+                                backgroundColor: bl,
+                                leading: const Icon(
+                                  Icons.analytics,
+                                  color: Colors.transparent,
                                 ),
-                                Spacer(),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.h),
-                                  child: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: wh,
-                                      )),
+                                flexibleSpace: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 3.h),
+                                        child: SizedBox(
+                                            child: alltext(
+                                                txt: snap!["name"],
+                                                col: wh,
+                                                siz: 12.sp,
+                                                wei: FontWeight.bold,
+                                                max: 1)),
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 3.h),
+                                        child: IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.add,
+                                              color: wh,
+                                            )),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 3.h),
+                                        child: IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.cases,
+                                              color: wh,
+                                            )),
+                                      )
+                                    ],
+                                  ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 3.h),
-                                  child: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.cases,
-                                        color: wh,
-                                      )),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        profilecard(
-                            profileimg: snap['profile'],
-                            name: snap['name'],
-                            followrs: snap['followers'].toString().isEmpty
-                                ? "0"
-                                : "12",
-                            folllowing: null,
-                            phone: snap['phone'],
-                            gender: snap['gender'],
-                            id: snap.id,
-                            bio: snap['bio'],
-                            lastname: snap['last name']),
-                        usergrid_post(),
-                      ],
-                    )
-                  : CircularProgressIndicator();
-            }));
+                              ),
+                              profilecard(
+                                  profileimg: snap['profile'],
+                                  name: snap['name'],
+                                  followrs: snap['followers'].toString().isEmpty
+                                      ? "0"
+                                      : "12",
+                                  folllowing: null,
+                                  phone: snap['phone'],
+                                  gender: snap['gender'],
+                                  id: snap.id,
+                                  bio: snap['bio'],
+                                  lastname: snap['last name']),
+                              usergrid_post(
+                                  itemcount: snapshots.data!.docs.length,
+                                  snaps: snapshots.data!.docs),
+                            ],
+                          )
+                        : Center(child: CircularProgressIndicator());
+                  }));
+        });
   }
 }

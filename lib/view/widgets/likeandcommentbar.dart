@@ -1,3 +1,4 @@
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
@@ -94,12 +95,16 @@ Widget descriptionbar({required var des}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
-      height: 8.h,
-      width: 100.w,
+        width: 100.w,
 
-      //  decoration: BoxDecoration(),
-      child: alltext(
-          txt: "wrongh" * 102, col: wh, siz: 8.sp, wei: FontWeight.w400, max: 4),
-    ),
+        //  decoration: BoxDecoration(),
+        child: ExpandableText(
+          des,
+          expandText: 'show more',
+          collapseText: 'show less',
+          maxLines: 1,
+          style: TextStyle(color: wh, fontSize: 9.sp),
+          linkColor: Colors.blue,
+        )),
   );
 }
