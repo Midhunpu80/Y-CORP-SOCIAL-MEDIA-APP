@@ -70,9 +70,12 @@ class viewuserposts extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     posthead(
+                                      
+                                      postid: snap['postId'],
+                                      context: context,
                                         index: index,
-                                        name: snap!['username'],
-                                        profile: snap['profile']),
+                                        name: snap['username'],
+                                        profile: snap['profile'], currentuserid: snap['uid']),
                                     Container(
                                       height: 58.h,
                                       width: 100.w,

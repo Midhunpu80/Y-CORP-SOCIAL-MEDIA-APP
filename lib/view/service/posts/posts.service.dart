@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:social_syn/view/resources/storage.dart';
 import 'package:social_syn/view/utility/firebasecollection/firebasecollection.dart';
 import 'package:uuid/uuid.dart';
@@ -45,5 +43,19 @@ class createpost_service {
       res = e.toString();
     }
     return res;
+  }
+
+  Future deletepost({required var id }) async {
+    String res ="errorr";
+
+    try {
+   
+      createposts.doc(id).delete();
+        res= "success";
+
+    } catch (e) {
+      res= e.toString();
+      print(e.toString());
+    }
   }
 }

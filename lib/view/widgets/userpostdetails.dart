@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
+import 'package:social_syn/view/widgets/deletemodelsheet.dart';
 import 'package:social_syn/view/widgets/likeandcommentbar.dart';
 
 Widget userpostdatasList(
@@ -41,14 +42,17 @@ Widget userpostdatasList(
                         child: Column(
                           children: [
                             posthead(
+                              currentuserid:  snap['uid'],
+                                context: context,
                                 index: index,
                                 name: snap['username'],
-                                profile: snap['profile']),
+                                profile: snap['profile'],
+                                postid: snap['postId']),
                             Container(
                               height: 58.h,
                               width: 100.w,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(2.h),
+                                  borderRadius: BorderRadius.circular(2.h),
                                   image: DecorationImage(
                                       image: NetworkImage(
                                           snap['photourl'].toString()),
@@ -104,7 +108,14 @@ Widget userpostdatasList(
       });
 }
 
-Widget posthead({required var index, required var name, required var profile}) {
+Widget posthead(
+    {
+      required var currentuserid ,
+      required var index,
+    required var name,
+    required var profile,
+    required BuildContext context,
+   required var postid}) {
   return Card(
     color: bl,
     child: Container(
@@ -121,9 +132,15 @@ Widget posthead({required var index, required var name, required var profile}) {
           ),
           title: alltext(
               txt: name, col: wh, siz: 10.sp, wei: FontWeight.w500, max: 1),
-          trailing: Icon(
-            Icons.more_vert_outlined,
-            color: wh,
+          trailing: IconButton(
+            onPressed: () {
+              print("-------------------->${postid.toString()}");
+              deleteandeditmodelsheet(context, postid: postid, uid: currentuserid);
+            },
+            icon: Icon(
+              Icons.more_vert_outlined,
+              color: wh,
+            ),
           ),
         )),
   );

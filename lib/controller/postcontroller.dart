@@ -9,6 +9,21 @@ class postcontroller extends GetxController {
 
   createpost_service _post = createpost_service();
 
+
+
+   postdelete({required var id}) async {
+    try {
+      String resp = await _post.deletepost(id: id);
+      if (resp == "success") {
+        Get.snackbar("sucess", "Post deleted", backgroundColor: wh);
+      } else {
+        Get.snackbar("failed", "failed delteting", backgroundColor: wh);
+      }
+    } catch (e) {
+      Get.snackbar("failed", "failed delteting", backgroundColor: wh);
+    }
+  }
+
   postthepost(
       {required Uint8List file,
       required var uid,
@@ -25,7 +40,7 @@ class postcontroller extends GetxController {
           profile: profile,
           username: username);
       if (res == "sucess") {
-        Get.snackbar("sucess", "uploaded succesful",backgroundColor: wh);
+        Get.snackbar("sucess", "uploaded succesful", backgroundColor: wh);
         isloading(false);
         update();
       } else {
@@ -38,4 +53,6 @@ class postcontroller extends GetxController {
       isloading(false);
     }
   }
+
+ 
 }
