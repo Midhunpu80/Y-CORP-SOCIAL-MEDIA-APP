@@ -42,7 +42,7 @@ Widget userpostdatasList(
                         child: Column(
                           children: [
                             posthead(
-                              currentuserid:  snap['uid'],
+                                currentuserid: snap['uid'],
                                 context: context,
                                 index: index,
                                 name: snap['username'],
@@ -61,32 +61,35 @@ Widget userpostdatasList(
                             like_and_commentbar(
                               context: context,
                               ind: index,
-                              likes: "15",
+                              likes: "${snap['Likes'].length}",
                               commentsa: "",
+                              postid: snap['postId'],
+                              likess: snap['Likes'],
+                              uid: snap['uid'],
                             ),
                             descriptionbar(des: snap['captions']),
                             Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: EdgeInsets.only(left: 1.h, top: 2.h),
                               child: SizedBox(
                                 height: 2.h,
                                 width: 100.w,
                                 child: alltext(
                                     txt: "Time: ${fomttime.toString()}",
-                                    col: wh,
+                                    col: gy,
                                     siz: 8.sp,
                                     wei: FontWeight.bold,
                                     max: 1),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.all(4.0),
+                              padding: EdgeInsets.only(left: 1.h),
                               child: Container(
                                 height: 5.h,
                                 width: 100.w,
                                 child: alltext(
                                     txt:
                                         "Published : ${formattedDateTime.toString().substring(0, 11)}",
-                                    col: wh,
+                                    col: gy,
                                     siz: 8.sp,
                                     wei: FontWeight.bold,
                                     max: 1),
@@ -109,13 +112,12 @@ Widget userpostdatasList(
 }
 
 Widget posthead(
-    {
-      required var currentuserid ,
-      required var index,
+    {required var currentuserid,
+    required var index,
     required var name,
     required var profile,
     required BuildContext context,
-   required var postid}) {
+    required var postid}) {
   return Card(
     color: bl,
     child: Container(
@@ -135,7 +137,8 @@ Widget posthead(
           trailing: IconButton(
             onPressed: () {
               print("-------------------->${postid.toString()}");
-              deleteandeditmodelsheet(context, postid: postid, uid: currentuserid);
+              deleteandeditmodelsheet(context,
+                  postid: postid, uid: currentuserid);
             },
             icon: Icon(
               Icons.more_vert_outlined,

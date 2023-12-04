@@ -44,18 +44,54 @@ class createpost_service {
     }
     return res;
   }
+  /////////////////////////////////////////DElte post /////////////////////////////////////////////////////////
 
-  Future deletepost({required var id }) async {
-    String res ="errorr";
+  Future deletepost({required var id}) async {
+    String res = "errorr";
 
     try {
-   
       createposts.doc(id).delete();
-        res= "success";
-
+      res = "success";
     } catch (e) {
-      res= e.toString();
+      res = e.toString();
       print(e.toString());
     }
   }
+////////////////////////////////////Like post ///////////////////////////////////////////////////////
+
+  Future<void> postlike(
+      {required var postid, required List likes, required var uid}) async {
+    try {
+      if (likes.contains(uid)) {
+        await FirebaseFirestore.instance
+            .collection('Posts')
+            .doc(postid)
+            .update({
+          'Likes': FieldValue.arrayRemove([uid])
+        });
+
+        print("post  removed");
+      } else {
+        await FirebaseFirestore.instance
+            .collection('Posts')
+            .doc(postid)
+            .update({
+          'Likes': FieldValue.arrayUnion([uid])
+        });
+        print("saved");
+      }
+    } catch (e) {
+      print("----------------------------------?????${e.toString()}");
+    }
+  }
+
+//   Future postdislike({required var postid}) async {
+//     try {
+// FirebaseFirestore.instance.collection('Posts').doc(postid).
+
+//     } catch (e) {
+//       print(e.toString());
+
+//     }
+  /// }
 }

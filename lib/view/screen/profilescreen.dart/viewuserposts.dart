@@ -90,32 +90,32 @@ class viewuserposts extends StatelessWidget {
                                     like_and_commentbar(
                                       context: context,
                                       ind: index,
-                                      likes: "15",
-                                      commentsa: "",
+                                      likes: "${snap['Likes'].length}",
+                                      commentsa: "3", postid: snap['postId'], likess:snap['Likes'], uid: snap['uid'],
                                     ),
                                     descriptionbar(des: snap['captions']),
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding:  EdgeInsets.only(left: 1.h,top: 2.h),
                                       child: SizedBox(
                                         height: 2.h,
                                         width: 100.w,
                                         child: alltext(
                                             txt: "Time: ${fomttime.toString()}",
-                                            col: wh,
+                                            col: gy,
                                             siz: 8.sp,
                                             wei: FontWeight.bold,
                                             max: 1),
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(4.0),
+                                      padding:  EdgeInsets.only(left: 1.h),
                                       child: Container(
                                         height: 5.h,
                                         width: 100.w,
                                         child: alltext(
                                             txt:
                                                 "Published : ${formattedDateTime.toString().substring(0, 11)}",
-                                            col: wh,
+                                            col: gy,
                                             siz: 8.sp,
                                             wei: FontWeight.bold,
                                             max: 1),
