@@ -76,7 +76,9 @@ class createpost_service {
             .collection('Posts')
             .doc(postid)
             .update({
-          'Likes': FieldValue.arrayUnion([uid])
+          'Likes': FieldValue.arrayUnion([
+            uid,
+          ])
         });
         print("saved");
       }
@@ -85,13 +87,27 @@ class createpost_service {
     }
   }
 
-//   Future postdislike({required var postid}) async {
-//     try {
-// FirebaseFirestore.instance.collection('Posts').doc(postid).
+///////////////////////////////////////////////////followers //////////////////////////////////////////////////////////
+///
 
-//     } catch (e) {
-//       print(e.toString());
 
-//     }
-  /// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////followings ///////////////////////////////////////////////////////////
+
+
 }

@@ -1,11 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/view/service/followingandunfollowing/following.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/buttons.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
 class allusers_screen extends StatelessWidget {
+  following_service newfollow = following_service();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,19 +47,48 @@ class allusers_screen extends StatelessWidget {
                             height: 10.h,
                             width: 100.w,
                             child: ListTile(
-                              trailing: Container(
-                                height: 4.h,
-                                width: 25.w,
-                                decoration: BoxDecoration(
-                                    color: blu,
-                                    borderRadius: BorderRadius.circular(1.h)),
-                                child: Center(
-                                  child: alltext(
-                                      txt: "FOLLOW",
-                                      col: wh,
-                                      siz: 7.sp,
-                                      wei: FontWeight.bold,
-                                      max: 1),
+                              onTap: () async {
+                               
+                              },
+                              trailing: InkWell(
+                                onTap: ()async{
+                                   await newfollow.followingtheuser(
+                                    usersid: snap.id,
+                                    uid: FirebaseAuth.instance.currentUser!.uid,
+                                    following: snap['following'],
+                                    followers: snap['following'],
+                                    name: snap['name'],
+                                    lastname: snap['last name'],
+                                    profile: snap['profile']);
+                                },
+                                child: Container(
+                                  height: 4.h,
+                                  width: 25.w,
+                                  decoration: BoxDecoration(
+                                      color: snap['following']
+                                              .toString()
+                                              .contains(FirebaseAuth
+                                                  .instance.currentUser!.uid)
+                                          ? gy
+                                          : blu,
+                                      borderRadius: BorderRadius.circular(1.h)),
+                                  child: Center(
+                                    child: snap['following'].toString().contains(
+                                            FirebaseAuth
+                                                .instance.currentUser!.uid)
+                                        ? alltext(
+                                            txt: "following",
+                                            col: wh,
+                                            siz: 7.sp,
+                                            wei: FontWeight.bold,
+                                            max: 1)
+                                        : alltext(
+                                            txt: "FOLLOW",
+                                            col: wh,
+                                            siz: 7.sp,
+                                            wei: FontWeight.bold,
+                                            max: 1),
+                                  ),
                                 ),
                               ),
                               subtitle: alltext(

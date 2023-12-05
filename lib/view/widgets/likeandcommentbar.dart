@@ -36,19 +36,19 @@ like_and_commentbar(
                   backgroundColor: wh.withOpacity(0.3),
                   child: IconButton(
                       onPressed: () async {
-                                                print(postid.toString());
+                        print(postid.toString());
                         print(likes.toString());
                         print(FirebaseAuth.instance.currentUser!.uid);
                         print(ind);
+
                         /// if (likess.contains(uid)){
                         await create.postlike(
                             postid: postid.toString(),
                             likes: likess,
                             uid: FirebaseAuth.instance.currentUser!.uid);
-
-
                       },
-                      icon: likess.contains(FirebaseAuth.instance.currentUser!.uid)
+                      icon: likess
+                              .contains(FirebaseAuth.instance.currentUser!.uid)
                           ? Icon(
                               Icons.favorite,
                               color: re,

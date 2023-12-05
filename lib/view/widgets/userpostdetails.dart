@@ -35,7 +35,7 @@ Widget userpostdatasList(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        height: 89.h,
+                        height: 86.h,
                         decoration: BoxDecoration(
                           color: bl,
                         ),

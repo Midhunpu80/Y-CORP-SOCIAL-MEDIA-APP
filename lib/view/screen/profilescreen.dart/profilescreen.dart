@@ -33,7 +33,6 @@ class profilescreen extends StatelessWidget {
 
                     ///  Map<String,dynamic>?  snap = snapshot.data?.data();
                     ///  Timestamp timestamp = snap!["date"];
-                 
 
                     return snapshot.hasData
                         ? CustomScrollView(
@@ -85,10 +84,8 @@ class profilescreen extends StatelessWidget {
                               profilecard(
                                   profileimg: snap['profile'],
                                   name: snap['name'],
-                                  followrs: snap['followers'].toString().isEmpty
-                                      ? "0"
-                                      : "12",
-                                  folllowing: null,
+                                  followrs: snap['followers'].length,
+                                  folllowing: snap['following'].length,
                                   phone: snap['phone'],
                                   gender: snap['gender'],
                                   id: snap.id,

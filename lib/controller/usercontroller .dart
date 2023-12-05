@@ -1,11 +1,21 @@
-
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class usercontroller extends GetxController {
+  var issearch = false.obs;
+  var serchresult = <dynamic>[].obs;
+
+  search(String query) async {
+    final result = await FirebaseFirestore.instance
+        .collection('Users')
+        .where('name', isEqualTo: query.toString())
+        .get();
+    serchresult.value = result.docs.map((e) => e.data()).toList();
+  }
+
   editdatas({
     var name,
     var lastname,
@@ -32,8 +42,7 @@ class usercontroller extends GetxController {
 
   pick() async {
     ///ImagePicker pi = ImagePicker();
-   XFile? data =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    XFile? data = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (data != null) {
       final Uint8List bytes = await data.readAsBytes();
       img.value = bytes;
