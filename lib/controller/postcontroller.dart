@@ -9,9 +9,7 @@ class postcontroller extends GetxController {
 
   createpost_service _post = createpost_service();
 
-
-
-   postdelete({required var id}) async {
+  postdelete({required var id}) async {
     try {
       String resp = await _post.deletepost(id: id);
       if (resp == "success") {
@@ -54,5 +52,30 @@ class postcontroller extends GetxController {
     }
   }
 
- 
+  postcomment(
+      {required var uid,
+      required var profile,
+      required var name,
+      required var postid,
+      required var text}) async {
+    try {
+      isloading(true);
+
+      String res = await _post.postcomments(
+          postid: postid, text: text, name: name, profile: profile, uid: uid);
+
+      if (res == "sucess") {
+        Get.snackbar("sucess", "uploaded succesful", backgroundColor: wh);
+        isloading(false);
+        update();
+      } else {
+        Get.snackbar("failed", "uploaded failed");
+        isloading(false);
+        update();
+      }
+    } catch (e) {
+      Get.snackbar("error", "${e.toString()}");
+      isloading(false);
+    }
+  }
 }

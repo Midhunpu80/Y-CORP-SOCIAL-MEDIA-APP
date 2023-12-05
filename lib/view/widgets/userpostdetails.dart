@@ -59,6 +59,7 @@ Widget userpostdatasList(
                                       fit: BoxFit.cover)),
                             ),
                             like_and_commentbar(
+                              
                               context: context,
                               ind: index,
                               likes: "${snap['Likes'].length}",

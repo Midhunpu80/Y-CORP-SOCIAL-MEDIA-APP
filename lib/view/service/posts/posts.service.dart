@@ -87,27 +87,42 @@ class createpost_service {
     }
   }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Future postcomments(
+      {required var postid,
+      required var text,
+      required var name,
+      required var profile,
+      required var uid}) async {
+    String commentid =const  Uuid().v1();
+    String resp = "erorr";
+
+    try {
+      if (text.toString().isNotEmpty) {
+        await FirebaseFirestore.instance
+            .collection('Posts')
+            .doc(postid)
+            .collection('Commentss')
+            .doc(commentid)
+            .set({
+          "name": name,
+          "uid": uid,
+          "profile": profile,
+          "text": text,
+          "date": DateTime.now()
+        });
+        resp = "sucesss";
+      } else {
+        print("is not empty");
+        resp = "isnot empty";
+      }
+    } catch (e) {
+      resp = e.toString();
+    }
+  }
+
 ///////////////////////////////////////////////////followers //////////////////////////////////////////////////////////
-///
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  ///
 
 //////////////////////////////////////////////////followings ///////////////////////////////////////////////////////////
-
-
 }

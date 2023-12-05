@@ -79,7 +79,12 @@ like_and_commentbar(
                   backgroundColor: wh.withOpacity(0.3),
                   child: IconButton(
                       onPressed: () {
-                        commentsmessenger(context);
+                        commentsmessenger(
+                          context,
+                          uid: uid,
+                          postid: postid,
+                      
+                        );
                       },
                       icon: Icon(
                         Icons.messenger_outline_outlined,
