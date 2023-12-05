@@ -7,7 +7,7 @@ import 'package:social_syn/view/utility/colors.dart';
 
 searchbar() {
   return SliverAppBar(
-    toolbarHeight: 8.h,
+    toolbarHeight: 7.h,
     backgroundColor: bl,
     flexibleSpace: Padding(
       padding: EdgeInsets.only(left: 2.h, right: 2.h, top: 2.h),
@@ -34,7 +34,7 @@ searchbar() {
                 width: 1.h,
               ),
               alltext(
-                  txt: "Search Something",
+                  txt: "Search",
                   col: wh,
                   siz: 11.sp,
                   wei: FontWeight.w500,

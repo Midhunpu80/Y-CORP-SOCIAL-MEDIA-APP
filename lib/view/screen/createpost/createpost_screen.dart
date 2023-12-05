@@ -14,13 +14,15 @@ class create_postscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+    
       backgroundColor: bl,
       appBar: AppBar(
+        leading: Icon(Icons.camera_alt_sharp,color: wh,),
         backgroundColor: bl,
         title: alltext(
             txt: "Create Post",
             col: wh,
-            siz: 12.sp,
+            siz: 16.sp,
             wei: FontWeight.bold,
             max: 1),
       ),
@@ -38,7 +40,7 @@ class create_postscreen extends StatelessWidget {
                 
               },
               child: CircleAvatar(
-                backgroundColor: wh.withOpacity(0.3),
+                backgroundColor: wh.withOpacity(0.2),
                 radius: 8.h,
                 child: Icon(
                   Icons.add,
@@ -55,7 +57,7 @@ class create_postscreen extends StatelessWidget {
             child: Center(
               child: alltext(
                   txt: "  Create \nNew Post",
-                  col: wh,
+                  col: yl,
                   siz: 22.sp,
                   wei: FontWeight.bold,
                   max: 3),

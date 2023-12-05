@@ -18,9 +18,10 @@ profilecard(
     required var id,
     required var gender,
     required var bio,
-    required var lastname,required var profileimg}) {
+    required var lastname,
+    required var profileimg}) {
   return SliverAppBar(
-    leading: Icon(
+    leading: const Icon(
       Icons.abc_outlined,
       color: Colors.transparent,
     ),
@@ -31,16 +32,15 @@ profilecard(
         Row(
           children: [
             Container(
-              height: 20.h,
+              height: 19.h,
               width: 30.w,
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 2.h),
+                    padding: EdgeInsets.only(top: 1.h),
                     child: CircleAvatar(
-                      backgroundImage:
-                          NetworkImage(profileimg.toString()),
-                      radius: 6.h,
+                      backgroundImage: NetworkImage(profileimg.toString()),
+                      radius: 5.h,
                       backgroundColor: wh,
                     ),
                   ),
@@ -52,7 +52,11 @@ profilecard(
                       col: wh,
                       siz: 10.sp,
                       wei: FontWeight.bold,
-                      max: 1)
+                      max: 1),
+                  Icon(
+                    Icons.track_changes_rounded,
+                    color: wh,
+                  )
                 ],
               ),
             ),
@@ -77,7 +81,7 @@ profilecard(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      countoffollowing(txt: "Posts"),
+                      countoffollowing(txt: "    Posts"),
                       countoffollowing(txt: "Followers"),
                       countoffollowing(txt: "Following")
                     ],
@@ -88,19 +92,19 @@ profilecard(
           ],
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(top: 1.h),
           child: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
                   height: 5.h,
-                  child:  ExpandableText(
-        bio,
-        expandText: 'show more',
-        collapseText: 'show less',
-        maxLines: 1,
-        style: TextStyle(color: wh,fontSize: 9.sp),
-        linkColor: Colors.blue,
-    ))),
+                  child: ExpandableText(
+                    bio,
+                    expandText: 'show more',
+                    collapseText: 'show less',
+                    maxLines: 1,
+                    style: TextStyle(color: wh, fontSize: 9.sp),
+                    linkColor: Colors.blue,
+                  ))),
         ),
         Row(
           children: [

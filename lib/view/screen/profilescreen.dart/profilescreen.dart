@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/griduserposts.dart';
+import 'package:social_syn/view/widgets/mordrawer.dart';
 import 'package:social_syn/view/widgets/profilecard.dart';
 
 class profilescreen extends StatelessWidget {
@@ -71,9 +72,11 @@ class profilescreen extends StatelessWidget {
                                       Padding(
                                         padding: EdgeInsets.only(top: 3.h),
                                         child: IconButton(
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              moredrawer(context);
+                                            },
                                             icon: Icon(
-                                              Icons.cases,
+                                              Icons.menu,
                                               color: wh,
                                             )),
                                       )

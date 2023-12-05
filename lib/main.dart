@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/controller/bottomcontroller.dart';
 import 'package:social_syn/controller/postcontroller.dart';
+import 'package:social_syn/controller/postsavedcontroller.dart';
 import 'package:social_syn/controller/protabcontroller.dart';
 import 'package:social_syn/controller/usercontroller%20.dart';
 import 'package:social_syn/view/constant/constants.dart';
@@ -36,6 +37,8 @@ final usercont = Get.put(usercontroller());
 final storagecont = firbasestorage();
 final postcont = Get.put(postcontroller());
 
+final savedcont = Get.put(postdaved_controller());
+
 // final getposts_controll = Get.put(allposts_service());
 // final question_controll = Get.put(allquestion_service());
 // final require_controll = Get.put(allreuirement_service());
@@ -54,7 +57,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter DemHo',
           theme: ThemeData(
-            fontFamily: GoogleFonts.inter().fontFamily,
+            fontFamily: GoogleFonts.zillaSlab().fontFamily,
             colorScheme: ColorScheme.fromSeed(seedColor: blu),
             useMaterial3: true,
           ),

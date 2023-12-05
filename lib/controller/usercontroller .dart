@@ -50,14 +50,4 @@ class usercontroller extends GetxController {
     }
     update();
   }
-
-  //  Rx<Uint8List?> imgBytes = Rx<Uint8List?>(null);
-
-  // void pick() {
-  //   if (img.value != null) {
-  //     File file = File(img.value!.path);
-  //     List<int> bytes = file.readAsBytesSync();
-  //     imgBytes.value = Uint8List.fromList(bytes);
-  //   }
-  // }
 }

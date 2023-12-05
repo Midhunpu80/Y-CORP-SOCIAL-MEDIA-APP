@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/main.dart';
 import 'package:social_syn/view/service/posts/posts.service.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
@@ -12,14 +13,21 @@ import 'package:social_syn/view/widgets/comments.dart';
 
 // }
 
-like_and_commentbar(
-    {required BuildContext context,
-    var ind,
-    required var likes,
-    required var commentsa,
-    required var postid,
-    required List likess,
-    required var uid}) {
+like_and_commentbar({
+  required BuildContext context,
+  var ind,
+  required var likes,
+  required var commentsa,
+  required var postid,
+  required List<dynamic> likess,
+  required var uid,
+  required var photourl,
+  required var date,
+  required var captions,
+  required var username,
+  required var profile,
+  required  List comments
+}) {
   createpost_service create = createpost_service();
   return Container(
     height: 7.h,
@@ -83,7 +91,6 @@ like_and_commentbar(
                           context,
                           uid: uid,
                           postid: postid,
-                      
                         );
                       },
                       icon: Icon(
@@ -107,7 +114,18 @@ like_and_commentbar(
               radius: 19,
               backgroundColor: wh.withOpacity(0.3),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: ()async {
+                   await savedcont.savedtheposts(
+                        photourl: photourl,
+                        uid: uid,
+                        postid: postid,
+                        date: date.toString(),
+                        captions: captions,
+                        username: username,
+                        profile: profile,
+                        comments: comments,
+                        likes: likes);
+                  },
                   icon: Icon(
                     Icons.bookmark,
                     color: wh,

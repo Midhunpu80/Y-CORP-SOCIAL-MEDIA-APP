@@ -17,9 +17,11 @@ class viewuserposts extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            elevation: 0,
+            shadowColor: wh.withOpacity(0.3),
             floating: true,
             pinned: true,
-            toolbarHeight: 10.h,
+            toolbarHeight: 6.h,
             backgroundColor: bl,
             leading: IconButton(
                 onPressed: () {
@@ -59,29 +61,30 @@ class viewuserposts extends StatelessWidget {
                     return !snapshot.hasData
                         ? const Center(child: CircularProgressIndicator())
                         : Padding(
-                            padding: EdgeInsets.only(top: 2.h),
+                            padding: EdgeInsets.only(top: 1.h),
                             child: Card(
-                              color: bl,
+                              color: wh.withOpacity(0.3),
                               child: Container(
-                                height: 89.h,
+                                height: 85.h,
                                 decoration: BoxDecoration(
                                   color: bl,
                                 ),
                                 child: Column(
                                   children: [
                                     posthead(
-                                      
-                                      postid: snap['postId'],
-                                      context: context,
+                                        postid: snap['postId'],
+                                        context: context,
                                         index: index,
                                         name: snap['username'],
-                                        profile: snap['profile'], currentuserid: snap['uid']),
+                                        profile: snap['profile'],
+                                        currentuserid: snap['uid']),
                                     Container(
                                       height: 58.h,
                                       width: 100.w,
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(2.h),
+
+                                          /// borderRadius:
+                                          // BorderRadius.circular(2.h),
                                           image: DecorationImage(
                                               image: NetworkImage(
                                                   snap['photourl'].toString()),
@@ -91,11 +94,21 @@ class viewuserposts extends StatelessWidget {
                                       context: context,
                                       ind: index,
                                       likes: "${snap['Likes'].length}",
-                                      commentsa: "3", postid: snap['postId'], likess:snap['Likes'], uid: snap['uid'],
+                                      commentsa: "3",
+                                      postid: snap['postId'],
+                                      likess: snap['Likes'],
+                                      uid: snap['uid'],
+                                      date: null,
+                                      photourl: null,
+                                      captions: null,
+                                      username: [],
+                                      comments: [],
+                                      profile: null,
                                     ),
                                     descriptionbar(des: snap['captions']),
                                     Padding(
-                                      padding:  EdgeInsets.only(left: 1.h,top: 2.h),
+                                      padding:
+                                          EdgeInsets.only(left: 1.h, top: 2.h),
                                       child: SizedBox(
                                         height: 2.h,
                                         width: 100.w,
@@ -108,9 +121,9 @@ class viewuserposts extends StatelessWidget {
                                       ),
                                     ),
                                     Padding(
-                                      padding:  EdgeInsets.only(left: 1.h),
+                                      padding: EdgeInsets.only(left: 1.h),
                                       child: Container(
-                                        height: 5.h,
+                                        height: 2.h,
                                         width: 100.w,
                                         child: alltext(
                                             txt:

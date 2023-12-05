@@ -19,44 +19,47 @@ class bottomnavscreen extends StatelessWidget {
     homescreen(),
     const explorescreem(),
     const create_postscreen(),
-  allusers_screen(),
+    allusers_screen(),
     const profilescreen()
   ];
 
+  ///bottomct.index.value,
+
+  /// bottomct.changeindex(index);
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          backgroundColor: wh,
-          drawerScrimColor: blu,
-          bottomNavigationBar: SweetNavBar(
-            backgroundColor: gy.withOpacity(0.3),
-            //paddingGradientColor: iconLinearGradiant,
-            currentIndex: bottomct.index.value,
-            paddingBackgroundColor: const Color.fromARGB(255, 0, 0, 0),
-            items: [
-              SweetNavBarItem(
-                  sweetActive: const Icon(Icons.home),
-                  sweetIcon: const Icon(
-                    Icons.home_outlined,
-                  ),
-                  sweetLabel: 'Home',
-                  // iconColors: blu,
-                  sweetBackground: wh.withOpacity(0.8)),
-              SweetNavBarItem(
-                  sweetIcon: const Icon(Icons.explore_outlined),
-                  sweetLabel: 'Business'),
-              SweetNavBarItem(
-                  sweetIcon: const Icon(Icons.add_circle_outline_rounded),
-                  sweetLabel: 'createpost'),
-              SweetNavBarItem(
-                  sweetIcon: const Icon(Icons.school), sweetLabel: 'School'),
-              SweetNavBarItem(
-                  sweetIcon: const Icon(Icons.person), sweetLabel: 'School'),
-            ],
-            onTap: (index) {
-              bottomct.changeindex(index);
-            },
-          ),
+          bottomNavigationBar: BottomNavigationBar(
+              unselectedItemColor: yl,
+              onTap: (value) {
+                bottomct.changeindex(value);
+              },
+              backgroundColor: yl,
+              currentIndex: bottomct.index.value,
+              items: [
+                BottomNavigationBarItem(
+                    icon: const Icon(
+                      Icons.home_outlined,
+                    ),
+                    label: "Home",
+                    backgroundColor: bl),
+                BottomNavigationBarItem(
+                    icon: const Icon(Icons.explore),
+                    label: "Explore",
+                    backgroundColor: bl),
+                BottomNavigationBarItem(
+                    icon: const Icon(Icons.add_circle_outline_outlined),
+                    label: "Post",
+                    backgroundColor: bl),
+                BottomNavigationBarItem(
+                    icon: const Icon(Icons.group_add_outlined),
+                    label: "Friends",
+                    backgroundColor: bl),
+                BottomNavigationBarItem(
+                    icon: const Icon(Icons.person_2),
+                    label: "Profile",
+                    backgroundColor: bl),
+              ]),
           body: pages[bottomct.index.value],
         ));
   }

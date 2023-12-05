@@ -106,11 +106,11 @@ searchfields({required TextEditingController controller}) {
     child: TextFormField(
       onFieldSubmitted: (val) {
         usercont.search(val.toString());
-        usercont.issearch.value = false;
+        usercont.issearch(false);
       },
       onChanged: (val) {
         usercont.search(val.toString());
-        usercont.issearch.value = true;
+        usercont.issearch(true);
       },
       controller: controller,
       style: TextStyle(

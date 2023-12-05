@@ -33,7 +33,7 @@ Widget userpostdatasList(
                 : Card(
                     color: bl,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(1.0),
                       child: Container(
                         height: 86.h,
                         decoration: BoxDecoration(
@@ -52,21 +52,26 @@ Widget userpostdatasList(
                               height: 58.h,
                               width: 100.w,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2.h),
+                                  //  borderRadius: BorderRadius.circular(2.h),
                                   image: DecorationImage(
                                       image: NetworkImage(
                                           snap['photourl'].toString()),
                                       fit: BoxFit.cover)),
                             ),
                             like_and_commentbar(
-                              
                               context: context,
                               ind: index,
                               likes: "${snap['Likes'].length}",
-                              commentsa: "",
+                              commentsa: ['comments'],
                               postid: snap['postId'],
                               likess: snap['Likes'],
                               uid: snap['uid'],
+                              photourl: snap['photourl'],
+                              date: snap['time'],
+                              captions: snap['captions'],
+                              username: snap['username'],
+                              profile: snap['profile'],
+                              comments: snap['comments'],
                             ),
                             descriptionbar(des: snap['captions']),
                             Padding(
@@ -103,9 +108,7 @@ Widget userpostdatasList(
                   );
           },
           separatorBuilder: (context, index) {
-            return Divider(
-              color: gy,
-            );
+            return Container(height: 2,color: wh.withOpacity(0.3),);
           },
           itemCount: !snapshot.hasData ? 0 : snapshot.data!.docs.length,
         );

@@ -10,8 +10,9 @@ import 'package:social_syn/view/utility/colors.dart';
 List reqdata = ["requirement", "createReq", "Hope", "Sa", "Rock"];
 Widget storiesbar() {
   return SliverAppBar(
+    leading: Icon(Icons.abc,color: Colors.transparent,),
     backgroundColor: bl,
-    toolbarHeight: 15.h,
+    toolbarHeight: 11.h,
     flexibleSpace: Container(
         height: 14.h,
         width: 100.w,
@@ -21,9 +22,9 @@ Widget storiesbar() {
         child: Obx(
           () => procontroll.gropdata.value == 2
               ? Container(
-                  height: 10.h,
+                  height: 8.h,
                   width: 100.w,
-                  color: gr,
+                  color: yl,
                 )
               : ListView.separated(
                   scrollDirection: Axis.horizontal,
@@ -42,9 +43,9 @@ Widget storiesbar() {
                                 height: 9.h,
                                 width: 19.w,
                                 decoration: BoxDecoration(
-                                    color: gr,
+                                
                                     borderRadius: BorderRadius.circular(10.h),
-                                    border: Border.all(width: 1, color: bl)),
+                                    border: Border.all(width: 2, color: yl)),
                               ),
                             ),
                             SizedBox(

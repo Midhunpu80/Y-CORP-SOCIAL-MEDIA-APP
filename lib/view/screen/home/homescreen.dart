@@ -16,7 +16,7 @@ class homescreen extends StatelessWidget {
         body: CustomScrollView(
           slivers: [
             drawwer(),
-            searchbar(),
+          //  searchbar(),
             storiesbar(),
            userpostdatasList(context,
            
