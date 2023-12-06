@@ -18,40 +18,47 @@ class savedpost_servie {
     String res = "error";
 
     try {
-      final results = await FirebaseFirestore.instance
-          .collection('saved')
-          .where('postId', isEqualTo: postid)
-          .get();
-      List alllists = results.docs.map((e) => e.data()).toList();
-      String favid = Uuid().v1();
-
-      // if (results.docs.isNotEmpty) {
-      //   res= "removed";
-
-      //   await FirebaseFirestore.instance.collection('saved').doc(postid).delete();
-      // } else {
-      var data = {
-        "fav": favid.toString(),
-        "photourl": photourl,
-        "uid": uid,
-        "postId": postid,
-        "Likes": likes,
-        "comments": comments,
-        "time": date,
-        "date": date,
-        "captions": captions,
-        "username": username,
-        "profile": profile
-      };
-
-      await FirebaseFirestore.instance
+      CollectionReference results = await FirebaseFirestore.instance
           .collection('Users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
-          .collection('saves')
-          .doc(favid)
-          .set(data);
+          .collection('saves');
+      DocumentSnapshot documentSnapshot = await results.doc(postid).get();
 
-      res = "sucess";
+      ////List alllists = results.docs.map((e) => e.data()).toList();
+      String favid = Uuid().v1();
+      if (documentSnapshot.exists) {
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .collection('saves')
+            .doc(postid)
+            .delete();
+
+        res = "sucess";
+      } else {
+        var data = {
+          "fav": favid.toString(),
+          "photourl": photourl,
+          "uid": uid,
+          "postId": postid,
+          "Likes": likes,
+          "comments": comments,
+          "time": date,
+          "date": date,
+          "captions": captions,
+          "username": username,
+          "profile": profile
+        };
+
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .collection('saves')
+            .doc(postid)
+            .set(data);
+
+        res = "sucess";
+      }
 
       ///   }
     } catch (e) {

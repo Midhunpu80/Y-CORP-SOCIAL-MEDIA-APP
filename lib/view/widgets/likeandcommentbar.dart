@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ like_and_commentbar(
     required var username,
     required var profile,
     required List comments}) {
+      
   createpost_service create = createpost_service();
   return Container(
     height: 7.h,
@@ -125,6 +127,7 @@ like_and_commentbar(
                         profile: profile,
                         comments: comments,
                         likes: likess);
+                   
                   },
                   icon: Icon(
                     Icons.bookmark,
