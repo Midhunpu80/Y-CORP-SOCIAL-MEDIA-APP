@@ -1,10 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/screen/profilescreen.dart/viewuserposts.dart';
-import 'package:social_syn/view/utility/colors.dart';
 
 Widget usergrid_post({required var snaps, required itemcount}) {
   return SliverGrid.builder(

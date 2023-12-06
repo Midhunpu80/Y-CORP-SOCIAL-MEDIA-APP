@@ -36,7 +36,7 @@ class postdaved_controller extends GetxController {
         print("failed");
       }
     } catch (e) {
-      Get.snackbar("sucess", e.toString(), backgroundColor: wh);
+      Get.snackbar("error", e.toString(), backgroundColor: wh);
 
       print(e.toString());
     }

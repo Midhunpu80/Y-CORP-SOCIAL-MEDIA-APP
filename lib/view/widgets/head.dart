@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/buttons.dart';
 import 'package:social_syn/view/utility/colors.dart';
-import 'package:social_syn/view/widgets/likeandcommentbar.dart';
 
 Widget drawwer() {
   return SliverAppBar(
     backgroundColor: bl,
-    leading: Icon(Icons.abc,color: Colors.transparent,),
+    leading:const  Icon(Icons.abc,color: Colors.transparent,),
       toolbarHeight: 8.h,
       flexibleSpace: Padding(
         padding:  EdgeInsets.only(top: 4.h),

@@ -94,7 +94,7 @@ class createpost_service {
       required var name,
       required var profile,
       required var uid}) async {
-    String commentid =const  Uuid().v1();
+    String commentid = const Uuid().v1();
     String resp = "erorr";
 
     try {
@@ -109,7 +109,8 @@ class createpost_service {
           "uid": uid,
           "profile": profile,
           "text": text,
-          "date": DateTime.now()
+          "date": DateTime.now(),
+          "commentid": commentid.toString(),
         });
         resp = "sucesss";
       } else {
@@ -118,6 +119,23 @@ class createpost_service {
       }
     } catch (e) {
       resp = e.toString();
+    }
+  }
+
+  deltecomment({required var postid, required var commentid}) async {
+    String res = "error";
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('Posts')
+          .doc(postid)
+          .collection('Commentss')
+          .doc(commentid)
+          .delete();
+      res = "sucess";
+    } catch (e) {
+      print(e.toString());
+      res = e.toString();
     }
   }
 

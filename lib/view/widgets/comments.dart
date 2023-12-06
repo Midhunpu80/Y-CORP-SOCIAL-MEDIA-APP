@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:sizer/sizer.dart';
-import 'package:social_syn/controller/commentcontroller.dart';
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
@@ -45,7 +44,7 @@ commentsmessenger(
                         wei: FontWeight.w500,
                         max: 1),
                   ),
-                  Divider(),
+                  const Divider(),
                   showcommentsList(ind: 0, postid: postid),
                   sendcomment(
                     uid: uid,
@@ -64,7 +63,7 @@ sendcomment({
   required var postid,
 }) {
   final comment_contr = TextEditingController();
-  return Container(
+  return SizedBox(
     height: 10.h,
     width: 100.w,
     child: Padding(
@@ -77,7 +76,7 @@ sendcomment({
           builder: (context, snapshot) {
             final snap = snapshot.data!.docs[0];
             return !snapshot.hasData
-                ? SizedBox()
+                ? const SizedBox()
                 : SingleChildScrollView(
                     child: Row(
                       children: [
@@ -130,7 +129,7 @@ showcommentsList({required var ind, required var postid}) {
           .snapshots(),
       builder: (context, snapshot) {
         return !snapshot.hasData
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Container(
                 height: 65.h,
                 width: 100.w,
@@ -144,7 +143,11 @@ showcommentsList({required var ind, required var postid}) {
                           DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
                       return ListTile(
                         trailing: IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await postcont.deltethecomment(
+                                  postid: snap['postId'],
+                                  commentid: snap['commentid'].toString());
+                            },
                             icon: Icon(
                               Icons.more_vert_rounded,
                               color: wh,
@@ -169,7 +172,7 @@ showcommentsList({required var ind, required var postid}) {
                       );
                     },
                     separatorBuilder: (context, index) {
-                      return SizedBox();
+                      return const SizedBox();
                     },
                     itemCount: snapshot.data!.docs.length),
               );

@@ -47,19 +47,18 @@ class allusers_screen extends StatelessWidget {
                             height: 10.h,
                             width: 100.w,
                             child: ListTile(
-                              onTap: () async {
-                               
-                              },
+                              onTap: () async {},
                               trailing: InkWell(
-                                onTap: ()async{
-                                   await newfollow.followingtheuser(
-                                    usersid: snap.id,
-                                    uid: FirebaseAuth.instance.currentUser!.uid,
-                                    following: snap['following'],
-                                    followers: snap['following'],
-                                    name: snap['name'],
-                                    lastname: snap['last name'],
-                                    profile: snap['profile']);
+                                onTap: () async {
+                                  await newfollow.followingtheuser(
+                                      usersid: snap.id,
+                                      uid: FirebaseAuth
+                                          .instance.currentUser!.uid,
+                                      following: snap['following'],
+                                      followers: snap['following'],
+                                      name: snap['name'],
+                                      lastname: snap['last name'],
+                                      profile: snap['profile']);
                                 },
                                 child: Container(
                                   height: 4.h,
@@ -70,11 +69,12 @@ class allusers_screen extends StatelessWidget {
                                               .contains(FirebaseAuth
                                                   .instance.currentUser!.uid)
                                           ? gy
-                                          : blu,
+                                          : yl,
                                       borderRadius: BorderRadius.circular(1.h)),
                                   child: Center(
-                                    child: snap['following'].toString().contains(
-                                            FirebaseAuth
+                                    child: snap['following']
+                                            .toString()
+                                            .contains(FirebaseAuth
                                                 .instance.currentUser!.uid)
                                         ? alltext(
                                             txt: "following",
@@ -84,7 +84,7 @@ class allusers_screen extends StatelessWidget {
                                             max: 1)
                                         : alltext(
                                             txt: "FOLLOW",
-                                            col: wh,
+                                            col: bl,
                                             siz: 7.sp,
                                             wei: FontWeight.bold,
                                             max: 1),

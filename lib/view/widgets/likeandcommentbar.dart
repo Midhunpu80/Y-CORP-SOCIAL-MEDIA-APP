@@ -13,21 +13,20 @@ import 'package:social_syn/view/widgets/comments.dart';
 
 // }
 
-like_and_commentbar({
-  required BuildContext context,
-  var ind,
-  required var likes,
-  required var commentsa,
-  required var postid,
-  required List<dynamic> likess,
-  required var uid,
-  required var photourl,
-  required var date,
-  required var captions,
-  required var username,
-  required var profile,
-  required  List comments
-}) {
+like_and_commentbar(
+    {required BuildContext context,
+    var ind,
+    required var likes,
+    required var commentsa,
+    required var postid,
+    required List likess,
+    required var uid,
+    required var photourl,
+    required var date,
+    required var captions,
+    required var username,
+    required var profile,
+    required List comments}) {
   createpost_service create = createpost_service();
   return Container(
     height: 7.h,
@@ -114,17 +113,18 @@ like_and_commentbar({
               radius: 19,
               backgroundColor: wh.withOpacity(0.3),
               child: IconButton(
-                  onPressed: ()async {
-                   await savedcont.savedtheposts(
+                  onPressed: () async {
+                    print(uid.toString());
+                    await savedcont.savedtheposts(
                         photourl: photourl,
-                        uid: uid,
-                        postid: postid,
+                        uid: uid.toString(),
+                        postid: postid.toString(),
                         date: date.toString(),
                         captions: captions,
                         username: username,
                         profile: profile,
                         comments: comments,
-                        likes: likes);
+                        likes: likess);
                   },
                   icon: Icon(
                     Icons.bookmark,

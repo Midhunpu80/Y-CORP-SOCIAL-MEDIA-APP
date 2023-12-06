@@ -52,7 +52,7 @@ class firebaseauthenticationservice extends GetxController {
           gender: '',
           profile: '');
 
-      UserdataList.add(users.toJson());
+      UserdataList.doc(credential.user!.uid).set(users.toJson());
 
       return credential.user;
     } catch (e) {

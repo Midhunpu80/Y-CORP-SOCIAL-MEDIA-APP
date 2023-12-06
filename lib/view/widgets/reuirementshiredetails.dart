@@ -1,5 +1,6 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
@@ -44,7 +45,7 @@ reuirement_hire_details(BuildContext context,
                   SizedBox(
                     height: 2.h,
                   ),
-                  Divider(),
+                  const Divider(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
@@ -79,7 +80,7 @@ reuirement_hire_details(BuildContext context,
                         color: bl,
                       ),
                       label: alltext(
-                          txt: "Location:${location},Kerala,India",
+                          txt: "Location:$location,Kerala,India",
                           col: bl,
                           siz: 11.sp,
                           wei: FontWeight.w500,
@@ -91,7 +92,7 @@ reuirement_hire_details(BuildContext context,
                         color: bl,
                       ),
                       label: alltext(
-                          txt: "Posted By :${person}",
+                          txt: "Posted By :$person",
                           col: bl,
                           siz: 11.sp,
                           wei: FontWeight.w500,
@@ -99,8 +100,7 @@ reuirement_hire_details(BuildContext context,
                   Padding(
                     padding: EdgeInsets.only(left: 5.h, top: 5.h),
                     child: InkWell(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: Container(
                         height: 7.h,
                         width: 80.w,
@@ -109,14 +109,13 @@ reuirement_hire_details(BuildContext context,
                             color: pp),
                         child: Center(
                           child: TextButton.icon(
-                              onPressed: () {
-                              },
+                              onPressed: () {},
                               icon: Icon(
                                 Icons.favorite,
                                 color: re,
                               ),
                               label: alltext(
-                                  txt: "${intrested} Proffesionals intrests",
+                                  txt: "$intrested Proffesionals intrests",
                                   col: wh,
                                   siz: 12.sp,
                                   wei: FontWeight.w600,

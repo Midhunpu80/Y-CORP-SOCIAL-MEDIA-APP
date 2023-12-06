@@ -7,7 +7,7 @@ import 'package:social_syn/view/utility/colors.dart';
 class postcontroller extends GetxController {
   var isloading = false.obs;
 
-  createpost_service _post = createpost_service();
+  final createpost_service _post = createpost_service();
 
   postdelete({required var id}) async {
     try {
@@ -47,7 +47,7 @@ class postcontroller extends GetxController {
         update();
       }
     } catch (e) {
-      Get.snackbar("error", "${e.toString()}");
+      Get.snackbar("error", e.toString());
       isloading(false);
     }
   }
@@ -74,8 +74,22 @@ class postcontroller extends GetxController {
         update();
       }
     } catch (e) {
-      Get.snackbar("error", "${e.toString()}");
+      Get.snackbar("error", e.toString());
       isloading(false);
+    }
+  }
+
+  deltethecomment({required var postid, required var commentid}) async {
+    try {
+      String res =
+          await _post.deltecomment(postid: postid, commentid: commentid);
+      if (res == "sucess") {
+        Get.snackbar("sucess", "deleted", backgroundColor: wh);
+      } else {
+        Get.snackbar("failed", "failed", backgroundColor: wh);
+      }
+    } catch (e) {
+      Get.snackbar("failed", e.toString(), backgroundColor: wh);
     }
   }
 }

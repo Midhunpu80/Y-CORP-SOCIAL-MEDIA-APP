@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,7 +28,7 @@ profilecard(
       children: [
         Row(
           children: [
-            Container(
+            SizedBox(
               height: 19.h,
               width: 30.w,
               child: Column(
@@ -60,7 +57,7 @@ profilecard(
                 ],
               ),
             ),
-            Container(
+            SizedBox(
               height: 20.h,
               width: 70.w,
               child: Column(
