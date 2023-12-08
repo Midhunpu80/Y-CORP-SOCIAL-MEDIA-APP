@@ -55,7 +55,7 @@ class profilescreen extends StatelessWidget {
                                             child: alltext(
                                                 txt: snap!["name"],
                                                 col: wh,
-                                                siz: 12.sp,
+                                                siz: 14.sp,
                                                 wei: FontWeight.bold,
                                                 max: 1)),
                                       ),

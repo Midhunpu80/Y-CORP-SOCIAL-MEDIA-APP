@@ -1,12 +1,8 @@
-import 'dart:io';
+import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
-import 'package:social_syn/view/resources/storage.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/registertextfields.dart';
@@ -15,8 +11,9 @@ final cotn = TextEditingController();
 
 class editprofile extends StatelessWidget {
   var id;
+  String image;
 
-  editprofile({required this.id});
+  editprofile({required this.id, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -44,19 +41,20 @@ class editprofile extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Obx(()=>usercont.img.value!=null? CircleAvatar(
-                radius: 5.h,
-                backgroundImage:MemoryImage(usercont.img.value!),
-              ):
-              CircleAvatar(
-                radius: 5.h,
-                backgroundImage: AssetImage("images/1_V2IFqtYcdUZ-nfkWRC2vyA.png"),
-              ),
+            Obx(
+              () => usercont.img.value != null
+                  ? CircleAvatar(
+                      radius: 5.h,
+                      backgroundImage: MemoryImage(usercont.img.value!),
+                    )
+                  : CircleAvatar(
+                      radius: 5.h,
+                      backgroundImage: NetworkImage(image.toString()),
+                    ),
             ),
             TextButton(
               onPressed: () {
                 usercont.pick();
-
               },
               child: alltext(
                   txt: "Edit Profile Picture",
@@ -122,10 +120,10 @@ class editprofile extends StatelessWidget {
               width: 70.w,
               height: 6.h,
               child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(backgroundColor: pp),
+                  style: ElevatedButton.styleFrom(backgroundColor: yl),
                   onPressed: () {
                     profile_cont.editprofile(
-                      profile: usercont.img.value!,
+                        profile: usercont.img.value!,
                         id: id,
                         name: usercont.editname.text,
                         lastname: usercont.editlast.text,

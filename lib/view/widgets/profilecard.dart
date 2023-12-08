@@ -1,4 +1,5 @@
 import 'package:expandable_text/expandable_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -89,35 +90,39 @@ profilecard(
           ],
         ),
         Padding(
-          padding: EdgeInsets.only(top: 1.h),
+          padding: EdgeInsets.only(top: 0.h, left: 2.h),
           child: Align(
               alignment: Alignment.topLeft,
               child: SizedBox(
                   height: 5.h,
+                  width: 80.w,
                   child: ExpandableText(
                     bio,
                     expandText: 'show more',
                     collapseText: 'show less',
-                    maxLines: 1,
+                    maxLines: 5,
                     style: TextStyle(color: wh, fontSize: 9.sp),
                     linkColor: Colors.blue,
                   ))),
         ),
         Row(
           children: [
-            InkWell(
-                onTap: () {
-                  Get.to(() => editprofile(
-                        id: id,
-                      ));
-                  usercont.editdatas(
-                      name: name,
-                      lastname: lastname.toString(),
-                      bio: bio.toString(),
-                      phone: phone,
-                      gender: gender.toString());
-                },
-                child: twobuttons(txt: "EditProfile")),
+            FirebaseAuth.instance.currentUser!.uid.toString() == id.toString()
+                ? InkWell(
+                    onTap: () {
+                      Get.to(() => editprofile(
+                            image: profileimg,
+                            id: id,
+                          ));
+                      usercont.editdatas(
+                          name: name,
+                          lastname: lastname.toString(),
+                          bio: bio.toString(),
+                          phone: phone,
+                          gender: gender.toString());
+                    },
+                    child: twobuttons(txt: "EditProfile"))
+                : InkWell(onTap: () {}, child: twobuttons(txt: "Follow")),
             twobuttons(txt: "shareprofile"),
           ],
         ),

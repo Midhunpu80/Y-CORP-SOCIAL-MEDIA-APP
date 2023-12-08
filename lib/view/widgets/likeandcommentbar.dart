@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/service/posts/posts.service.dart';
+import 'package:social_syn/view/service/saved/savedservice.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/comments.dart';
@@ -28,7 +29,6 @@ like_and_commentbar(
     required var username,
     required var profile,
     required List comments}) {
-      
   createpost_service create = createpost_service();
   return Container(
     height: 7.h,
@@ -45,10 +45,10 @@ like_and_commentbar(
                   backgroundColor: wh.withOpacity(0.3),
                   child: IconButton(
                       onPressed: () async {
-                        print(postid.toString());
-                        print(likes.toString());
-                        print(FirebaseAuth.instance.currentUser!.uid);
-                        print(ind);
+                        // print(postid.toString());
+                        // print(likes.toString());
+                        // print(FirebaseAuth.instance.currentUser!.uid);
+                        // print(ind);
 
                         /// if (likess.contains(uid)){
                         await create.postlike(
@@ -127,7 +127,8 @@ like_and_commentbar(
                         profile: profile,
                         comments: comments,
                         likes: likess);
-                   
+                    print(
+                        "-----------------------------------????${datasss.toList().toString()}");
                   },
                   icon: Icon(
                     Icons.bookmark,
@@ -151,7 +152,7 @@ Widget descriptionbar({required var des}) {
           des,
           expandText: 'show more',
           collapseText: 'show less',
-          maxLines: 1,
+          maxLines: 2,
           style: TextStyle(color: wh, fontSize: 10.sp),
           linkColor: Colors.blue,
         )),

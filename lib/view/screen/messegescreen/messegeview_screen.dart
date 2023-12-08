@@ -1,12 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/main.dart';
+import 'package:social_syn/view/constant/constants.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
 class messegeview_screen extends StatelessWidget {
-  const messegeview_screen({super.key});
+  messegeview_screen(
+      {required this.id, required this.name, required this.profile});
+  String name;
+  String id;
+  String profile;
+  final chatcontroll = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +25,14 @@ class messegeview_screen extends StatelessWidget {
       appBar: AppBar(
         actions: [
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Icon(
               Icons.call,
               color: wh,
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Icon(
               Icons.video_call_rounded,
               color: wh,
@@ -47,65 +57,134 @@ class messegeview_screen extends StatelessWidget {
               ),
               CircleAvatar(
                 radius: 8.h,
+                backgroundImage: NetworkImage(profile.toString()),
               )
             ],
           ),
         ),
         backgroundColor: bl,
         title: alltext(
-            txt: "Midhunpu", col: wh, siz: 11.sp, wei: FontWeight.w400, max: 1),
+            txt: name, col: wh, siz: 11.sp, wei: FontWeight.w400, max: 1),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 78.h,
-              width: 100.w,
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: index.isEven
-                          ? Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                  width: 100.w,
-                                  margin: EdgeInsets.only(left: 30.h),
-                                  decoration: BoxDecoration(
-                                      color: yl,
-                                      borderRadius: BorderRadius.circular(1.h)),
-                                  child: alltext(
-                                      txt:
-                                          "some nambbjkjbjenbjbjbjbjjhbjhbjhjhjhjhhbjhb0" *
-                                              10,
-                                      col: wh,
-                                      siz: 7.sp,
-                                      wei: FontWeight.bold,
-                                      max: null)),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                  margin: EdgeInsets.only(right: 30.h),
-                                  width: 100.w,
-                                  decoration: BoxDecoration(
-                                      color: pp,
-                                      borderRadius: BorderRadius.circular(2.h)),
-                                  child: SizedBox(
-                                      child: alltext(
-                                          txt: "somenamendnkjkdkbdbjd " * 10,
-                                          col: wh,
-                                          siz: 8.sp,
-                                          wei: FontWeight.bold,
-                                          max: null))),
-                            ),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox();
-                  },
-                  itemCount: 38),
-            ),
+            StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('Users')
+                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                    .collection('chat')
+                    .doc(id)
+                    .collection(
+                      "messeges",
+                    )
+                    .orderBy('time')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  return !snapshot.hasData
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : Container(
+                          height: 78.h,
+                          width: 100.w,
+                          child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                final snaps = snapshot.data!.docs[index];
+                                Timestamp timestamp = snaps["time"];
+                                DateTime dateTime = timestamp.toDate();
+
+                                // ignore: unused_local_variable
+                                String fomttime =
+                                    DateFormat('hh:mm a').format(dateTime);
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: snaps['name'].toString() != name
+                                      ? Column(
+                                          children: [
+                                            Container(
+                                              width: 100.w,
+                                              margin:
+                                                  EdgeInsets.only(left: 30.h),
+                                              decoration: BoxDecoration(
+                                                  color: blu.withOpacity(0.8),
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  3.h),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  3.h))),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(13.0),
+                                                child: SizedBox(
+                                                    child: alltext(
+                                                        txt: snaps['text'],
+                                                        col: wh,
+                                                        siz: 10.sp,
+                                                        wei: FontWeight.bold,
+                                                        max: null)),
+                                              ),
+                                            ),
+                                            Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 39.h),
+                                                child: alltext(
+                                                    txt: fomttime.toString(),
+                                                    col: wh,
+                                                    siz: 7.sp,
+                                                    wei: FontWeight.bold,
+                                                    max: null)),
+                                          ],
+                                        )
+                                      : Column(
+                                          children: [
+                                            Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 30.h),
+                                                width: 100.w,
+                                                decoration: BoxDecoration(
+                                                    color: gy.withOpacity(0.3),
+                                                    borderRadius: BorderRadius
+                                                        .only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    3.h),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    3.h))),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      13.0),
+                                                  child: SizedBox(
+                                                      child: alltext(
+                                                          txt: snaps['text'],
+                                                          col: wh,
+                                                          siz: 10.sp,
+                                                          wei: FontWeight.bold,
+                                                          max: null)),
+                                                )),
+                                            Container(
+                                                margin: EdgeInsets.only(
+                                                    right: 37.h),
+                                                child: alltext(
+                                                    txt: fomttime.toString(),
+                                                    col: wh,
+                                                    siz: 7.sp,
+                                                    wei: FontWeight.bold,
+                                                    max: null)),
+                                          ],
+                                        ),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return SizedBox();
+                              },
+                              itemCount: snapshot.data!.docs.length),
+                        );
+                }),
             Padding(
               padding: const EdgeInsets.all(6.0),
               child: Container(
@@ -132,6 +211,7 @@ class messegeview_screen extends StatelessWidget {
                         height: 5.h,
                         width: 65.w,
                         child: TextFormField(
+                          controller: chatcontroll,
                           autofocus: false,
                           style: TextStyle(color: wh),
                           decoration: InputDecoration(
@@ -143,14 +223,36 @@ class messegeview_screen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    TextButton(
-                        onPressed: () {},
-                        child: alltext(
-                            txt: "Send",
-                            col: wh,
-                            siz: 12.sp,
-                            wei: FontWeight.bold,
-                            max: 1))
+                    StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('Users')
+                            .where('uid',
+                                isEqualTo:
+                                    FirebaseAuth.instance.currentUser!.uid)
+                            .snapshots(),
+                        builder: (context, snapshots) {
+                          final snap = snapshots.data!.docs[0];
+                          return !snapshots.hasData
+                              ? const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : TextButton(
+                                  onPressed: () async {
+                                    await chatcont.sendchat(
+                                        uid: id,
+                                        text: chatcontroll.text.toString(),
+                                        name: snap['name'],
+                                        profile: snap['profile']);
+
+                                    ///   Get.back();
+                                  },
+                                  child: alltext(
+                                      txt: "Send",
+                                      col: wh,
+                                      siz: 12.sp,
+                                      wei: FontWeight.bold,
+                                      max: 1));
+                        })
                   ],
                 ),
               ),

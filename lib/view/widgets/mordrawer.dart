@@ -1,9 +1,12 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/savedpost/savedpost.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
+import 'package:social_syn/view/widgets/signout.dart';
 
 moredrawer(BuildContext context) async {
   List data = [
@@ -11,20 +14,22 @@ moredrawer(BuildContext context) async {
     "Saved",
     "Qr code",
     "oreder and payments",
-    "verify"
+    "verify",
+    "Logout"
   ];
   List<IconData> icons = [
     Icons.settings,
     Icons.bookmark_outline_sharp,
     Icons.qr_code,
     Icons.shop,
-    Icons.verified
+    Icons.verified,
+    Icons.logout
   ];
   return showBottomSheet(
       context: context,
       builder: (context) {
         return Container(
-          height: 50.h,
+          height: 55.h,
           width: 100.w,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
@@ -49,28 +54,39 @@ moredrawer(BuildContext context) async {
               ),
               const Divider(),
               SizedBox(
-                height: 40.h,
+                height: 45.h,
                 width: 100.w,
                 child: ListView.builder(
-                    itemCount: 5,
+                    itemCount: data.length,
                     itemBuilder: (context, index) {
                       return ListTile(
                         onTap: () {
                           if (index == 1) {
-                          Get.to(() => savedpost_screen());
+                            Get.to(() => savedpost_screen());
+                          } else if (index == 5) {
+                            print("logout");
+
+                            freedialogs(
+                                context: context,
+                                function:
+                                    auth_controll.logout(context: context),
+                                tit: "Logout",
+                                des: "Are you sure to Logout this account",
+                                type: DialogType.info);
                           }
                         },
                         title: alltext(
                             txt: data[index],
-                            col: wh,
-                            siz: 10.sp,
+                            col: index == 5 ? re : wh,
+                            siz: index == 5 ? 12.sp : 10.sp,
                             wei: FontWeight.w400,
                             max: 1),
                         leading: CircleAvatar(
-                          backgroundColor: wh.withOpacity(0.3),
+                          backgroundColor:
+                              index == 5 ? re : wh.withOpacity(0.3),
                           child: Icon(
                             icons[index],
-                            color: wh,
+                            color: index == 5 ? wh : wh,
                           ),
                         ),
                       );

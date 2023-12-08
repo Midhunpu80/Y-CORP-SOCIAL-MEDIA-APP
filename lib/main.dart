@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/controller/bottomcontroller.dart';
+import 'package:social_syn/controller/chatcontroller.dart';
 import 'package:social_syn/controller/postcontroller.dart';
 import 'package:social_syn/controller/postsavedcontroller.dart';
 import 'package:social_syn/controller/protabcontroller.dart';
 import 'package:social_syn/controller/usercontroller%20.dart';
-import 'package:social_syn/view/constant/constants.dart';
 import 'package:social_syn/view/resources/storage.dart';
 import 'package:social_syn/view/screen/authentication/Log/log/reg.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
@@ -38,6 +38,7 @@ final storagecont = firbasestorage();
 final postcont = Get.put(postcontroller());
 
 final savedcont = Get.put(postdaved_controller());
+final chatcont = Get.put(chatcontroller());
 
 // final getposts_controll = Get.put(allposts_service());
 // final question_controll = Get.put(allquestion_service());

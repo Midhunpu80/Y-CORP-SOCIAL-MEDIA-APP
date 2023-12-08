@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_syn/view/constant/constants.dart';
 
 import 'package:uuid/uuid.dart';
+   List datasss = [];
 
 class savedpost_servie {
   Future savethepost(
@@ -15,6 +16,7 @@ class savedpost_servie {
       required var profile,
       required List comments,
       required List likes}) async {
+
     String res = "error";
 
     try {
@@ -56,6 +58,10 @@ class savedpost_servie {
             .collection('saves')
             .doc(postid)
             .set(data);
+        datasss.add(data);
+        for (DocumentSnapshot doc in datasss) {
+          print("${doc.toString()}----------------------------->>>>>>");
+        }
 
         res = "sucess";
       }

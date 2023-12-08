@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:social_syn/Model/users.dart';
+import 'package:social_syn/view/screen/authentication/Log/log/reg.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
@@ -83,6 +85,13 @@ class firebaseauthenticationservice extends GetxController {
           backgroundColor: blu);
       throw ("exception failed ");
     }
+  }
+
+  logout({required BuildContext context}) {
+    FirebaseAuth.instance.signOut().then(
+        (value) => Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => const log_or_reg_screen(),
+            )));
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/utility/firebasecollection/firebasecollection.dart';
 
@@ -20,9 +21,9 @@ class profile_service {
       "last name": lastname,
       "gender": gender,
       "phone": phone,
-      "bio": bio,
+      "bio": bio.toString(),
       "profile": photourl.toString()
     };
-    firebasecollections.UserdataList.doc(id).update(data);
+    firebasecollections.UserdataList.doc(FirebaseAuth.instance.currentUser!.uid).update(data);
   }
 }

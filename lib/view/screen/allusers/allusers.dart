@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/view/screen/otherprofile/othersprofile.dart';
 import 'package:social_syn/view/service/followingandunfollowing/following.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/buttons.dart';
@@ -47,7 +49,9 @@ class allusers_screen extends StatelessWidget {
                             height: 10.h,
                             width: 100.w,
                             child: ListTile(
-                              onTap: () async {},
+                              onTap: () async {
+                                Get.to(() => othersprofile_screen(id:snap['uid'] ,));
+                              },
                               trailing: InkWell(
                                 onTap: () async {
                                   await newfollow.followingtheuser(

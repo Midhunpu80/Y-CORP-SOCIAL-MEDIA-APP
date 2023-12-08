@@ -18,10 +18,7 @@ Widget userpostdatasList(
         return SliverList.separated(
           itemBuilder: (context, index) {
             final snap = snapshot.data?.docs[index];
-            //// final snap = getposts_controll.reply.post[index];
-            //  final snap2 = getposts_controll.reply.users[index];
-            // final snap3 = getposts_controll.reply.message[index];
-            //  String formattedDate = DateFormat.yMMMEd().format(snap?['time']);
+
             Timestamp timestamp = snap!["date"];
             DateTime dateTime = timestamp.toDate();
             String formattedDateTime =
@@ -35,7 +32,7 @@ Widget userpostdatasList(
                     child: Padding(
                       padding: const EdgeInsets.all(1.0),
                       child: Container(
-                        height: 86.h,
+                        height: 91.h,
                         decoration: BoxDecoration(
                           color: bl,
                         ),
@@ -80,23 +77,36 @@ Widget userpostdatasList(
                                 height: 2.h,
                                 width: 100.w,
                                 child: alltext(
+                                    txt: "View all 0 comments",
+                                    col: gy,
+                                    siz: 11.sp,
+                                    wei: FontWeight.bold,
+                                    max: 1),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 1.h, top: 1.h),
+                              child: Container(
+                                height: 2.h,
+                                width: 100.w,
+                                child: alltext(
                                     txt: "Time: ${fomttime.toString()}",
                                     col: gy,
-                                    siz: 8.sp,
+                                    siz: 9.sp,
                                     wei: FontWeight.bold,
                                     max: 1),
                               ),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 1.h),
-                              child: Container(
-                                height: 5.h,
+                              child: SizedBox(
+                                height: 2.h,
                                 width: 100.w,
                                 child: alltext(
                                     txt:
                                         "Published : ${formattedDateTime.toString().substring(0, 11)}",
                                     col: gy,
-                                    siz: 8.sp,
+                                    siz: 9.sp,
                                     wei: FontWeight.bold,
                                     max: 1),
                               ),
@@ -108,7 +118,10 @@ Widget userpostdatasList(
                   );
           },
           separatorBuilder: (context, index) {
-            return Container(height: 2,color: wh.withOpacity(0.3),);
+            return Container(
+              height: 2,
+              color: wh.withOpacity(0.3),
+            );
           },
           itemCount: !snapshot.hasData ? 0 : snapshot.data!.docs.length,
         );
@@ -132,12 +145,14 @@ Widget posthead(
               topLeft: Radius.circular(1.h), topRight: Radius.circular(1.h)),
         ),
         child: ListTile(
+          subtitle: alltext(txt: "midh", col: wh, siz: 8.sp, wei: FontWeight.w400, max: 1),
           leading: CircleAvatar(
             backgroundColor: wh,
             backgroundImage: NetworkImage(profile),
           ),
           title: alltext(
-              txt: name, col: wh, siz: 10.sp, wei: FontWeight.w500, max: 1),
+              txt: name, col: wh, siz: 12.sp, wei: FontWeight.w500, max: 1),
+            
           trailing: IconButton(
             onPressed: () {
               print("-------------------->${postid.toString()}");
