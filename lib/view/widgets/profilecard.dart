@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +6,14 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/editprofile/editprofile.dart';
+import 'package:social_syn/view/service/followingandunfollowing/following.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
 profilecard(
-    {required var name,
+    {required dynamic snapsss,
+    required var snapid,
+    required var name,
     required var folllowing,
     required var followrs,
     required var phone,
@@ -18,6 +22,16 @@ profilecard(
     required var bio,
     required var lastname,
     required var profileimg}) {
+  following_service follows = following_service();
+  bool isdoc = false;
+  if (snapsss != null) {
+    for (var doc in snapsss) {
+      if (doc.id == snapid) {
+        isdoc = true;
+        break;
+      }
+    }
+  }
   return SliverAppBar(
     leading: const Icon(
       Icons.abc_outlined,
@@ -121,9 +135,19 @@ profilecard(
                           phone: phone,
                           gender: gender.toString());
                     },
-                    child: twobuttons(txt: "EditProfile"))
-                : InkWell(onTap: () {}, child: twobuttons(txt: "Follow")),
-            twobuttons(txt: "shareprofile"),
+                    child: twobuttons(
+                        txt: "EditProfile", col: wh.withOpacity(0.3)))
+                : InkWell(
+                    onTap: () async {
+                      await follows.followingtheuser(
+                          istru: isdoc,
+                          uid: FirebaseAuth.instance.currentUser?.uid,
+                          usersid: snapid.toString());
+                    },
+                    child: twobuttons(
+                        txt: isdoc ? "following" : "Follow",
+                        col: isdoc ? wh.withOpacity(0.3) : yl)),
+            twobuttons(txt: "shareprofile", col: wh.withOpacity(0.3)),
           ],
         ),
         SizedBox(
@@ -157,14 +181,14 @@ Widget countoffollowing({required var txt}) {
   );
 }
 
-Widget twobuttons({required var txt}) {
+Widget twobuttons({required var txt, required Color col}) {
   return Padding(
     padding: const EdgeInsets.all(4.0),
     child: Container(
       height: 4.h,
       width: 47.w,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(1.h), color: wh.withOpacity(0.6)),
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(1.h), color: col),
       child: Center(
           child: alltext(
               txt: txt, col: wh, siz: 8.sp, wei: FontWeight.bold, max: 1)),

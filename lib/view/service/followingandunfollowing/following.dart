@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:social_syn/view/constant/constants.dart';
@@ -9,13 +11,9 @@ class following_service {
       FirebaseFirestore.instance.collection('Users');
 
   Future followingtheuser(
-  
-      {
-        required bool istru,
-        
-        required var uid,
-      required List following,
-      required List followers,
+      {required bool istru,
+      required var uid,
+     
       required var usersid}) async {
     /// var data = {"name": name, "lastname": lastname, "profile": profile};
     CollectionReference results = FirebaseFirestore.instance
@@ -31,7 +29,11 @@ class following_service {
             .collection('following')
             .doc(usersid)
             .delete();
-      await  followersdata.doc(usersid).collection('followers').doc(uid).delete();
+        await followersdata
+            .doc(usersid)
+            .collection('followers')
+            .doc(uid)
+            .delete();
         print("data deleted------------------------------------------------->");
       } else {
         await followingsdata.doc(uid).collection('following').doc(usersid).set({

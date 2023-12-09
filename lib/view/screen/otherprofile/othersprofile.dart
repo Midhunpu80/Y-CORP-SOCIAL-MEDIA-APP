@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
@@ -29,41 +31,70 @@ class othersprofile_screen extends StatelessWidget {
                           .where('uid', isEqualTo: id.toString())
                           .snapshots(),
                       builder: (context, snapshot) {
-                        final snap = snapshot.data!.docs[0];
+                        final snap = snapshot.data?.docs[0];
 
-                        return CustomScrollView(
-                          slivers: [
-                            SliverAppBar(
-                              title: alltext(
-                                  txt: snap['name'],
-                                  col: wh,
-                                  siz: 11.sp,
-                                  wei: FontWeight.bold,
-                                  max: 1),
-                              backgroundColor: bl,
-                              toolbarHeight: 5.h,
-                              leading: IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.arrow_back,
-                                    color: wh,
-                                  )),
-                            ),
-                            profilecard(
-                                name: snap['name'],
-                                folllowing: snap['following'].toString().length,
-                                followrs: snap['followers'].toString().length,
-                                phone: snap['phone'].toString().length,
-                                id: snap['uid'].toString().length,
-                                gender: snap['gender'].toString(),
-                                bio: snap['bio'].toString(),
-                                lastname: snap['last name'].toString(),
-                                profileimg: snap['profile'].toString()),
-                            usergrid_post(
-                                itemcount: snapshots.data!.docs.length,
-                                snaps: snapshots.data!.docs),
-                          ],
-                        );
+                        return StreamBuilder(
+                            stream: FirebaseFirestore.instance
+                                .collection('Users')
+                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .collection('following')
+                                .snapshots(),
+                            builder: (context, snapshoted) {
+                              final followers = snapshoted.data!.docs.length;
+                              return StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('Users')
+                                      .doc(FirebaseAuth
+                                          .instance.currentUser!.uid)
+                                      .collection('followers')
+                                      .snapshots(),
+                                  builder: (context, snapshost) {
+                                    final following =
+                                        snapshost.data?.docs.length;
+
+                                    return CustomScrollView(
+                                      slivers: [
+                                        SliverAppBar(
+                                          title: alltext(
+                                              txt: snap?['name'],
+                                              col: wh,
+                                              siz: 11.sp,
+                                              wei: FontWeight.bold,
+                                              max: 1),
+                                          backgroundColor: bl,
+                                          toolbarHeight: 5.h,
+                                          leading: IconButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              icon: Icon(
+                                                Icons.arrow_back,
+                                                color: wh,
+                                              )),
+                                        ),
+                                        profilecard(
+                                            name: snap!['name'],
+                                            folllowing: following.toString(),
+                                            followrs: followers.toString(),
+                                            phone:
+                                                snap['phone'].toString().length,
+                                            id: snap['uid'].toString().length,
+                                            gender: snap['gender'].toString(),
+                                            bio: snap['bio'].toString(),
+                                            lastname:
+                                                snap['last name'].toString(),
+                                            profileimg:
+                                                snap['profile'].toString(),
+                                            snapsss: snapshoted.data?.docs,
+                                            snapid: snap.id),
+                                        usergrid_post(
+                                            itemcount:
+                                                snapshots.data!.docs.length,
+                                            snaps: snapshots.data!.docs),
+                                      ],
+                                    );
+                                  });
+                            });
                       }),
                 );
         });

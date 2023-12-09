@@ -83,19 +83,14 @@ class allusers_screen extends StatelessWidget {
                                           },
                                           trailing: InkWell(
                                             onTap: () async {
-                                                await newfollow
-                                                    .followingtheuser(
-                                                      istru: isdoc,
-                                                  usersid: snap!.id,
-                                                  uid: FirebaseAuth.instance
-                                                      .currentUser!.uid,
-                                                  following:
-                                                      snapshotss.data!.docs,
-                                                  followers: [],
-                                                );
-                                                print(
-                                                    "following-------------------------->");
-                                             
+                                              await newfollow.followingtheuser(
+                                                istru: isdoc,
+                                                usersid: snap!.id,
+                                                uid: FirebaseAuth
+                                                    .instance.currentUser!.uid,
+                                              );
+                                              print(
+                                                  "following-------------------------->");
                                             },
                                             child: Container(
                                               height: 4.h,
