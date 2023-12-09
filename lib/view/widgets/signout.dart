@@ -1,10 +1,10 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:social_syn/main.dart';
 
 freedialogs(
     {required BuildContext context,
-    required Function function,
     required var tit,
     required var des,
     required DialogType type}) {
@@ -18,7 +18,7 @@ freedialogs(
       Get.back();
     },
     btnOkOnPress: () {
-      function();
+      auth_controll.logout(context: context);
     },
   )..show();
 }

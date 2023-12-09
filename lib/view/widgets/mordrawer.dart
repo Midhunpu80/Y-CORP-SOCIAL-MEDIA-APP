@@ -68,8 +68,6 @@ moredrawer(BuildContext context) async {
 
                             freedialogs(
                                 context: context,
-                                function:
-                                    auth_controll.logout(context: context),
                                 tit: "Logout",
                                 des: "Are you sure to Logout this account",
                                 type: DialogType.info);

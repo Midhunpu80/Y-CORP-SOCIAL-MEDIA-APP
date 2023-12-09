@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
-import 'package:social_syn/view/constant/constants.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
@@ -35,6 +34,13 @@ class messegeview_screen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Icon(
               Icons.video_call_rounded,
+              color: wh,
+            ),
+          )
+          ,          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.more_vert_outlined,
               color: wh,
             ),
           )
@@ -231,7 +237,7 @@ class messegeview_screen extends StatelessWidget {
                                     FirebaseAuth.instance.currentUser!.uid)
                             .snapshots(),
                         builder: (context, snapshots) {
-                          final snap = snapshots.data!.docs[0];
+                          final snap = snapshots.data?.docs[0];
                           return !snapshots.hasData
                               ? const Center(
                                   child: CircularProgressIndicator(),
@@ -241,7 +247,7 @@ class messegeview_screen extends StatelessWidget {
                                     await chatcont.sendchat(
                                         uid: id,
                                         text: chatcontroll.text.toString(),
-                                        name: snap['name'],
+                                        name: snap!['name'],
                                         profile: snap['profile']);
 
                                     ///   Get.back();

@@ -1,17 +1,17 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/allusers/allusers.dart';
-import 'package:social_syn/view/screen/cateogeory/cateogoeryscreen.dart';
 import 'package:social_syn/view/screen/createpost/createpost_screen.dart';
 import 'package:social_syn/view/screen/explorescreen.dart/explorescreen.dart';
 import 'package:social_syn/view/screen/home/homescreen.dart';
 import 'package:social_syn/view/screen/profilescreen.dart/profilescreen.dart';
 import 'package:social_syn/view/utility/colors.dart';
-import 'package:sweet_nav_bar/sweet_nav_bar.dart';
 
 class bottomnavscreen extends StatelessWidget {
   dynamic one;
@@ -56,7 +56,22 @@ class bottomnavscreen extends StatelessWidget {
                     label: "Friends",
                     backgroundColor: bl),
                 BottomNavigationBarItem(
-                    icon: const Icon(Icons.person_2),
+                    icon: StreamBuilder(
+                        stream: FirebaseFirestore.instance
+                            .collection('Users')
+                            .where('uid',
+                                isEqualTo:
+                                    FirebaseAuth.instance.currentUser!.uid)
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          final snap = snapshot.data?.docs[0];
+                          return !snapshot.hasData
+                              ? const Center(child: CircularProgressIndicator())
+                              : CircleAvatar(
+                                  backgroundImage:
+                                      NetworkImage(snap!['profile']),
+                                );
+                        }),
                     label: "Profile",
                     backgroundColor: bl),
               ]),
@@ -64,3 +79,12 @@ class bottomnavscreen extends StatelessWidget {
         ));
   }
 }
+
+// StreamBuilder(
+//         stream: FirebaseFirestore.instance
+//             .collection('Users')
+//             .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+//             .snapshots(),
+//         builder: (context, snapshot) {
+//           final snap = snapshot.data!.docs[0];
+//           return

@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
                 return Scaffold(
                     body: snapshot.hasData
                         ? bottomnavscreen()
-                        : log_or_reg_screen());
+                        : const log_or_reg_screen());
               }));
     });
   }
