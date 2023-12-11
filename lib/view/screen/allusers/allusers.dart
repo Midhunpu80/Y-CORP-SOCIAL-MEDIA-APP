@@ -78,7 +78,7 @@ class allusers_screen extends StatelessWidget {
                                         child: ListTile(
                                           onTap: () async {
                                             Get.to(() => othersprofile_screen(
-                                                  id: snap['uid'],
+                                                  id: snap['uid'], followingsnap: snapsss, thischange: isdoc,
                                                 ));
                                           },
                                           trailing: InkWell(

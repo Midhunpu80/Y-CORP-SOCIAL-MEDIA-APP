@@ -121,11 +121,11 @@ class profilescreen extends StatelessWidget {
                                                 gender: snap['gender'],
                                                 id: snap.id,
                                                 bio: snap['bio'],
-                                                lastname: snap['last name'], snapsss: null, snapid: null),
+                                                lastname: snap['last name'], snapsss: null, snapid: null, thischange: true),
                                             usergrid_post(
                                                 itemcount:
                                                     snapshots.data!.docs.length,
-                                                snaps: snapshots.data!.docs),
+                                                snaps: snapshots.data!.docs, thischange: true),
                                           ],
                                         );
                                       });

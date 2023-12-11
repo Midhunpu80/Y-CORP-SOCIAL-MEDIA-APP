@@ -9,8 +9,13 @@ import 'package:social_syn/view/widgets/griduserposts.dart';
 import 'package:social_syn/view/widgets/profilecard.dart';
 
 class othersprofile_screen extends StatelessWidget {
-  othersprofile_screen({required this.id});
+  othersprofile_screen(
+      {required this.id,
+      required this.followingsnap,
+      required this.thischange});
   String id;
+  dynamic followingsnap;
+  bool thischange;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class othersprofile_screen extends StatelessWidget {
         builder: (context, snapshots) {
           /// final snapss = s.data!.docs;
           return !snapshots.hasData
-              ? Center(child: CircularProgressIndicator())
+              ? const Center(child: CircularProgressIndicator())
               : Scaffold(
                   backgroundColor: bl,
                   body: StreamBuilder(
@@ -36,20 +41,19 @@ class othersprofile_screen extends StatelessWidget {
                         return StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection('Users')
-                                .doc(FirebaseAuth.instance.currentUser!.uid)
+                                .doc(FirebaseAuth.instance.currentUser?.uid)
                                 .collection('following')
                                 .snapshots(),
                             builder: (context, snapshoted) {
-                              final followers = snapshoted.data!.docs.length;
+                              final following = snapshoted.data!.docs.length;
                               return StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection('Users')
-                                      .doc(FirebaseAuth
-                                          .instance.currentUser!.uid)
+                                      .doc(id)
                                       .collection('followers')
                                       .snapshots(),
                                   builder: (context, snapshost) {
-                                    final following =
+                                    final followers =
                                         snapshost.data?.docs.length;
 
                                     return CustomScrollView(
@@ -86,11 +90,13 @@ class othersprofile_screen extends StatelessWidget {
                                             profileimg:
                                                 snap['profile'].toString(),
                                             snapsss: snapshoted.data?.docs,
-                                            snapid: snap.id),
+                                            snapid: snap.id,
+                                            thischange: thischange),
                                         usergrid_post(
                                             itemcount:
                                                 snapshots.data!.docs.length,
-                                            snaps: snapshots.data!.docs),
+                                            snaps: snapshots.data!.docs,
+                                            thischange: thischange),
                                       ],
                                     );
                                   });

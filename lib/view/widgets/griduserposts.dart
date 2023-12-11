@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/screen/profilescreen.dart/viewuserposts.dart';
 
-Widget usergrid_post({required var snaps, required itemcount}) {
+Widget usergrid_post({required var snaps, required itemcount,required
+bool thischange}) {
   return SliverGrid.builder(
     // ignore: prefer_const_constructors
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
