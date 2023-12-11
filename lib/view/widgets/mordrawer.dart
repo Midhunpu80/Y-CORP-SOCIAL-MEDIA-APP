@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/savedpost/savedpost.dart';
+import 'package:social_syn/view/screen/settings/settings.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/signout.dart';
@@ -65,12 +66,17 @@ moredrawer(BuildContext context) async {
                             Get.to(() => savedpost_screen());
                           } else if (index == 5) {
                             print("logout");
+                      
+                          
 
                             freedialogs(
                                 context: context,
                                 tit: "Logout",
                                 des: "Are you sure to Logout this account",
                                 type: DialogType.info);
+                          }else if (index==0){
+                            Get.to(()=>settingsscreen());
+
                           }
                         },
                         title: alltext(
