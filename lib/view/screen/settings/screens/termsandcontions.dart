@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:get/get.dart';
 
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/view/screen/settings/screens/privacypolicyscreen.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
-class privacypolicyscreen extends StatelessWidget {
-  const privacypolicyscreen({super.key});
-
+class termasandconditionscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             icon: Icon(
               Icons.arrow_back,
               color: wh,
             )),
         backgroundColor: bl,
         title: alltext(
-            txt: "Privacy and policy",
+            txt: "Terms and conditions",
             col: wh,
             siz: 13.sp,
             wei: FontWeight.w400,
@@ -31,9 +32,9 @@ class privacypolicyscreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            ///crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              headtitle(txt: "Privacy Policy for Social Sync App"),
+              headtitle(txt: "Terms and Conditions  for Social Sync App"),
               siz(hei: 2.h),
               subtitle(txt: "Last updated: 1/01/2024"),
               siz(hei: 1.h),
@@ -101,30 +102,4 @@ class privacypolicyscreen extends StatelessWidget {
       ),
     );
   }
-}
-
-siz({required double hei}) {
-  return SizedBox(
-    height: hei,
-  );
-}
-
-siz2() {
-  return SizedBox(
-    height: 1.h,
-  );
-}
-
-headtitle({required var txt}) {
-  return Container(
-    child:
-        alltext(txt: txt, col: wh, siz: 12.sp, wei: FontWeight.bold, max: null),
-  );
-}
-
-subtitle({required var txt}) {
-  return Container(
-    child:
-        alltext(txt: txt, col: wh, siz: 10.sp, wei: FontWeight.w400, max: null),
-  );
 }

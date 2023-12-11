@@ -22,7 +22,10 @@ profilecard(
     required var bio,
     required var lastname,
     required var profileimg,
-    required bool thischange}) {
+    required bool thischange,
+    
+    required var totoalposts
+    }) {
   following_service follows = following_service();
   bool isdoc = false;
   if (snapsss != null) {
@@ -94,7 +97,7 @@ profilecard(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            countoffollowing(txt: "2"),
+                            countoffollowing(txt: totoalposts.toString()),
                             countoffollowing(txt: followrs.toString()),
                             countoffollowing(txt: followings.toString())
                           ],

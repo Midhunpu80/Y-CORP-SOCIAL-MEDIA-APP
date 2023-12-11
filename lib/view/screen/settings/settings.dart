@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/screen/settings/screens/privacypolicyscreen.dart';
+import 'package:social_syn/view/screen/settings/screens/termsandcontions.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
@@ -41,6 +42,9 @@ class settingsscreen extends StatelessWidget {
               onTap: () {
                 if (index == 0) {
                   Get.to(() => privacypolicyscreen());
+                }
+                if (index == 1) {
+                  Get.to(() => termasandconditionscreen());
                 }
               },
               leading: Icon(

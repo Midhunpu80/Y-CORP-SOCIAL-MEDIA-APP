@@ -8,9 +8,10 @@ import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/griduserposts.dart';
 import 'package:social_syn/view/widgets/profilecard.dart';
 
+// ignore: must_be_immutable
 class othersprofile_screen extends StatelessWidget {
   othersprofile_screen(
-      {required this.id,
+      {super.key, required this.id,
       required this.followingsnap,
       required this.thischange});
   String id;
@@ -25,7 +26,7 @@ class othersprofile_screen extends StatelessWidget {
             .where('uid', isEqualTo: id.toString())
             .snapshots(),
         builder: (context, snapshots) {
-          /// final snapss = s.data!.docs;
+          final totalposts = snapshots.data?.docs.length;
           return !snapshots.hasData
               ? const Center(child: CircularProgressIndicator())
               : Scaffold(
@@ -91,7 +92,8 @@ class othersprofile_screen extends StatelessWidget {
                                                 snap['profile'].toString(),
                                             snapsss: snapshoted.data?.docs,
                                             snapid: snap.id,
-                                            thischange: thischange),
+                                            thischange: thischange,
+                                            totoalposts: totalposts),
                                         usergrid_post(
                                             itemcount:
                                                 snapshots.data!.docs.length,

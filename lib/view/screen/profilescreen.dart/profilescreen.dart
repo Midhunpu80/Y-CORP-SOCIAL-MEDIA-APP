@@ -20,6 +20,7 @@ class profilescreen extends StatelessWidget {
             .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
             .snapshots(),
         builder: (context, snapshots) {
+          final totalposts = snapshots.data?.docs.length;
           return Scaffold(
               backgroundColor: bl,
               body: StreamBuilder(
@@ -121,11 +122,16 @@ class profilescreen extends StatelessWidget {
                                                 gender: snap['gender'],
                                                 id: snap.id,
                                                 bio: snap['bio'],
-                                                lastname: snap['last name'], snapsss: null, snapid: null, thischange: true),
+                                                lastname: snap['last name'],
+                                                snapsss: null,
+                                                snapid: null,
+                                                thischange: true,
+                                                totoalposts:totalposts),
                                             usergrid_post(
                                                 itemcount:
                                                     snapshots.data!.docs.length,
-                                                snaps: snapshots.data!.docs, thischange: true),
+                                                snaps: snapshots.data!.docs,
+                                                thischange: true),
                                           ],
                                         );
                                       });
