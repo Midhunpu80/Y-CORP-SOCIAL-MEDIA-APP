@@ -14,9 +14,9 @@ class homescreen extends StatelessWidget {
     return Scaffold(
      backgroundColor: bl,
         body: CustomScrollView(
-          slivers: [
+      slivers: [
             drawwer(),
-          //  searchbar(),
+          //// searchbar(),
             storiesbar(),
            userpostdatasList(context,
            

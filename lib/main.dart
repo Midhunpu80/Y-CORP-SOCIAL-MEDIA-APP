@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter DemHo',
           theme: ThemeData(
-            fontFamily: GoogleFonts.zillaSlab().fontFamily,
+            fontFamily: GoogleFonts.novaSquare().fontFamily,
             colorScheme: ColorScheme.fromSeed(seedColor: blu),
             useMaterial3: true,
           ),

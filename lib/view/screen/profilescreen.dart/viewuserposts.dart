@@ -65,7 +65,7 @@ class viewuserposts extends StatelessWidget {
                             child: Card(
                               color: wh.withOpacity(0.3),
                               child: Container(
-                                height: 85.h,
+                                height: 88.h,
                                 decoration: BoxDecoration(
                                   color: bl,
                                 ),
@@ -113,6 +113,20 @@ class viewuserposts extends StatelessWidget {
                                         height: 2.h,
                                         width: 100.w,
                                         child: alltext(
+                                            txt: "View all 0 comments",
+                                            col: gy,
+                                            siz: 11.sp,
+                                            wei: FontWeight.bold,
+                                            max: 1),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 1.h, top: 1.h),
+                                      child: SizedBox(
+                                        height: 2.h,
+                                        width: 100.w,
+                                        child: alltext(
                                             txt: "Time: ${fomttime.toString()}",
                                             col: gy,
                                             siz: 8.sp,
@@ -142,7 +156,7 @@ class viewuserposts extends StatelessWidget {
                   },
                   separatorBuilder: (context, index) {
                     return Divider(
-                      color: gy,
+                      color: wh.withOpacity(0.1),
                     );
                   },
                   itemCount: !snapshot.hasData ? 0 : snapshot.data!.docs.length,

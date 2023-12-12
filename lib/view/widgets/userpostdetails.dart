@@ -16,6 +16,7 @@ Widget userpostdatasList(
       stream: FirebaseFirestore.instance.collection('Posts').snapshots(),
       builder: (context, snapshot) {
         return SliverList.separated(
+        
           itemBuilder: (context, index) {
             final snap = snapshot.data?.docs[index];
 
@@ -27,100 +28,99 @@ Widget userpostdatasList(
 
             return !snapshot.hasData
                 ? const Center(child: CircularProgressIndicator())
-                : Card(
-                    color: bl,
-                    child: Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: Container(
-                        height: 91.h,
-                        decoration: BoxDecoration(
-                          color: bl,
-                        ),
-                        child: Column(
-                          children: [
-                            posthead(
-                                currentuserid: snap['uid'],
-                                context: context,
-                                index: index,
-                                name: snap['username'],
-                                profile: snap['profile'],
-                                postid: snap['postId']),
-                            Container(
-                              height: 58.h,
-                              width: 100.w,
-                              decoration: BoxDecoration(
-                                  //  borderRadius: BorderRadius.circular(2.h),
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          snap['photourl'].toString()),
-                                      fit: BoxFit.cover)),
-                            ),
-                            like_and_commentbar(
-                              context: context,
-                              ind: index,
-                              likes: "${snap['Likes'].length}",
-                              commentsa: ['comments'],
-                              postid: snap['postId'],
-                              likess: snap['Likes'],
-                              uid: snap['uid'],
-                              photourl: snap['photourl'],
-                              date: snap['time'],
-                              captions: snap['captions'],
-                              username: snap['username'],
-                              profile: snap['profile'],
-                              comments: snap['comments'],
-                            ),
-                            descriptionbar(des: snap['captions']),
-                            Padding(
-                              padding: EdgeInsets.only(left: 1.h, top: 2.h),
-                              child: SizedBox(
-                                height: 2.h,
-                                width: 100.w,
-                                child: alltext(
-                                    txt: "View all 0 comments",
-                                    col: gy,
-                                    siz: 11.sp,
-                                    wei: FontWeight.bold,
-                                    max: 1),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 1.h, top: 1.h),
-                              child: Container(
-                                height: 2.h,
-                                width: 100.w,
-                                child: alltext(
-                                    txt: "Time: ${fomttime.toString()}",
-                                    col: gy,
-                                    siz: 9.sp,
-                                    wei: FontWeight.bold,
-                                    max: 1),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 1.h),
-                              child: SizedBox(
-                                height: 2.h,
-                                width: 100.w,
-                                child: alltext(
-                                    txt:
-                                        "Published : ${formattedDateTime.toString().substring(0, 11)}",
-                                    col: gy,
-                                    siz: 9.sp,
-                                    wei: FontWeight.bold,
-                                    max: 1),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                : Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: Container(
+                    height: 91.h,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(2.h),topRight: Radius.circular(2.h)),
+                      color: bl,
                     ),
-                  );
+                    child: Column(
+                      children: [
+                        posthead(
+                            currentuserid: snap['uid'],
+                            context: context,
+                            index: index,
+                            name: snap['username'],
+                            profile: snap['profile'],
+                            postid: snap['postId']),
+                        Container(
+                          height: 58.h,
+                          width: 100.w,
+                          decoration: BoxDecoration(
+                            
+                              //  borderRadius: BorderRadius.circular(2.h),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      snap['photourl'].toString()),
+                                  fit: BoxFit.cover)),
+                        ),
+                        like_and_commentbar(
+                          context: context,
+                          ind: index,
+                          likes: "${snap['Likes'].length}",
+                          commentsa: ['comments'],
+                          postid: snap['postId'],
+                          likess: snap['Likes'],
+                          uid: snap['uid'],
+                          photourl: snap['photourl'],
+                          date: snap['time'],
+                          captions: snap['captions'],
+                          username: snap['username'],
+                          profile: snap['profile'],
+                          comments: snap['comments'],
+                        ),
+                        descriptionbar(des: snap['captions']),
+                        Padding(
+                          padding: EdgeInsets.only(left: 1.h, top: 2.h),
+                          child: SizedBox(
+                            height: 2.h,
+                            width: 100.w,
+                            child: alltext(
+                                txt: "View all 0 comments",
+                                col: gy,
+                                siz: 11.sp,
+                                wei: FontWeight.bold,
+                                max: 1),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 1.h, top: 1.h),
+                          child: Container(
+                            height: 2.h,
+                            width: 100.w,
+                            child: alltext(
+                                txt: "Time: ${fomttime.toString()}",
+                                col: gy,
+                                siz: 9.sp,
+                                wei: FontWeight.bold,
+                                max: 1),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 1.h),
+                          child: SizedBox(
+                            height: 2.h,
+                            width: 100.w,
+                            child: alltext(
+                                txt:
+                                    "Published : ${formattedDateTime.toString().substring(0, 11)}",
+                                col: gy,
+                                siz: 9.sp,
+                                wei: FontWeight.bold,
+                                max: 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
           },
           separatorBuilder: (context, index) {
             return Container(
               height: 2,
-              color: wh.withOpacity(0.3),
+              color: wh.withOpacity(0.1),
             );
           },
           itemCount: !snapshot.hasData ? 0 : snapshot.data!.docs.length,
@@ -146,9 +146,18 @@ Widget posthead(
         ),
         child: ListTile(
           subtitle: alltext(txt: "midh", col: wh, siz: 8.sp, wei: FontWeight.w400, max: 1),
-          leading: CircleAvatar(
-            backgroundColor: wh,
-            backgroundImage: NetworkImage(profile),
+          leading: Container(
+          
+            height: 6.h,width: 12.w,
+            decoration: BoxDecoration(
+              border: Border.all(width: 2,color: yl),
+            
+              image: DecorationImage(image: NetworkImage(profile,),fit: BoxFit.cover),
+              
+              
+              borderRadius: BorderRadius.circular(80.h),color: yl),
+
+           
           ),
           title: alltext(
               txt: name, col: wh, siz: 12.sp, wei: FontWeight.w500, max: 1),

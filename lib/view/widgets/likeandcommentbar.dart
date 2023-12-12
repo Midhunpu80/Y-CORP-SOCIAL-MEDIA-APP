@@ -60,7 +60,7 @@ like_and_commentbar(
                               .contains(FirebaseAuth.instance.currentUser!.uid)
                           ? Icon(
                               Icons.favorite,
-                              color: re,
+                              color: yl,
                             )
                           : Icon(
                               Icons.favorite_outline,

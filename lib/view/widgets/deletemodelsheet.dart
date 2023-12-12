@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
+import 'package:social_syn/view/service/saved/savedservice.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
@@ -12,11 +13,18 @@ deleteandeditmodelsheet(BuildContext context,
   FirebaseAuth currentuser = FirebaseAuth.instance;
   List<IconData> dataicons = [Icons.delete, Icons.edit, Icons.share];
   List buttons = ["Delete", "Edit", "Share"];
+  List<IconData> dataicons2 = [Icons.share, Icons.report];
+  List buttons2 = [
+    "Share",
+    "Report",
+  ];
   return showBottomSheet(
       context: context,
       builder: (context) {
         return Container(
-          height: 50.h,
+          height: currentuser.currentUser?.uid.toString() != uid.toString()
+              ? 35.h
+              : 45.h,
           width: 100.w,
           color: bl.withOpacity(0.8),
           child: Column(
@@ -72,14 +80,21 @@ deleteandeditmodelsheet(BuildContext context,
               Divider(
                 color: gy,
               ),
-              currentuser.currentUser.toString() != uid.toString()
-                  ? SizedBox(
-                      height: 32.h,
-                      width: 100.w,
-                      child: ListView.builder(
-                          itemCount: 3,
-                          itemBuilder: (context, index) {
-                            return ListTile(
+              SizedBox(
+                height:
+                    currentuser.currentUser?.uid.toString() != uid.toString()
+                        ? 15.h
+                        : 25.h,
+                width: 100.w,
+                child: ListView.builder(
+                    itemCount: currentuser.currentUser?.uid.toString() !=
+                            uid.toString()
+                        ? 2
+                        : 3,
+                    itemBuilder: (context, index) {
+                      return currentuser.currentUser?.uid.toString() ==
+                              uid.toString()
+                          ? ListTile(
                               onTap: () {
                                 if (index == 0) {
                                   // ignore: avoid_single_cascade_in_expression_statements
@@ -112,10 +127,21 @@ deleteandeditmodelsheet(BuildContext context,
                                   siz: 10.sp,
                                   wei: FontWeight.bold,
                                   max: 1),
+                            )
+                          : ListTile(
+                              leading: Icon(
+                                dataicons2[index],
+                                color: index == 1 ? re : wh,
+                              ),
+                              title: alltext(
+                                  txt: buttons2[index],
+                                  col: index == 1 ? re : wh,
+                                  siz: 12.sp,
+                                  wei: FontWeight.bold,
+                                  max: 1),
                             );
-                          }),
-                    )
-                  : SizedBox()
+                    }),
+              )
             ],
           ),
         );

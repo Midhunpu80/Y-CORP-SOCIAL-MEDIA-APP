@@ -10,6 +10,7 @@ import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
 class messegeview_screen extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
   messegeview_screen(
       {required this.id, required this.name, required this.profile});
   String name;
@@ -36,8 +37,8 @@ class messegeview_screen extends StatelessWidget {
               Icons.video_call_rounded,
               color: wh,
             ),
-          )
-          ,          Padding(
+          ),
+          Padding(
             padding: const EdgeInsets.all(8.0),
             child: Icon(
               Icons.more_vert_outlined,

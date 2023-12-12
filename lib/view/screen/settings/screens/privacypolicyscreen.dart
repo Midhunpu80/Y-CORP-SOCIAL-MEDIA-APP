@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart';
 
 import 'package:sizer/sizer.dart';
@@ -13,7 +14,9 @@ class privacypolicyscreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.back();
+            },
             icon: Icon(
               Icons.arrow_back,
               color: wh,
