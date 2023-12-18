@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/allusers/allusers.dart';
@@ -61,7 +62,7 @@ class bottomnavscreen extends StatelessWidget {
                             .collection('Users')
                             .where('uid',
                                 isEqualTo:
-                                    FirebaseAuth.instance.currentUser!.uid)
+                                    FirebaseAuth.instance.currentUser?.uid)
                             .snapshots(),
                         builder: (context, snapshot) {
                           final snap = snapshot.data?.docs[0];
@@ -69,12 +70,14 @@ class bottomnavscreen extends StatelessWidget {
                               ? const Center(child: CircularProgressIndicator())
                               : CircleAvatar(
                                   backgroundImage:
-                                      NetworkImage(snap!['profile']),
+                                      NetworkImage(snap?['profile']),
                                 );
                         }),
                     label: "Profile",
                     backgroundColor: bl),
               ]),
+
+          /// ]),
           body: pages[bottomct.index.value],
         ));
   }

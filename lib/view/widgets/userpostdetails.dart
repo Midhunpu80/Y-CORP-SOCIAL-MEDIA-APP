@@ -13,7 +13,7 @@ Widget userpostdatasList(
 //  required var caption,required var name, required var time,required var image,required var profile
 ) {
   return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('Posts').snapshots(),
+      stream: FirebaseFirestore.instance.collection('Posts',).snapshots(),
       builder: (context, snapshot) {
         return SliverList.separated(
         
