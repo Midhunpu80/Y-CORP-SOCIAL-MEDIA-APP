@@ -13,11 +13,13 @@ class groupchat_screen extends StatelessWidget {
   List cant = [];
   // ignore: use_key_in_widget_constructors
   groupchat_screen(
-      {required this.id, required this.name, required this.profile});
+      {required this.id, required this.name, required this.profile,required this.memeberid});
   String name;
   String id;
   String profile;
   final chatcontroll = TextEditingController();
+var memeberid;
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +77,9 @@ class groupchat_screen extends StatelessWidget {
         title: InkWell(
           onTap: () {
             Get.to(() => groupdetailsscreen(
-              name: name,
-              profile: profile,
+              memebersid:memeberid ,
+                  name: name,
+                  profile: profile,
                   gid: id,
                 ));
           },

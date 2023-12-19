@@ -98,6 +98,7 @@ class groupscreen extends StatelessWidget {
                                   child: ListTile(
                                     onTap: () {
                                       Get.to(() => groupchat_screen(
+                                        memeberid:  snap['AdminiD'],
                                           id: snap['groupid'],
                                           name: snap['gname'],
                                           profile: snap['gimage']));

@@ -6,14 +6,18 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
+import 'package:social_syn/view/widgets/addmemebers.dart';
 
 class groupdetailsscreen extends StatelessWidget {
   groupdetailsscreen(
-      {required this.gid, required this.name, required this.profile});
+      {required this.gid,
+      required this.name,
+      required this.profile,
+      required this.memebersid});
   var gid;
   var name;
   var profile;
-
+  var memebersid;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +72,8 @@ class groupdetailsscreen extends StatelessWidget {
                         ),
                         SizedBox(
                           child: alltext(
-                              txt: "Group ${snapshot.data?.docs.length.toString()} memmbers",
+                              txt:
+                                  "Group ${snapshot.data?.docs.length.toString()} memmbers",
                               col: wh,
                               siz: 11.sp,
                               wei: FontWeight.bold,
@@ -92,7 +97,14 @@ class groupdetailsscreen extends StatelessWidget {
                                   txt: "Video"),
                             ),
                             InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  addmembersingroup(
+                                      context: context,
+                                      gpid: gid,
+                                      memberid: memebersid,
+                                      profile: profile,
+                                      gpname: name);
+                                },
                                 child: videocallbutton(
                                     data: Icons.add, txt: "Add")),
                           ],
@@ -144,7 +156,7 @@ class groupdetailsscreen extends StatelessWidget {
                                 color: re,
                               ),
                               title: alltext(
-                                  txt: "Report",
+                                  txt: "Leave the Group",
                                   col: re,
                                   siz: 11.sp,
                                   wei: FontWeight.bold,
