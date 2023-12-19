@@ -66,6 +66,8 @@ class groupchatservice {
         await group.doc(memberid).collection("Groups").doc(gpid).delete();
         await FirebaseFirestore.instance
             .collection('memebers')
+            .doc(gpid)
+            .collection('all')
             .doc(memberid)
             .delete();
       } else {
@@ -100,6 +102,8 @@ class groupchatservice {
 
         await FirebaseFirestore.instance
             .collection('memebers')
+            .doc(gpid)
+            .collection('all')
             .doc(memberid)
             .set({
           "gpid": gpid,
@@ -169,6 +173,8 @@ class groupchatservice {
   }
 
   deletegroup({required var gid}) async {
+    await FirebaseFirestore.instance.collection('memebers').doc(gid).delete();
+
     await group
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection('Groups')

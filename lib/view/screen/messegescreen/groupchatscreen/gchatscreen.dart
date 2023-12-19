@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/view/screen/messegescreen/groupchatscreen/groupdetails.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
@@ -53,6 +54,7 @@ class groupchat_screen extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     Get.back();
+                    print(id.toString());
                   },
                   icon: Icon(
                     Icons.arrow_back,
@@ -70,8 +72,22 @@ class groupchat_screen extends StatelessWidget {
           ),
         ),
         backgroundColor: bl,
-        title: alltext(
-            txt: name, col: wh, siz: 11.sp, wei: FontWeight.w400, max: 1),
+        title: InkWell(
+          onTap: () {
+            Get.to(() => groupdetailsscreen(
+              name: name,
+              profile: profile,
+                  gid: id,
+                ));
+          },
+          child: SizedBox(
+              child: alltext(
+                  txt: name,
+                  col: wh,
+                  siz: 11.sp,
+                  wei: FontWeight.w400,
+                  max: 1)),
+        ),
       ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance
