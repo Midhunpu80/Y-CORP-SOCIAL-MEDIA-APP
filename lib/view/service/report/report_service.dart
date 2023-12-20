@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
@@ -11,6 +12,7 @@ class report_service {
     String repid = Uuid().v1();
 
     await FirebaseFirestore.instance.collection('report').doc(repid).set({
+      "ReporteriD": FirebaseAuth.instance.currentUser?.uid,
       "name": name,
       "profile": profile,
       "id ": id,

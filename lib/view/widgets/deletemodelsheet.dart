@@ -7,12 +7,18 @@ import 'package:social_syn/main.dart';
 import 'package:social_syn/view/service/saved/savedservice.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
+import 'package:social_syn/view/widgets/report.dart';
 
 deleteandeditmodelsheet(BuildContext context,
-    {required var postid, required var uid}) {
+    {required var postid, required var uid,required var profile,required var name}) {
   FirebaseAuth currentuser = FirebaseAuth.instance;
-  List<IconData> dataicons = [Icons.delete, Icons.edit, Icons.share];
-  List buttons = ["Delete", "Edit", "Share"];
+  List<IconData> dataicons = [
+    Icons.delete,
+    Icons.edit,
+    Icons.share,
+    Icons.report
+  ];
+  List buttons = ["Delete", "Edit", "Share", "Report"];
   List<IconData> dataicons2 = [Icons.share, Icons.report];
   List buttons2 = [
     "Share",
@@ -46,18 +52,27 @@ deleteandeditmodelsheet(BuildContext context,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 8.h,
-                      width: 16.w,
-                      decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: wh),
-                        borderRadius: BorderRadius.circular(
-                          6.h,
+                    child: InkWell(
+                      onTap: () {
+                        reporttheuser(
+                            context: context,
+                            name: name,
+                            profile: profile,
+                            id: uid);
+                      },
+                      child: Container(
+                        height: 8.h,
+                        width: 16.w,
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: wh),
+                          borderRadius: BorderRadius.circular(
+                            6.h,
+                          ),
                         ),
-                      ),
-                      child: Icon(
-                        Icons.favorite,
-                        color: wh,
+                        child: Icon(
+                          Icons.report,
+                          color: re,
+                        ),
                       ),
                     ),
                   ),

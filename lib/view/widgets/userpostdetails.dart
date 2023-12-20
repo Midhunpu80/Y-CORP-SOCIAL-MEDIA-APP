@@ -13,10 +13,13 @@ Widget userpostdatasList(
 //  required var caption,required var name, required var time,required var image,required var profile
 ) {
   return StreamBuilder(
-      stream: FirebaseFirestore.instance.collection('Posts',).snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection(
+            'Posts',
+          )
+          .snapshots(),
       builder: (context, snapshot) {
         return SliverList.separated(
-        
           itemBuilder: (context, index) {
             final snap = snapshot.data?.docs[index];
 
@@ -29,93 +32,95 @@ Widget userpostdatasList(
             return !snapshot.hasData
                 ? const Center(child: CircularProgressIndicator())
                 : Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: Container(
-                    height: 91.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(2.h),topRight: Radius.circular(2.h)),
-                      color: bl,
-                    ),
-                    child: Column(
-                      children: [
-                        posthead(
-                            currentuserid: snap['uid'],
+                    padding: const EdgeInsets.all(1.0),
+                    child: Container(
+                      height: 91.h,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(2.h),
+                            topRight: Radius.circular(2.h)),
+                        color: bl,
+                      ),
+                      child: Column(
+                        children: [
+                          posthead(
+                              currentuserid: snap['uid'],
+                              context: context,
+                              index: index,
+                              name: snap['username'],
+                              profile: snap['profile'],
+                              postid: snap['postId']),
+                          Container(
+                            height: 58.h,
+                            width: 100.w,
+                            decoration: BoxDecoration(
+
+                                //  borderRadius: BorderRadius.circular(2.h),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        snap['photourl'].toString()),
+                                    fit: BoxFit.cover)),
+                          ),
+                          like_and_commentbar(
                             context: context,
-                            index: index,
-                            name: snap['username'],
+                            ind: index,
+                            likes: "${snap['Likes'].length}",
+                            commentsa: ['comments'],
+                            postid: snap['postId'],
+                            likess: snap['Likes'],
+                            uid: snap['uid'],
+                            photourl: snap['photourl'],
+                            date: snap['time'],
+                            captions: snap['captions'],
+                            username: snap['username'],
                             profile: snap['profile'],
-                            postid: snap['postId']),
-                        Container(
-                          height: 58.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            
-                              //  borderRadius: BorderRadius.circular(2.h),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      snap['photourl'].toString()),
-                                  fit: BoxFit.cover)),
-                        ),
-                        like_and_commentbar(
-                          context: context,
-                          ind: index,
-                          likes: "${snap['Likes'].length}",
-                          commentsa: ['comments'],
-                          postid: snap['postId'],
-                          likess: snap['Likes'],
-                          uid: snap['uid'],
-                          photourl: snap['photourl'],
-                          date: snap['time'],
-                          captions: snap['captions'],
-                          username: snap['username'],
-                          profile: snap['profile'],
-                          comments: snap['comments'],
-                        ),
-                        descriptionbar(des: snap['captions']),
-                        Padding(
-                          padding: EdgeInsets.only(left: 1.h, top: 2.h),
-                          child: SizedBox(
-                            height: 2.h,
-                            width: 100.w,
-                            child: alltext(
-                                txt: "View all 0 comments",
-                                col: gy,
-                                siz: 11.sp,
-                                wei: FontWeight.bold,
-                                max: 1),
+                            comments: snap['comments'],
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 1.h, top: 1.h),
-                          child: Container(
-                            height: 2.h,
-                            width: 100.w,
-                            child: alltext(
-                                txt: "Time: ${fomttime.toString()}",
-                                col: gy,
-                                siz: 9.sp,
-                                wei: FontWeight.bold,
-                                max: 1),
+                          descriptionbar(des: snap['captions']),
+                          Padding(
+                            padding: EdgeInsets.only(left: 1.h, top: 2.h),
+                            child: SizedBox(
+                              height: 2.h,
+                              width: 100.w,
+                              child: alltext(
+                                  txt: "View all 0 comments",
+                                  col: gy,
+                                  siz: 11.sp,
+                                  wei: FontWeight.bold,
+                                  max: 1),
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 1.h),
-                          child: SizedBox(
-                            height: 2.h,
-                            width: 100.w,
-                            child: alltext(
-                                txt:
-                                    "Published : ${formattedDateTime.toString().substring(0, 11)}",
-                                col: gy,
-                                siz: 9.sp,
-                                wei: FontWeight.bold,
-                                max: 1),
+                          Padding(
+                            padding: EdgeInsets.only(left: 1.h, top: 1.h),
+                            child: Container(
+                              height: 2.h,
+                              width: 100.w,
+                              child: alltext(
+                                  txt: "Time: ${fomttime.toString()}",
+                                  col: gy,
+                                  siz: 9.sp,
+                                  wei: FontWeight.bold,
+                                  max: 1),
+                            ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: EdgeInsets.only(left: 1.h),
+                            child: SizedBox(
+                              height: 2.h,
+                              width: 100.w,
+                              child: alltext(
+                                  txt:
+                                      "Published : ${formattedDateTime.toString().substring(0, 11)}",
+                                  col: gy,
+                                  siz: 9.sp,
+                                  wei: FontWeight.bold,
+                                  max: 1),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
+                  );
           },
           separatorBuilder: (context, index) {
             return Container(
@@ -145,28 +150,31 @@ Widget posthead(
               topLeft: Radius.circular(1.h), topRight: Radius.circular(1.h)),
         ),
         child: ListTile(
-          subtitle: alltext(txt: "midh", col: wh, siz: 8.sp, wei: FontWeight.w400, max: 1),
+          subtitle: alltext(
+              txt: "midh", col: wh, siz: 8.sp, wei: FontWeight.w400, max: 1),
           leading: Container(
-          
-            height: 6.h,width: 12.w,
+            height: 6.h,
+            width: 12.w,
             decoration: BoxDecoration(
-              border: Border.all(width: 2,color: yl),
-            
-              image: DecorationImage(image: NetworkImage(profile,),fit: BoxFit.cover),
-              
-              
-              borderRadius: BorderRadius.circular(80.h),color: yl),
-
-           
+                border: Border.all(width: 2, color: yl),
+                image: DecorationImage(
+                    image: NetworkImage(
+                      profile,
+                    ),
+                    fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(80.h),
+                color: yl),
           ),
           title: alltext(
               txt: name, col: wh, siz: 12.sp, wei: FontWeight.w500, max: 1),
-            
           trailing: IconButton(
             onPressed: () {
               print("-------------------->${postid.toString()}");
               deleteandeditmodelsheet(context,
-                  postid: postid, uid: currentuserid);
+                  name: name,
+                  profile: profile,
+                  postid: postid,
+                  uid: currentuserid);
             },
             icon: Icon(
               Icons.more_vert_outlined,
