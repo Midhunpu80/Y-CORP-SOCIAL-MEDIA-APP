@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/otherprofile/othersprofile.dart';
 import 'package:social_syn/view/service/followingandunfollowing/following.dart';
 import 'package:social_syn/view/utility/alltext.dart';
@@ -78,7 +79,9 @@ class allusers_screen extends StatelessWidget {
                                         child: ListTile(
                                           onTap: () async {
                                             Get.to(() => othersprofile_screen(
-                                                  id: snap['uid'], followingsnap: snapsss, thischange: isdoc,
+                                                  id: snap['uid'],
+                                                  followingsnap: snapsss,
+                                                  thischange: isdoc,
                                                 ));
                                           },
                                           trailing: InkWell(
@@ -89,6 +92,16 @@ class allusers_screen extends StatelessWidget {
                                                 uid: FirebaseAuth
                                                     .instance.currentUser!.uid,
                                               );
+                                              ////////////////////////////////////////////////////////////////////////////////////////
+                                              await notification_controll
+                                                  .sendnotification(
+                                                      condition: false,
+                                                      uids: snap['uid'],
+                                                      name: snap['name'],
+                                                      profile: snap['profile'],
+                                                      postid: null,
+                                                      img: null,
+                                                      isexist: isdoc);
                                               print(
                                                   "following-------------------------->");
                                             },

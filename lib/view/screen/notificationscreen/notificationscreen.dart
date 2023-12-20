@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
@@ -10,104 +12,106 @@ class notificationscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: wh.withOpacity(0.3),
+      backgroundColor: bl,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.arrow_back,
+              color: wh,
+            )),
         title: alltext(
             txt: "Notifications",
-            col: bl,
+            col: wh,
             siz: 12.sp,
             wei: FontWeight.w500,
             max: 1),
-        backgroundColor: re,
+        backgroundColor: bl,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 89.h,
-              width: 100.w,
-              color: wh.withOpacity(0.8),
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 14.h,
-                        width: 100.w,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(1.h),
-                            color: wh),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 2.h, top: 1.h, right: 2.h),
-                                  child: CircleAvatar(
-                                    radius: 3.h,
-                                    backgroundColor: re,
-                                  ),
-                                ),
-                                Column(
-                                  children: [
-                                    SizedBox(
-                                      height: 3.h,
-                                    ),
-                                    Row(
-                                      children: [
-                                        alltext(
-                                            txt: "midhun pu",
-                                            col: bl,
-                                            siz: 12.sp,
-                                            wei: FontWeight.bold,
-                                            max: 1),
-                                        SizedBox(
-                                          width: 2.w,
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection('notifications')
+              .doc(FirebaseAuth.instance.currentUser!.uid)
+              .collection('notify')
+              .snapshots(),
+          builder: (context, snapshot) {
+            return !snapshot.hasData
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 89.h,
+                          width: 100.w,
+                          color: bl,
+                          child: ListView.separated(
+                              itemBuilder: (context, index) {
+                                final snap = snapshot.data?.docs[index];
+
+                                return ListTile(
+                                  trailing: snap?['case'] == true
+                                      ? Container(
+                                          height: 5.h,
+                                          width: 10.w,
+                                          color: yl,
+                                          child: Image(
+                                            image: NetworkImage(snap!['img']),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        )
+                                      : Container(
+                                          height: 4.h,
+                                          width: 25.w,
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  snap?['follower'] ? gy : yl,
+                                              borderRadius:
+                                                  BorderRadius.circular(1.h)),
+                                          child: Center(
+                                            child: snap?['follower']
+                                                ? alltext(
+                                                    txt: "following",
+                                                    col: wh,
+                                                    siz: 7.sp,
+                                                    wei: FontWeight.bold,
+                                                    max: 1)
+                                                : alltext(
+                                                    txt: "FOLLOW",
+                                                    col: bl,
+                                                    siz: 7.sp,
+                                                    wei: FontWeight.bold,
+                                                    max: 1),
+                                          ),
                                         ),
-                                        alltext(
-                                            txt: "Reacted to your Recuirement",
-                                            col: bl,
-                                            siz: 10.sp,
-                                            wei: FontWeight.w400,
-                                            max: 1)
-                                      ],
-                                    ),
-                                    alltext(
-                                        txt:
-                                            "Interested to your requirement Click to hire",
-                                        col: bl,
-                                        siz: 9.sp,
-                                        wei: FontWeight.w400,
-                                        max: 1),
-                                    SizedBox(
-                                      height: 2.h,
-                                    ),
-                                    alltext(
-                                        txt:
-                                            "23 hours ago                                                ",
-                                        col: blu,
-                                        siz: 9.sp,
-                                        wei: FontWeight.w400,
-                                        max: 1),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox();
-                  },
-                  itemCount: 55),
-            )
-          ],
-        ),
-      ),
+                                  subtitle: alltext(
+                                      txt: snap!['messege'],
+                                      col: wh,
+                                      siz: 8.sp,
+                                      wei: FontWeight.bold,
+                                      max: 1),
+                                  leading: CircleAvatar(
+                                    backgroundImage:
+                                        NetworkImage(snap['profile']),
+                                  ),
+                                  title: alltext(
+                                      txt: snap?['name'],
+                                      col: wh,
+                                      siz: 12.sp,
+                                      wei: FontWeight.bold,
+                                      max: 1),
+                                );
+                              },
+                              separatorBuilder: (context, index) {
+                                return SizedBox();
+                              },
+                              itemCount: snapshot.data!.docs.length),
+                        )
+                      ],
+                    ),
+                  );
+          }),
     );
   }
 }
