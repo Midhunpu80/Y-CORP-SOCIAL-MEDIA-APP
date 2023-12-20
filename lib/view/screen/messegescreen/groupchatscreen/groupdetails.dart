@@ -7,6 +7,7 @@ import 'package:sizer/sizer.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/addmemebers.dart';
+import 'package:social_syn/view/widgets/report.dart';
 
 class groupdetailsscreen extends StatelessWidget {
   groupdetailsscreen(
@@ -18,6 +19,8 @@ class groupdetailsscreen extends StatelessWidget {
   var name;
   var profile;
   var memebersid;
+
+  TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -171,6 +174,13 @@ class groupdetailsscreen extends StatelessWidget {
                             width: 100.w,
                             color: gy.withOpacity(0.2),
                             child: ListTile(
+                              onTap: () {
+                                reporttheuser(
+                                    context: context,
+                                    name: name,
+                                    profile: profile,
+                                    id: gid);
+                              },
                               leading: Icon(
                                 Icons.report,
                                 color: re,
