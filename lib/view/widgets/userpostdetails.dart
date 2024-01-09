@@ -44,6 +44,8 @@ Widget userpostdatasList(
                       child: Column(
                         children: [
                           posthead(
+                              image: snap['photourl'].toString(),
+                              descriptionz: "data",
                               currentuserid: snap['uid'],
                               context: context,
                               index: index,
@@ -134,7 +136,9 @@ Widget userpostdatasList(
 }
 
 Widget posthead(
-    {required var currentuserid,
+    {required var image,
+    required var descriptionz,
+    required var currentuserid,
     required var index,
     required var name,
     required var profile,
@@ -171,6 +175,8 @@ Widget posthead(
             onPressed: () {
               print("-------------------->${postid.toString()}");
               deleteandeditmodelsheet(context,
+                  image: image,
+                  descriptions: descriptionz,
                   name: name,
                   profile: profile,
                   postid: postid,

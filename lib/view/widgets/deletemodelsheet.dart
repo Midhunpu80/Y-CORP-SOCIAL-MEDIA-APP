@@ -7,10 +7,16 @@ import 'package:social_syn/main.dart';
 import 'package:social_syn/view/service/saved/savedservice.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
+import 'package:social_syn/view/widgets/editpost.dart';
 import 'package:social_syn/view/widgets/report.dart';
 
 deleteandeditmodelsheet(BuildContext context,
-    {required var postid, required var uid,required var profile,required var name}) {
+    {required var image,
+    required var descriptions,
+    required var postid,
+    required var uid,
+    required var profile,
+    required var name}) {
   FirebaseAuth currentuser = FirebaseAuth.instance;
   List<IconData> dataicons = [
     Icons.delete,
@@ -130,6 +136,12 @@ deleteandeditmodelsheet(BuildContext context,
                                           id: postid.toString());
                                     },
                                   )..show();
+                                }
+                                if (index == 1) {
+                                  edituserpost(
+                                      context: context,
+                                      textx: descriptions,
+                                      image: image);
                                 }
                               },
                               leading: Icon(

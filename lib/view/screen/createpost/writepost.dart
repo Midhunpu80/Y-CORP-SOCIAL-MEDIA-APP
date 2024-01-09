@@ -59,57 +59,79 @@ class writepost extends StatelessWidget {
                         )),
                   ),
                   backgroundColor: bl,
-                  body: Column(
-                    children: [
-                      Container(
-                        height: 18.h,
-                        width: 100.w,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: blu,
-                                radius: 3.h,
-                                backgroundImage:
-                                    NetworkImage(snap!['profile'].toString()),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 0.h),
-                                child: captionfield(controller: caption),
-                              ),
-                              Obx(
-                                () => usercont.img.value == null
-                                    ? Container(
-                                        height: 6.h,
-                                        width: 13.w,
-                                        decoration: BoxDecoration(
+                  body: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 18.h,
+                          width: 100.w,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: blu,
+                                  radius: 3.h,
+                                  backgroundImage:
+                                      NetworkImage(snap!['profile'].toString()),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 0.h),
+                                  child: captionfield(controller: caption),
+                                ),
+                                Obx(
+                                  () => usercont.img.value == null
+                                      ? Container(
+                                          height: 6.h,
+                                          width: 13.w,
+                                          decoration: BoxDecoration(
 
-                                            /// image: DecorationImage(image: asse(usercont.img.value!)),
-                                            borderRadius:
-                                                BorderRadius.circular(1.h),
-                                            color: yl),
-                                      )
-                                    : Container(
-                                        height: 6.h,
-                                        width: 13.w,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: MemoryImage(
-                                                    usercont.img.value!),
-                                                fit: BoxFit.cover),
-                                            borderRadius:
-                                                BorderRadius.circular(1.h),
-                                            color: yl),
-                                      ),
-                              ),
-                            ],
+                                              /// image: DecorationImage(image: asse(usercont.img.value!)),
+                                              borderRadius:
+                                                  BorderRadius.circular(1.h),
+                                              color: yl),
+                                        )
+                                      : Container(
+                                          height: 6.h,
+                                          width: 13.w,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: MemoryImage(
+                                                      usercont.img.value!),
+                                                  fit: BoxFit.cover),
+                                              borderRadius:
+                                                  BorderRadius.circular(1.h),
+                                              color: yl),
+                                        ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Obx(
+                            () => usercont.img.value == null
+                                ? Container()
+                                : Container(
+                                    height: 60.h,
+                                    width: 100.w,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(width: 2, color: wh),
+                                        image: DecorationImage(
+                                            image: MemoryImage(
+                                                usercont.img.value!),
+                                            fit: BoxFit.cover),
+                                        borderRadius:
+                                            BorderRadius.circular(2.h),
+                                        color: blu.withOpacity(0.3)),
+                                  ),
+                          ),
+                        )
+                      ],
+                    ),
                   ));
         });
   }

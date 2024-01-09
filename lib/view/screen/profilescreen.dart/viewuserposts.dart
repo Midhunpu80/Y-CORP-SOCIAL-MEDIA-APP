@@ -77,7 +77,9 @@ class viewuserposts extends StatelessWidget {
                                         index: index,
                                         name: snap['username'],
                                         profile: snap['profile'],
-                                        currentuserid: snap['uid']),
+                                        currentuserid: snap['uid'],
+                                        image: snap['photourl'].toString(),
+                                        descriptionz: "dbsbbf"),
                                     Container(
                                       height: 58.h,
                                       width: 100.w,
