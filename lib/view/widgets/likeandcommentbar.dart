@@ -35,51 +35,48 @@ like_and_commentbar(
     color: bl,
     width: 100.w,
     child: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(left: 5.h),
       child: Row(
         children: [
           Row(
             children: [
-              CircleAvatar(
-                  radius: 19,
-                  backgroundColor: wh.withOpacity(0.3),
-                  child: IconButton(
-                      onPressed: () async {
-                        await create.postlike(
-                            postid: postid.toString(),
-                            likes: likess,
-                            uid: FirebaseAuth.instance.currentUser!.uid);
+              IconButton(
+                  onPressed: () async {
+                    await create.postlike(
+                        postid: postid.toString(),
+                        likes: likess,
+                        uid: FirebaseAuth.instance.currentUser!.uid);
 
-                        ////////////////////////notifivcation s//////////////////////////////
-                        if (likess
-                            .contains(FirebaseAuth.instance.currentUser!.uid)) {
-                          print("notliked");
+                    ////////////////////////notifivcation s//////////////////////////////
+                    if (likess
+                        .contains(FirebaseAuth.instance.currentUser!.uid)) {
+                      print("notliked");
 
-                          ///  await notification_controll.deletenotification(uids: uid, condition: true, notificationids: notificationids)
-                        } else {
-                          await notification_controll.sendnotification(
-                              uids: uid,
-                              name: username,
-                              profile: profile,
-                              img: photourl,
-                              postid: postid,
-                              condition: true);
-                          print("liked");
-                        }
-                      },
-                      icon: likess
-                              .contains(FirebaseAuth.instance.currentUser!.uid)
-                          ? Icon(
-                              Icons.favorite,
-                              color: yl,
-                            )
-                          : Icon(
-                              Icons.favorite_outline,
-                              size: 2.h,
-                              color: wh,
-                            ))),
+                      ///  await notification_controll.deletenotification(uids: uid, condition: true, notificationids: notificationids)
+                    } else {
+                      await notification_controll.sendnotification(
+                          uids: uid,
+                          name: username,
+                          profile: profile,
+                          img: photourl,
+                          postid: postid,
+                          condition: true);
+                      print("liked");
+                    }
+                  },
+                  icon: likess.contains(FirebaseAuth.instance.currentUser!.uid)
+                      ?const  Icon(
+                          Icons.favorite,
+                          color:  Color.fromARGB(255, 255, 0, 85),
+                          size: 20,
+                        )
+                      : Icon(
+                          Icons.favorite_outline,
+                          size: 20,
+                          color: wh,
+                        )),
               SizedBox(
-                width: 2.w,
+                width: 1.w,
               ),
               alltext(
                   txt: likes.toString(),
@@ -94,58 +91,58 @@ like_and_commentbar(
           ),
           Row(
             children: [
-              CircleAvatar(
-                  radius: 19,
-                  backgroundColor: wh.withOpacity(0.3),
-                  child: IconButton(
-                      onPressed: () {
-                        commentsmessenger(
-                          context,
-                          uid: uid,
-                          postid: postid,
-                        );
-                      },
-                      icon: Icon(
-                        Icons.messenger_outline_outlined,
-                        size: 2.h,
-                        color: wh,
-                      ))),
-              SizedBox(
-                width: 2.w,
-              ),
+              IconButton(
+                  onPressed: () {
+                    commentsmessenger(
+                      context,
+                      uid: uid,
+                      postid: postid,
+                    );
+                  },
+                  icon: Icon(
+                    Icons.messenger_outline_outlined,
+                    size: 2.h,
+                    color: wh,
+                  )),
               alltext(
                   txt: commentsa.toString(),
                   col: bl,
                   siz: 9.sp,
                   wei: FontWeight.bold,
-                  max: 1)
+                  max: 1),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.telegram,
+                    color: wh,
+                  )),
+              SizedBox(
+                width: 2.w,
+              ),
             ],
           ),
           Spacer(),
-          CircleAvatar(
-              radius: 19,
-              backgroundColor: wh.withOpacity(0.3),
-              child: IconButton(
-                  onPressed: () async {
-                    print(uid.toString());
-                    await savedcont.savedtheposts(
-                        photourl: photourl,
-                        uid: uid.toString(),
-                        postid: postid.toString(),
-                        date: date.toString(),
-                        captions: captions,
-                        username: username,
-                        profile: profile,
-                        comments: comments,
-                        likes: likess);
-                    print(
-                        "-----------------------------------????${datasss.toList().toString()}");
-                  },
-                  icon: Icon(
-                    Icons.bookmark,
-                    color: wh,
-                    size: 2.h,
-                  ))),
+          IconButton(
+              onPressed: () async {
+                print(uid.toString());
+                await savedcont.savedtheposts(
+                    photourl: photourl,
+                    uid: uid.toString(),
+                    postid: postid.toString(),
+                    date: date.toString(),
+                    captions: captions,
+                    username: username,
+                    profile: profile,
+                    comments: comments,
+                    likes: likess);
+                print(
+                    "-----------------------------------????${datasss.toList().toString()}");
+              },
+              icon: Icon(
+                Icons.bookmark,
+                color: wh,
+                size: 2.h,
+              )),
         ],
       ),
     ),

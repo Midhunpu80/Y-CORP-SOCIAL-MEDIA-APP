@@ -7,11 +7,14 @@ import 'package:social_syn/view/utility/colors.dart';
 
 Widget drawwer() {
   return SliverAppBar(
-    backgroundColor: bl,
-    leading:const  Icon(Icons.abc,color: Colors.transparent,),
+      backgroundColor: bl,
+      leading: const Icon(
+        Icons.abc,
+        color: Colors.transparent,
+      ),
       toolbarHeight: 8.h,
       flexibleSpace: Padding(
-        padding:  EdgeInsets.only(top: 4.h),
+        padding: EdgeInsets.only(top: 4.h),
         child: Container(
           height: 8.h,
           width: 100.w,
@@ -20,11 +23,16 @@ Widget drawwer() {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                CircleAvatar(backgroundColor: wh
-                .withOpacity(0.3),child: Icon(Icons.south_america_outlined,color: wh,),),
-                SizedBox(width: 2.h,),
+                CircleAvatar(
+                  backgroundColor: wh.withOpacity(0.3),
+                  backgroundImage:
+                      const AssetImage('images/y-high-resolution-logo.png'),
+                ),
+                SizedBox(
+                  width: 2.h,
+                ),
                 alltext(
-                    txt: "Social Sync",
+                    txt: "Sync",
                     col: wh,
                     siz: 17.sp,
                     wei: FontWeight.bold,

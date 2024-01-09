@@ -34,7 +34,7 @@ Widget userpostdatasList(
                 : Padding(
                     padding: const EdgeInsets.all(1.0),
                     child: Container(
-                      height: 91.h,
+                      ///  height: 91.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(2.h),
@@ -52,16 +52,24 @@ Widget userpostdatasList(
                               name: snap['username'],
                               profile: snap['profile'],
                               postid: snap['postId']),
-                          Container(
-                            height: 58.h,
-                            width: 100.w,
-                            decoration: BoxDecoration(
-
-                                //  borderRadius: BorderRadius.circular(2.h),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        snap['photourl'].toString()),
-                                    fit: BoxFit.cover)),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.h),
+                            child: Container(
+                                width: 85.w,
+                                child: descriptionbar(des: snap['captions'])),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 5.h, top: 1.h),
+                            child: Container(
+                              height: 32.h,
+                              width: 85.w,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(2.h),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          snap['photourl'].toString()),
+                                      fit: BoxFit.cover)),
+                            ),
                           ),
                           like_and_commentbar(
                             context: context,
@@ -78,20 +86,6 @@ Widget userpostdatasList(
                             profile: snap['profile'],
                             comments: snap['comments'],
                           ),
-                          descriptionbar(des: snap['captions']),
-                          Padding(
-                            padding: EdgeInsets.only(left: 1.h, top: 2.h),
-                            child: SizedBox(
-                              height: 2.h,
-                              width: 100.w,
-                              child: alltext(
-                                  txt: "View all 0 comments",
-                                  col: gy,
-                                  siz: 11.sp,
-                                  wei: FontWeight.bold,
-                                  max: 1),
-                            ),
-                          ),
                           Padding(
                             padding: EdgeInsets.only(left: 1.h, top: 1.h),
                             child: Container(
@@ -100,7 +94,7 @@ Widget userpostdatasList(
                               child: alltext(
                                   txt: "Time: ${fomttime.toString()}",
                                   col: gy,
-                                  siz: 9.sp,
+                                  siz: 7.sp,
                                   wei: FontWeight.bold,
                                   max: 1),
                             ),
@@ -114,7 +108,7 @@ Widget userpostdatasList(
                                   txt:
                                       "Published : ${formattedDateTime.toString().substring(0, 11)}",
                                   col: gy,
-                                  siz: 9.sp,
+                                  siz: 7.sp,
                                   wei: FontWeight.bold,
                                   max: 1),
                             ),
@@ -157,10 +151,10 @@ Widget posthead(
           subtitle: alltext(
               txt: "midh", col: wh, siz: 8.sp, wei: FontWeight.w400, max: 1),
           leading: Container(
-            height: 6.h,
-            width: 12.w,
+            height: 5.h,
+            width: 10.w,
             decoration: BoxDecoration(
-                border: Border.all(width: 2, color: yl),
+                border: Border.all(width: 1, color: wh),
                 image: DecorationImage(
                     image: NetworkImage(
                       profile,

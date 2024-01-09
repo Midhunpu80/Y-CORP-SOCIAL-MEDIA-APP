@@ -21,20 +21,37 @@ class owner_registerscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 10.h,
+        title: CircleAvatar(
+          radius: 4.h,
+          backgroundImage:const  AssetImage("images/y-high-resolution-logo.png"),
+        ),
+        backgroundColor: bl,
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.close,
+              color: wh,
+            )),
+      ),
       backgroundColor: bl,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 8.h,
+              height: 4.h,
             ),
             Padding(
               padding: EdgeInsets.only(left: 2.h),
               child: SizedBox(
                 child: alltext(
                     txt: " USER SIGNUP",
-                    col: blu,
+                    col: wh,
                     siz: 18.sp,
                     wei: FontWeight.bold,
                     max: 1),
@@ -66,7 +83,8 @@ class owner_registerscreen extends StatelessWidget {
                         controller: name_reg,
                         ico: Icons.person,
                         labl: "First Name",
-                        hint: "enter your First name", obsz:  false),
+                        hint: "enter your First name",
+                        obsz: false),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -75,7 +93,8 @@ class owner_registerscreen extends StatelessWidget {
                         controller: last_reg,
                         ico: Icons.verified_user_outlined,
                         hint: "Last Name",
-                        labl: "Last Name", obsz:  false),
+                        labl: "Last Name",
+                        obsz: false),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -84,17 +103,19 @@ class owner_registerscreen extends StatelessWidget {
                         controller: phone_reg,
                         ico: Icons.phone,
                         hint: "enter your phone number",
-                        labl: "Phone", obsz:  false),
+                        labl: "Phone",
+                        obsz: false),
                     SizedBox(
                       height: 2.h,
                     ),
                     alltextfields(
                         messege: "Please enter your email address ",
                         controller: email_reg,
-                        icos: Icons.remove_red_eye,
+                        icos: null,
                         ico: Icons.email,
                         hint: "enter your Email",
-                        labl: "Email", obsz: false),
+                        labl: "Email",
+                        obsz: false),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -103,13 +124,11 @@ class owner_registerscreen extends StatelessWidget {
                         controller: password_reg,
                         ico: Icons.location_on,
                         hint: "enter your password",
-                        labl: "Password", obsz:  false),
+                        labl: "Password",
+                        obsz: false),
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: 2.h,
             ),
             Align(
               alignment: Alignment.center,
@@ -131,16 +150,17 @@ class owner_registerscreen extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  height: 6.h,
-                  width: 60.w,
+                  height: 5.h,
+                  width: 80.w,
                   decoration: BoxDecoration(
+                    color: wh,
                     borderRadius: BorderRadius.circular(100.h),
-                    border: Border.all(width: 2, color: blu),
+                    border: Border.all(width: 2, color: wh),
                   ),
                   child: Center(
                     child: alltext(
                         txt: "SIGN UP",
-                        col: wh,
+                        col: bl,
                         siz: 12.sp,
                         wei: FontWeight.bold,
                         max: 1),
@@ -149,7 +169,7 @@ class owner_registerscreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 2.h,
+              height: 1.h,
             ),
             Align(
                 alignment: Alignment.center,
@@ -161,7 +181,7 @@ class owner_registerscreen extends StatelessWidget {
                         wei: FontWeight.bold,
                         max: 1))),
             SizedBox(
-              height: 2.h,
+              height: 1.h,
             ),
             Align(
               alignment: Alignment.center,
@@ -170,16 +190,17 @@ class owner_registerscreen extends StatelessWidget {
                   Get.to(() => Loginscreen());
                 },
                 child: Container(
-                  height: 6.h,
-                  width: 60.w,
+                  height: 5.h,
+                  width: 80.w,
                   decoration: BoxDecoration(
+                    color: wh,
                     borderRadius: BorderRadius.circular(100.h),
-                    border: Border.all(width: 2, color: or),
+                    border: Border.all(width: 2, color: bl),
                   ),
                   child: Center(
                     child: alltext(
                         txt: "LOGIN",
-                        col: wh,
+                        col: bl,
                         siz: 12.sp,
                         wei: FontWeight.bold,
                         max: 1),

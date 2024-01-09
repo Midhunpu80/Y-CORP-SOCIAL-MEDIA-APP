@@ -13,7 +13,7 @@ Widget storiesbar() {
         color: Colors.transparent,
       ),
       backgroundColor: bl,
-      toolbarHeight: 11.h,
+      toolbarHeight:13.h,
       flexibleSpace: StreamBuilder(
           stream: FirebaseFirestore.instance.collection('Users').snapshots(),
           builder: (context, snapshot) {
@@ -22,7 +22,7 @@ Widget storiesbar() {
                     child: CircularProgressIndicator(),
                   )
                 : Container(
-                    height: 14.h,
+                    height: 13.h,
                     width: 100.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
@@ -39,17 +39,17 @@ Widget storiesbar() {
                                   InkWell(
                                     onTap: () {},
                                     child: Container(
-                                      height: 9.h,
-                                      width: 19.w,
+                                      height: 8.h,
+                                      width: 16.w,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                               image: NetworkImage(
                                                   snap?['profile']),
                                               fit: BoxFit.cover),
                                           borderRadius:
-                                              BorderRadius.circular(10.h),
+                                              BorderRadius.circular(28.h),
                                           border:
-                                              Border.all(width: 2, color: yl)),
+                                              Border.all(width: 2, color:const  Color.fromARGB(255, 241, 0, 68))),
                                     ),
                                   ),
                                   SizedBox(

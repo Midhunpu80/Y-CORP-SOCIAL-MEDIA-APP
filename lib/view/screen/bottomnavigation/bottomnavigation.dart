@@ -31,7 +31,7 @@ class bottomnavscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           bottomNavigationBar: BottomNavigationBar(
-              unselectedItemColor: yl,
+              unselectedItemColor: wh,
               onTap: (value) {
                 bottomct.changeindex(value);
               },

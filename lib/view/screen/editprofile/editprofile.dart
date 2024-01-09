@@ -74,7 +74,7 @@ class editprofile extends StatelessWidget {
                     obsz:  false,
                     messege: "Please enter your email id ",
                       controller: usercont.editname,
-                      ico: Icons.lock,
+                      ico: Icons.person,
                       hint: "enter your email id",
                       labl: "Name"),
                   SizedBox(
@@ -84,8 +84,8 @@ class editprofile extends StatelessWidget {
                     obsz:  false,
                     messege: "Please enter your Last name ",
                       controller: usercont.editlast,
-                      icos: Icons.remove_red_eye,
-                      ico: Icons.location_on,
+                      icos: null,
+                      ico: Icons.last_page,
                       hint: "enter your Lastname",
                       labl: "Last name"),
                   SizedBox(
@@ -95,7 +95,7 @@ class editprofile extends StatelessWidget {
                     obsz:  false,
                     messege: "Please enter your Your Bio ",
                       controller: usercont.editbio,
-                      ico: Icons.lock,
+                      ico: Icons.closed_caption,
                       hint: "enter your bio",
                       labl: "bio"),
                   SizedBox(
@@ -105,8 +105,8 @@ class editprofile extends StatelessWidget {
                     obsz:  false,
                     messege: "Please enter your Phone number  ",
                       controller: usercont.editphone,
-                      icos: Icons.remove_red_eye,
-                      ico: Icons.location_on,
+                      icos:null,
+                      ico: Icons.phone,
                       hint: "enter your Phone number ",
                       labl: "Phone"),
                   SizedBox(
@@ -114,10 +114,10 @@ class editprofile extends StatelessWidget {
                   ),
                   alltextfields(
                     obsz:  false,
-                    messege: "Please enter your phone number ",
+                    messege: "Please enter your Gender ",
                       controller: usercont.genders,
-                      icos: Icons.remove_red_eye,
-                      ico: Icons.location_on,
+                      icos:null,
+                      ico: Icons.male,
                       hint: "enter your Phone Gender ",
                       labl: "Gender"),
                 ],
@@ -130,7 +130,7 @@ class editprofile extends StatelessWidget {
               width: 70.w,
               height: 6.h,
               child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(backgroundColor: yl),
+                  style: ElevatedButton.styleFrom(backgroundColor: wh),
                   onPressed: () {
                     profile_cont.editprofile(
                         profile: usercont.img.value!,
@@ -143,12 +143,12 @@ class editprofile extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.verified,
-                    color: wh,
+                    color: bl,
                   ),
                   label: alltext(
                       txt: "save",
-                      col: wh,
-                      siz: 12.sp,
+                      col: bl,
+                      siz: 13.sp,
                       wei: FontWeight.bold,
                       max: 1)),
             )
