@@ -15,7 +15,6 @@ import 'package:social_syn/controller/usercontroller%20.dart';
 import 'package:social_syn/view/resources/storage.dart';
 import 'package:social_syn/view/screen/authentication/Log/log/reg.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
-import 'package:social_syn/view/screen/createpost/createpost_screen.dart';
 import 'package:social_syn/view/service/auth/firebaseauthentication.dart';
 import 'package:social_syn/view/service/groupchat/groupchatservice.dart';
 import 'package:social_syn/view/service/notification/notification_service.dart';
@@ -48,7 +47,6 @@ final gcontroll = Get.put(groupchatservice());
 final reportcontroll = Get.put(report_service());
 final notification_controll = Get.put(notification_service());
 createpost_service postser = createpost_service();
-
 
 // final getposts_controll = Get.put(allposts_service());
 // final question_controll = Get.put(allquestion_service());

@@ -16,6 +16,7 @@ class owner_registerscreen extends StatelessWidget {
   final phone_reg = TextEditingController();
   final last_reg = TextEditingController();
   final name_reg = TextEditingController();
+  final regkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +62,7 @@ class owner_registerscreen extends StatelessWidget {
                 child: Column(
                   children: [
                     alltextfields(
+                        messege: "Please enter your first name ",
                         controller: name_reg,
                         ico: Icons.person,
                         labl: "First Name",
@@ -69,6 +71,7 @@ class owner_registerscreen extends StatelessWidget {
                       height: 2.h,
                     ),
                     alltextfields(
+                        messege: "Please enter your Last name ",
                         controller: last_reg,
                         ico: Icons.verified_user_outlined,
                         hint: "Last Name",
@@ -77,6 +80,7 @@ class owner_registerscreen extends StatelessWidget {
                       height: 2.h,
                     ),
                     alltextfields(
+                        messege: "Please enter your phone number ",
                         controller: phone_reg,
                         ico: Icons.phone,
                         hint: "enter your phone number",
@@ -85,6 +89,7 @@ class owner_registerscreen extends StatelessWidget {
                       height: 2.h,
                     ),
                     alltextfields(
+                        messege: "Please enter your email address ",
                         controller: email_reg,
                         icos: Icons.remove_red_eye,
                         ico: Icons.email,
@@ -94,6 +99,7 @@ class owner_registerscreen extends StatelessWidget {
                       height: 2.h,
                     ),
                     alltextfields(
+                        messege: "Please enter your password ",
                         controller: password_reg,
                         ico: Icons.location_on,
                         hint: "enter your password",
@@ -109,6 +115,7 @@ class owner_registerscreen extends StatelessWidget {
               alignment: Alignment.center,
               child: InkWell(
                 onTap: () {
+                  //  if (regkey.currentState!.validate()) {
                   if (email_reg.text.isNotEmpty ||
                       password_reg.text.isNotEmpty | name_reg.text.isNotEmpty ||
                       last_reg.text.isNotEmpty ||
@@ -119,10 +126,8 @@ class owner_registerscreen extends StatelessWidget {
                         name: name_reg.text,
                         lastname: last_reg.text,
                         phone: phone_reg.text);
-                        Get.to(()=>Loginscreen());
-                        
-                  } else {
-                    print("is empt");
+                    Get.to(() => Loginscreen());
+                    // }
                   }
                 },
                 child: Container(

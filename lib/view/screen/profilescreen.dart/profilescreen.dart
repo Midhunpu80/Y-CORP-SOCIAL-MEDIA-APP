@@ -126,7 +126,7 @@ class profilescreen extends StatelessWidget {
                                                 snapsss: null,
                                                 snapid: null,
                                                 thischange: true,
-                                                totoalposts:totalposts),
+                                                totoalposts: totalposts),
                                             usergrid_post(
                                                 itemcount:
                                                     snapshots.data!.docs.length,

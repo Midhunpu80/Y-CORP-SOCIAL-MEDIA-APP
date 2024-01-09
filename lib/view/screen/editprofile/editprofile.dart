@@ -71,6 +71,7 @@ class editprofile extends StatelessWidget {
               child: Column(
                 children: [
                   alltextfields(
+                    messege: "Please enter your email id ",
                       controller: usercont.editname,
                       ico: Icons.lock,
                       hint: "enter your email id",
@@ -79,6 +80,7 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
+                    messege: "Please enter your Last name ",
                       controller: usercont.editlast,
                       icos: Icons.remove_red_eye,
                       ico: Icons.location_on,
@@ -88,6 +90,7 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
+                    messege: "Please enter your Your Bio ",
                       controller: usercont.editbio,
                       ico: Icons.lock,
                       hint: "enter your bio",
@@ -96,6 +99,7 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
+                    messege: "Please enter your Phone number  ",
                       controller: usercont.editphone,
                       icos: Icons.remove_red_eye,
                       ico: Icons.location_on,
@@ -105,6 +109,7 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
+                    messege: "Please enter your phone number ",
                       controller: usercont.genders,
                       icos: Icons.remove_red_eye,
                       ico: Icons.location_on,

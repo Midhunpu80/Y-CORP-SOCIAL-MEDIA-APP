@@ -5,6 +5,12 @@ class bottomcontroller extends GetxController {
 
   changeindex(var val) {
     index.value = val;
+  }
 
+  var obs = false.obs;
+
+  change() {
+    obs.value = !obs.value;
+    update();
   }
 }

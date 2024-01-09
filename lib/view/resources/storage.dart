@@ -9,7 +9,7 @@ class firbasestorage {
 
   final FirebaseStorage _storage = FirebaseStorage.instance;
   Future<String> uploadimagefirebase(
-      String childname, Uint8List file, bool ispost) async {
+      String childname, Uint8List file, bool ispost,) async {
     Reference ref =
         _storage.ref().child(childname).child(_auth.currentUser!.uid);
     if (ispost) {

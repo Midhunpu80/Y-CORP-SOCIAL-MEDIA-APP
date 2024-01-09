@@ -69,8 +69,8 @@ class bottomnavscreen extends StatelessWidget {
                           return !snapshot.hasData
                               ? const Center(child: CircularProgressIndicator())
                               : CircleAvatar(
-                                  backgroundImage:
-                                      NetworkImage(snap?['profile']),
+                                backgroundImage:
+                                     NetworkImage(snap?['profile']),
                                 );
                         }),
                     label: "Profile",
