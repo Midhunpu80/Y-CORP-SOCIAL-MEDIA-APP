@@ -139,6 +139,7 @@ deleteandeditmodelsheet(BuildContext context,
                                 }
                                 if (index == 1) {
                                   edituserpost(
+                                      postid: postid,
                                       context: context,
                                       textx: descriptions,
                                       image: image);

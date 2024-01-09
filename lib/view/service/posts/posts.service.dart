@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:social_syn/view/resources/storage.dart';
 import 'package:social_syn/view/utility/firebasecollection/firebasecollection.dart';
@@ -143,4 +146,17 @@ class createpost_service {
   ///
 
 //////////////////////////////////////////////////followings ///////////////////////////////////////////////////////////
+  ///
+//////////////////////////////////////////////////Edit post //////////////////////////////////////////////////////////
+  Future editposts({required postid, required var newcaption}) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Posts')
+          .doc(postid)
+          .update({"captions": newcaption.toString()}).then(
+              (value) => Get.snackbar("sucess ", "post updates "));
+    } catch (e) {
+      print("failed to updates");
+    }
+  }
 }
