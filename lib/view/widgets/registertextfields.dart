@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:sizer/sizer.dart';
-import 'package:social_syn/controller/bottomcontroller.dart';
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
@@ -12,6 +10,7 @@ alltextfields(
     TextEditingController? controller,
     required var hint,
     required var labl,
+    required var obsz,
     IconData? icos}) {
   return SizedBox(
     height: 6.h,
@@ -19,11 +18,10 @@ alltextfields(
     child: Obx(
       () => TextFormField(
         obscuringCharacter: '*',
-        obscureText: bottomct.obs.value,
+        obscureText: obsz,
         controller: controller,
         style: TextStyle(color: wh, fontSize: 12.sp),
         decoration: InputDecoration(
-        
 
             // fillColor: gy.withOpacity(0.1),
             //filled: true,
@@ -51,6 +49,7 @@ alltextfields(
               size: 2.h,
             )),
         validator: (value) {
+          // ignore: unnecessary_null_comparison
           if (value!.isEmpty || value == null) {
             return messege;
           } else {

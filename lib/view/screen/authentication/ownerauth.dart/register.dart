@@ -66,7 +66,7 @@ class owner_registerscreen extends StatelessWidget {
                         controller: name_reg,
                         ico: Icons.person,
                         labl: "First Name",
-                        hint: "enter your First name"),
+                        hint: "enter your First name", obsz:  false),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -75,7 +75,7 @@ class owner_registerscreen extends StatelessWidget {
                         controller: last_reg,
                         ico: Icons.verified_user_outlined,
                         hint: "Last Name",
-                        labl: "Last Name"),
+                        labl: "Last Name", obsz:  false),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -84,7 +84,7 @@ class owner_registerscreen extends StatelessWidget {
                         controller: phone_reg,
                         ico: Icons.phone,
                         hint: "enter your phone number",
-                        labl: "Phone"),
+                        labl: "Phone", obsz:  false),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -94,7 +94,7 @@ class owner_registerscreen extends StatelessWidget {
                         icos: Icons.remove_red_eye,
                         ico: Icons.email,
                         hint: "enter your Email",
-                        labl: "Email"),
+                        labl: "Email", obsz: false),
                     SizedBox(
                       height: 2.h,
                     ),
@@ -103,7 +103,7 @@ class owner_registerscreen extends StatelessWidget {
                         controller: password_reg,
                         ico: Icons.location_on,
                         hint: "enter your password",
-                        labl: "Password"),
+                        labl: "Password", obsz:  false),
                   ],
                 ),
               ),

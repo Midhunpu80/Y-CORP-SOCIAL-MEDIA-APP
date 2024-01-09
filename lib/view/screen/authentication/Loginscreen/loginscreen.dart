@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
 import 'package:social_syn/view/screen/authentication/ownerauth.dart/register.dart';
+import 'package:social_syn/view/screen/authentication/resetpasswordscreen/resetpass.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
@@ -70,7 +71,7 @@ class Loginscreen extends StatelessWidget {
                   controller: email_log,
                   ico: Icons.lock,
                   hint: "enter your email id",
-                  labl: "Email ID"),
+                  labl: "Email ID", obsz: false),
               SizedBox(
                 height: 3.h,
               ),
@@ -82,7 +83,7 @@ class Loginscreen extends StatelessWidget {
                       : Icons.remove_red_eye_outlined,
                   ico: Icons.location_on,
                   hint: "enter your password",
-                  labl: "Password")),
+                  labl: "Password", obsz: bottomct.obs.value)),
               SizedBox(
                 height: 2.h,
               ),
@@ -180,7 +181,9 @@ class Loginscreen extends StatelessWidget {
                   top: 18.h,
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => resertpassscreen());
+                  },
                   child: Container(
                       height: 5.h,
                       width: 50.w,
