@@ -29,7 +29,7 @@ class reuirementscreen extends StatelessWidget {
             max: 1),
         actions: [
           notificationbutton(),
-          messegebutton(),
+          messegebutton(context),
         ],
         backgroundColor: wh,
       ),

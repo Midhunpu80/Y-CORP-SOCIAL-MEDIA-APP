@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:sizer/sizer.dart';
@@ -5,7 +6,7 @@ import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/buttons.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
-Widget header({required var tit}) {
+Widget header({required var tit,required BuildContext context}) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Container(
@@ -22,7 +23,7 @@ Widget header({required var tit}) {
                 wei: FontWeight.w600,
                 max: 1),
             Spacer(),
-            messegebutton(),
+            messegebutton(context),
             notificationbutton(),
           ],
         )),

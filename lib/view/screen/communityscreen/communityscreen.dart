@@ -29,7 +29,7 @@ class communityscreen extends StatelessWidget {
               height: 4.h,
               width: 20.w,
             ),
-            header(tit: "Community"),
+            header(tit: "Community",context: context),
             ///communitypost(),
             SizedBox(
               height: 30.h,

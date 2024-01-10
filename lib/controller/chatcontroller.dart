@@ -15,12 +15,10 @@ class chatcontroller extends GetxController {
       String res = await _chat.addmessege(
           uid: uid, text: text, name: name, profile: profile);
       if (res == "sucess") {
-        Get.snackbar("sucess", "chat", backgroundColor: wh);
+      
       } else {
-        Get.snackbar("failed", "chat", backgroundColor: wh);
       }
     } catch (e) {
-      Get.snackbar("failed", e.toString(), backgroundColor: wh);
     }
   }
 }

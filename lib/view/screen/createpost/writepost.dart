@@ -35,7 +35,7 @@ class writepost extends StatelessWidget {
                                 uid: snap!['uid'],
                                 profile: snap['profile'],
                                 username: snap['name'],
-                                captions: caption.text);
+                                captions: caption.text, context: context);
                           },
                           icon: Icon(
                             Icons.check,

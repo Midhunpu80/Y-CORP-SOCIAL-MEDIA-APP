@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/main.dart';
-import 'package:social_syn/view/service/saved/savedservice.dart';
-import 'package:social_syn/view/utility/alltext.dart';
+ import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/editpost.dart';
 import 'package:social_syn/view/widgets/report.dart';
@@ -133,7 +132,8 @@ deleteandeditmodelsheet(BuildContext context,
                                           "-----------------------${postid.toString()}");
 
                                       postcont.postdelete(
-                                          id: postid.toString());
+                                          id: postid.toString(),
+                                          context: context);
                                     },
                                   )..show();
                                 }

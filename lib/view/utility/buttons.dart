@@ -8,7 +8,7 @@ import 'package:social_syn/view/screen/prouser_profilescreen/pro_userprofilescre
 import 'package:social_syn/view/screen/searchscreen/searchscreen.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
-Widget messegebutton() {
+Widget messegebutton(BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(4.0),
     child: CircleAvatar(
@@ -17,6 +17,8 @@ Widget messegebutton() {
       child: IconButton(
           onPressed: () {
             Get.to(() => messegeScreen());
+
+            ///  customsnackbar(context);
           },
           icon: Icon(
             Icons.message,
@@ -45,6 +47,7 @@ Widget notificationbutton() {
     ),
   );
 }
+
 Widget settingsbutton() {
   return Padding(
     padding: const EdgeInsets.all(4.0),
@@ -53,7 +56,7 @@ Widget settingsbutton() {
       backgroundColor: wh.withOpacity(0.2),
       child: IconButton(
           onPressed: () {
-            Get.to(() =>pro_userprofilescreen());
+            Get.to(() => pro_userprofilescreen());
           },
           icon: Icon(
             Icons.settings,
@@ -63,7 +66,6 @@ Widget settingsbutton() {
     ),
   );
 }
-
 
 Widget searchbutton() {
   return Padding(

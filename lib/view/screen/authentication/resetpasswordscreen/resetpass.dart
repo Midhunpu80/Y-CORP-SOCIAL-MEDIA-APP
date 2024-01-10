@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/main.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/registertextfields.dart';
 
 class resertpassscreen extends StatelessWidget {
-  const resertpassscreen({super.key});
+  resertpassscreen({super.key});
+  final resetcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,8 @@ class resertpassscreen extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: Container(
                 child: alltextfields(
-                  obsz: false,
+                  controller: resetcontroller,
+                    obsz: false,
                     messege: "enter the email address",
                     ico: Icons.email,
                     hint: "Enter your email address",
@@ -60,18 +63,24 @@ class resertpassscreen extends StatelessWidget {
             SizedBox(
               height: 5.h,
             ),
-            Container(
-              height: 5.h,
-              width: 80.w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18.h), color: wh),
-              child: Center(
-                  child: alltext(
-                      txt: " Reset password",
-                      col: bl,
-                      siz: 11.sp,
-                      wei: FontWeight.bold,
-                      max: 1)),
+            InkWell(
+              onTap: () {
+                auth_controll.reserpassword(
+                    email: resetcontroller.text.toString());
+              },
+              child: Container(
+                height: 5.h,
+                width: 80.w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18.h), color: wh),
+                child: Center(
+                    child: alltext(
+                        txt: " Reset password",
+                        col: bl,
+                        siz: 11.sp,
+                        wei: FontWeight.bold,
+                        max: 1)),
+              ),
             )
           ],
         ),

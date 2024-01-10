@@ -3,9 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import 'package:social_syn/Model/users.dart';
 import 'package:social_syn/view/screen/authentication/Log/log/reg.dart';
 import 'package:social_syn/view/screen/bottomnavigation/bottomnavigation.dart';
+import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
 final CollectionReference UserdataList =
@@ -92,6 +94,18 @@ class firebaseauthenticationservice extends GetxController {
         (value) => Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => const log_or_reg_screen(),
             )));
+  }
+
+  //////////////////////Rest pass word ///////////////////////////////////
+  Future reserpassword({required var email}) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email).then(
+        (value) => SnackBar(
+            content: alltext(
+                txt: "check on your mail ",
+                col: wh,
+                siz: 12.sp,
+                wei: FontWeight.bold,
+                max: 1)));
   }
 
   @override

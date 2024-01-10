@@ -100,7 +100,7 @@ sendcomment({
                         ),
                         IconButton(
                             onPressed: () async {
-                              await postcont.postcomment(
+                              await postcont.postcomment(context: context,
                                 uid: uid,
                                 postid: postid,
                                 text: comment_contr.text.toString(),

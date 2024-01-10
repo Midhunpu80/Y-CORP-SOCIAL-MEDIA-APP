@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:social_syn/controller/bottomcontroller.dart';
 import 'package:social_syn/controller/chatcontroller.dart';
+import 'package:social_syn/controller/dependencyinjection.dart';
 import 'package:social_syn/controller/postcontroller.dart';
 import 'package:social_syn/controller/postsavedcontroller.dart';
 import 'package:social_syn/controller/protabcontroller.dart';
@@ -30,8 +31,9 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   runApp(const MyApp());
+  dependencyinjection.init();
 }
-
+ 
 final auth_controll = Get.put(firebaseauthenticationservice());
 final bottomct = Get.put(bottomcontroller());
 final procontroll = Get.put(protabcontroller());

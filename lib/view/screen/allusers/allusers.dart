@@ -32,7 +32,7 @@ class allusers_screen extends StatelessWidget {
                   backgroundColor: bl,
                   appBar: AppBar(
                     actions: [
-                      messegebutton(),
+                      messegebutton(context),
                       notificationbutton(),
                     ],
                     toolbarHeight: 10.h,
@@ -109,16 +109,16 @@ class allusers_screen extends StatelessWidget {
                                               height: 4.h,
                                               width: 25.w,
                                               decoration: BoxDecoration(
-                                                  color: isdoc ? gy : yl,
+                                                  color: isdoc ? gy : wh,
                                                   borderRadius:
                                                       BorderRadius.circular(
-                                                          1.h)),
+                                                          5.h)),
                                               child: Center(
                                                 child: isdoc
                                                     ? alltext(
                                                         txt: "following",
                                                         col: wh,
-                                                        siz: 7.sp,
+                                                        siz: 8.sp,
                                                         wei: FontWeight.bold,
                                                         max: 1)
                                                     : alltext(
@@ -136,11 +136,17 @@ class allusers_screen extends StatelessWidget {
                                               siz: 8.sp,
                                               wei: FontWeight.bold,
                                               max: 1),
-                                          leading: CircleAvatar(
-                                            backgroundImage:
-                                                NetworkImage(snap!['profile']),
-                                            radius: 3.h,
-                                          ),
+                                          leading: snap!['profile'] == null
+                                              ? const CircleAvatar(
+                                                  backgroundImage: AssetImage(
+                                                      "images/y-high-resolution-logo.png"),
+                                                )
+                                              : CircleAvatar(
+                                                backgroundColor: gy.withOpacity(0.3),
+                                                  backgroundImage: NetworkImage(
+                                                      snap['profile']),
+                                                  radius: 3.h,
+                                                ),
                                           title: alltext(
                                               txt: snap['name'],
                                               col: wh,

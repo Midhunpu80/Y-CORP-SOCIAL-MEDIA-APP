@@ -18,7 +18,7 @@ class cateogeoryscreen extends StatelessWidget {
           SizedBox(
             height: 4.h,
           ),
-          header(tit: "Cateogery"),
+          header(tit: "Cateogery",context: context),
           Container(
             height: 76.h,
             width: 100.w,

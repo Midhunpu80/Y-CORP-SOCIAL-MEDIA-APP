@@ -5,7 +5,7 @@ import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/buttons.dart';
 import 'package:social_syn/view/utility/colors.dart';
 
-Widget drawwer() {
+Widget drawwer(BuildContext context) {
   return SliverAppBar(
       backgroundColor: bl,
       leading: const Icon(
@@ -43,7 +43,7 @@ Widget drawwer() {
                 // ),
                 const Spacer(),
                 searchbutton(),
-                messegebutton(),
+                messegebutton(context),
                 notificationbutton(),
               ],
             ),

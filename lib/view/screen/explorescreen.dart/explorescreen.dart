@@ -24,7 +24,7 @@ class explorescreem extends StatelessWidget {
                             color: wh,
                           ),
                           actions: [
-                            messegebutton(),
+                            messegebutton(context),
                             notificationbutton(),
                           ],
                           toolbarHeight: 8.h,

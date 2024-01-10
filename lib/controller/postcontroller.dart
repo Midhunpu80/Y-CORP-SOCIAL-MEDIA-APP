@@ -1,29 +1,37 @@
 import 'dart:typed_data';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:social_syn/view/service/posts/posts.service.dart';
 import 'package:social_syn/view/utility/colors.dart';
+import 'package:social_syn/view/utility/snackbar.dart';
 
 class postcontroller extends GetxController {
   var isloading = false.obs;
 
   final createpost_service _post = createpost_service();
 
-  postdelete({required var id}) async {
+  postdelete({required var id, required BuildContext context}) async {
     try {
       String resp = await _post.deletepost(id: id);
       if (resp == "success") {
-        Get.snackbar("sucess", "Post deleted", backgroundColor: wh);
-      } else {
-        Get.snackbar("failed", "failed delteting", backgroundColor: wh);
-      }
+        customsnackbar(
+            titile: "sucess",
+            messege: "postdeleted succesfully",
+            type: ContentType.success);
+      } else {}
     } catch (e) {
-      Get.snackbar("failed", "failed delteting", backgroundColor: wh);
+      customsnackbar(
+          titile: "failed",
+          messege: "postdeleted falied",
+          type: ContentType.failure);
     }
   }
 
   postthepost(
-      {required Uint8List file,
+      {required BuildContext context,
+      required Uint8List file,
       required var uid,
       required var profile,
       required var username,
@@ -38,16 +46,28 @@ class postcontroller extends GetxController {
           profile: profile,
           username: username);
       if (res == "sucess") {
-        Get.snackbar("sucess", "uploaded succesful", backgroundColor: wh);
         isloading(false);
+
+        ///Get.snackbar("sucess","sucess");
+        customsnackbar(
+            titile: "sucess",
+            messege: "postuploaded succesfully",
+            type: ContentType.success);
         update();
       } else {
-        Get.snackbar("failed", "uploaded failed");
         isloading(false);
+       await customsnackbar(
+            titile: "failed",
+            messege: "post upload falied",
+            type: ContentType.failure);
+
         update();
       }
     } catch (e) {
-      Get.snackbar("error", e.toString());
+    await  customsnackbar(
+          titile: "failed",
+          messege: "post upload falied$e",
+          type: ContentType.failure);
       isloading(false);
     }
   }
@@ -57,7 +77,8 @@ class postcontroller extends GetxController {
       required var profile,
       required var name,
       required var postid,
-      required var text}) async {
+      required var text,
+      required BuildContext context}) async {
     try {
       isloading(true);
 
@@ -65,7 +86,12 @@ class postcontroller extends GetxController {
           postid: postid, text: text, name: name, profile: profile, uid: uid);
 
       if (res == "sucess") {
-        Get.snackbar("sucess", "uploaded succesful", backgroundColor: wh);
+        // ignore: use_build_context_synchronously
+        customsnackbar(
+            titile: "Sucess",
+            messege: "posted the comment ",
+            type: ContentType.success,
+            context: context);
         isloading(false);
         update();
       } else {
