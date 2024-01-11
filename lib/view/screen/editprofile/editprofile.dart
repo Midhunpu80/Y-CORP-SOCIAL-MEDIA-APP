@@ -71,8 +71,8 @@ class editprofile extends StatelessWidget {
               child: Column(
                 children: [
                   alltextfields(
-                    obsz:  false,
-                    messege: "Please enter your email id ",
+                      obsz: false,
+                      messege: "Please enter your email id ",
                       controller: usercont.editname,
                       ico: Icons.person,
                       hint: "enter your email id",
@@ -81,8 +81,8 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
-                    obsz:  false,
-                    messege: "Please enter your Last name ",
+                      obsz: false,
+                      messege: "Please enter your Last name ",
                       controller: usercont.editlast,
                       icos: null,
                       ico: Icons.last_page,
@@ -92,8 +92,8 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
-                    obsz:  false,
-                    messege: "Please enter your Your Bio ",
+                      obsz: false,
+                      messege: "Please enter your Your Bio ",
                       controller: usercont.editbio,
                       ico: Icons.closed_caption,
                       hint: "enter your bio",
@@ -102,10 +102,10 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
-                    obsz:  false,
-                    messege: "Please enter your Phone number  ",
+                      obsz: false,
+                      messege: "Please enter your Phone number  ",
                       controller: usercont.editphone,
-                      icos:null,
+                      icos: null,
                       ico: Icons.phone,
                       hint: "enter your Phone number ",
                       labl: "Phone"),
@@ -113,10 +113,10 @@ class editprofile extends StatelessWidget {
                     height: 3.h,
                   ),
                   alltextfields(
-                    obsz:  false,
-                    messege: "Please enter your Gender ",
+                      obsz: false,
+                      messege: "Please enter your Gender ",
                       controller: usercont.genders,
-                      icos:null,
+                      icos: null,
                       ico: Icons.male,
                       hint: "enter your Phone Gender ",
                       labl: "Gender"),

@@ -32,7 +32,7 @@ Widget drawwer(BuildContext context) {
                   width: 2.h,
                 ),
                 alltext(
-                    txt: "Sync",
+                    txt: "Corp",
                     col: wh,
                     siz: 17.sp,
                     wei: FontWeight.bold,

@@ -15,17 +15,15 @@ Widget userpostdatasList(
 //  required var caption,required var name, required var time,required var image,required var profile
 ) {
   return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection(
-            'Posts',
-          )
-          .snapshots(),
+      stream: FirebaseFirestore.instance.collection('Posts').orderBy('time',descending: true).snapshots(),
       builder: (context, snapshot) {
         return SliverList.separated(
           itemBuilder: (context, index) {
-            final snap = snapshot.data?.docs[index];
+            final snap = snapshot.data!.docs[index];
 
-            Timestamp timestamp = snap!["date"];
+            /// print(snap!['photourl']);
+
+            Timestamp timestamp = snap["date"];
             DateTime dateTime = timestamp.toDate();
             String formattedDateTime =
                 DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
@@ -73,9 +71,17 @@ Widget userpostdatasList(
                                 height: 32.h,
                                 width: 85.w,
                                 decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          snap['photourl'].toString()),
+                                      fit: BoxFit.cover),
                                   borderRadius: BorderRadius.circular(2.h),
                                 ),
-                                // child: Image(image: NetworkImage(snap['photourl'].toString())),
+                                // child: Image(
+                                //   image:
+                                //       NetworkImage(snap['photourl'].toString()),
+                                //   fit: BoxFit.cover,
+                                // ),
                               ),
                             ),
                           ),
@@ -96,7 +102,7 @@ Widget userpostdatasList(
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 1.h, top: 1.h),
-                            child: Container(
+                            child: SizedBox(
                               height: 2.h,
                               width: 100.w,
                               child: alltext(

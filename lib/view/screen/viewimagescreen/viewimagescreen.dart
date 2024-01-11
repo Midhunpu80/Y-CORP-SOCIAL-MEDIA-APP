@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -72,7 +74,7 @@ class viewimagescreen extends StatelessWidget {
             height: 15.h,
           ),
           Container(
-            height: 30.h,
+            height: 33.h,
             width: 100.w,
             decoration: BoxDecoration(
                 image: DecorationImage(
