@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+import 'package:social_syn/view/screen/viewimagescreen/viewimagescreen.dart';
 import 'package:social_syn/view/utility/alltext.dart';
 import 'package:social_syn/view/utility/colors.dart';
 import 'package:social_syn/view/widgets/deletemodelsheet.dart';
@@ -54,21 +56,27 @@ Widget userpostdatasList(
                               postid: snap['postId']),
                           Padding(
                             padding: EdgeInsets.only(left: 5.h),
-                            child: Container(
+                            child: SizedBox(
                                 width: 85.w,
                                 child: descriptionbar(des: snap['captions'])),
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 5.h, top: 1.h),
-                            child: Container(
-                              height: 32.h,
-                              width: 85.w,
-                              decoration: BoxDecoration(
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(() => viewimagescreen(
+                                    name: snap['username'],
+                                    profile: snap['profile'],
+                                    image: snap['photourl'].toString()));
+                              },
+                              child: Container(
+                                height: 32.h,
+                                width: 85.w,
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(2.h),
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          snap['photourl'].toString()),
-                                      fit: BoxFit.cover)),
+                                ),
+                                // child: Image(image: NetworkImage(snap['photourl'].toString())),
+                              ),
                             ),
                           ),
                           like_and_commentbar(

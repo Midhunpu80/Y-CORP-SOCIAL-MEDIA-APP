@@ -18,7 +18,7 @@ class allusers_screen extends StatelessWidget {
     return StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('Users')
-            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .doc(FirebaseAuth.instance.currentUser?.uid)
             .collection('following')
             .snapshots(),
         builder: (context, snapshotss) {
@@ -79,7 +79,7 @@ class allusers_screen extends StatelessWidget {
                                         child: ListTile(
                                           onTap: () async {
                                             Get.to(() => othersprofile_screen(
-                                                  id: snap['uid'],
+                                                  id: snap?['uid'],
                                                   followingsnap: snapsss,
                                                   thischange: isdoc,
                                                 ));
@@ -136,19 +136,14 @@ class allusers_screen extends StatelessWidget {
                                               siz: 8.sp,
                                               wei: FontWeight.bold,
                                               max: 1),
-                                          leading: snap!['profile'] == null
-                                              ? const CircleAvatar(
-                                                  backgroundImage: AssetImage(
-                                                      "images/y-high-resolution-logo.png"),
-                                                )
-                                              : CircleAvatar(
+                                          leading: CircleAvatar(
                                                 backgroundColor: gy.withOpacity(0.3),
                                                   backgroundImage: NetworkImage(
-                                                      snap['profile']),
+                                                      snap?['profile']),
                                                   radius: 3.h,
                                                 ),
                                           title: alltext(
-                                              txt: snap['name'],
+                                              txt: snap?['name'],
                                               col: wh,
                                               siz: 11.sp,
                                               wei: FontWeight.bold,
@@ -157,7 +152,7 @@ class allusers_screen extends StatelessWidget {
                                       );
                                     },
                                     separatorBuilder: (context, index) {
-                                      return SizedBox();
+                                      return const SizedBox();
                                     },
                                     itemCount: snapshot.data!.docs.length),
                               );

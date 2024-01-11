@@ -39,14 +39,14 @@ class othersprofile_screen extends StatelessWidget {
                       builder: (context, snapshot) {
                         final snap = snapshot.data?.docs[0];
 
-                        return StreamBuilder(
+                        return  !snapshot.hasData?const Center(child: CircularProgressIndicator(),): StreamBuilder(
                             stream: FirebaseFirestore.instance
                                 .collection('Users')
                                 .doc(FirebaseAuth.instance.currentUser?.uid)
                                 .collection('following')
                                 .snapshots(),
                             builder: (context, snapshoted) {
-                              final following = snapshoted.data!.docs.length;
+                              final following = snapshoted.data?.docs.length;
                               return StreamBuilder(
                                   stream: FirebaseFirestore.instance
                                       .collection('Users')
@@ -78,26 +78,26 @@ class othersprofile_screen extends StatelessWidget {
                                               )),
                                         ),
                                         profilecard(
-                                            name: snap!['name'],
+                                            name: snap?['name'],
                                             folllowing: following.toString(),
                                             followrs: followers.toString(),
                                             phone:
-                                                snap['phone'].toString().length,
-                                            id: snap['uid'].toString().length,
-                                            gender: snap['gender'].toString(),
-                                            bio: snap['bio'].toString(),
+                                                snap?['phone'].toString().length,
+                                            id: snap?['uid'].toString().length,
+                                            gender: snap?['gender'].toString(),
+                                            bio: snap?['bio'].toString(),
                                             lastname:
-                                                snap['last name'].toString(),
+                                                snap?['last name'].toString(),
                                             profileimg:
-                                                snap['profile'].toString(),
+                                                snap?['profile'].toString(),
                                             snapsss: snapshoted.data?.docs,
-                                            snapid: snap.id,
+                                            snapid: snap?.id,
                                             thischange: thischange,
                                             totoalposts: totalposts),
                                         usergrid_post(
                                             itemcount:
-                                                snapshots.data!.docs.length,
-                                            snaps: snapshots.data!.docs,
+                                                snapshots.data?.docs.length,
+                                            snaps: snapshots.data?.docs,
                                             thischange: thischange),
                                       ],
                                     );
